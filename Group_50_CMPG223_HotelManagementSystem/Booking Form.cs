@@ -8,7 +8,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
     public partial class Booking_Form : Form
     {
         private bool isUpdateMode = false;
-        private int selectedBookingID; 
+        private int selectedBookingID;
 
         public Booking_Form()
         {
@@ -22,7 +22,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
 
         private void Booking_Form_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ClearBookingForm()
@@ -41,35 +41,44 @@ namespace Group_50_CMPG223_HotelManagementSystem
             dtpBookOutDate.Value = DateTime.Now;
         }
 
-        private void LoadGuestsNotCheckedIn()
+        private void LoadGuestsNotCheckedIn(string sortOrder = "Asc")
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 connection.Open();
 
                 string query = @"
-            SELECT 
-                gb.Booking_ID,
-                g.First_Name,
-                g.Last_Name,
-                g.Contact_Num,
-                g.Email,
-                g.ID_Number, -- Include the ID Number
-                r.Room_Number,
-                gb.CheckIn_Date,
-                gb.CheckOut_Date,
-                a.Street_Name AS Street,
-                a.Town_City AS City
-            FROM 
-                Guest_Booking gb
-            JOIN 
-                Guests g ON gb.Guest_ID = g.Guest_ID
-            JOIN 
-                Rooms r ON gb.Room_ID = r.Room_ID
-            LEFT JOIN 
-                Address a ON g.Address_ID = a.Address_ID
-            WHERE 
-                gb.Is_CheckedIn = 0";
+        SELECT 
+            gb.Booking_ID,
+            g.First_Name,
+            g.Last_Name,
+            g.Contact_Num,
+            g.Email,
+            g.ID_Number,
+            r.Room_Number,
+            gb.CheckIn_Date,
+            gb.CheckOut_Date,
+            a.Street_Name AS Street,
+            a.Town_City AS City
+        FROM 
+            Guest_Booking gb
+        JOIN 
+            Guests g ON gb.Guest_ID = g.Guest_ID
+        JOIN 
+            Rooms r ON gb.Room_ID = r.Room_ID
+        LEFT JOIN 
+            Address a ON g.Address_ID = a.Address_ID
+        WHERE 
+            gb.Is_CheckedIn = 0";
+
+                if (sortOrder == "Asc")
+                {
+                    query += " ORDER BY gb.CheckIn_Date ASC";
+                }
+                else if (sortOrder == "Desc")
+                {
+                    query += " ORDER BY gb.CheckIn_Date DESC";
+                }
 
                 SqlDataAdapter da = new SqlDataAdapter(query, connection);
                 DataTable dt = new DataTable();
@@ -78,7 +87,6 @@ namespace Group_50_CMPG223_HotelManagementSystem
                 dtvBookingOverview.DataSource = dt;
             }
         }
-
 
         private void LoadRooms(DateTime checkInDate, DateTime checkOutDate)
         {
@@ -496,7 +504,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
                         MessageBox.Show("Database cleared successfully! All rooms are now available.");
 
                         LoadGuestsNotCheckedIn();
-                        LoadRooms(DateTime.Now, DateTime.Now.AddDays(1)); 
+                        LoadRooms(DateTime.Now, DateTime.Now.AddDays(1));
                     }
                     catch (Exception ex)
                     {
@@ -727,7 +735,6 @@ namespace Group_50_CMPG223_HotelManagementSystem
                                        $"City LIKE '%{searchText}%'";
                 }
 
-                // Filter the DataTable based on the search text
                 dt.DefaultView.RowFilter = filterExpression;
             }
         }
@@ -736,5 +743,29 @@ namespace Group_50_CMPG223_HotelManagementSystem
         {
 
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radBookingAsc.Checked)
+            {
+                ApplyBookingFilter("Asc");
+            }
+            else if (radBookingDesc.Checked)
+            {
+                ApplyBookingFilter("Desc");
+            }
+        }
+
+        private void ApplyBookingFilter(string sortOrder)
+        {
+            LoadGuestsNotCheckedIn(sortOrder);
+        }
+
+
     }
 }
+

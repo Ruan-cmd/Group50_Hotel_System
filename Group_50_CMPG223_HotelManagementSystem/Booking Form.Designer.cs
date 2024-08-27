@@ -37,16 +37,13 @@
             this.tpOverview = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dtvBookingOverview = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtBookingSearch = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBookingSearch = new System.Windows.Forms.TextBox();
-            this.lblSelectedGuest = new System.Windows.Forms.Label();
-            this.btnRemoveBooking = new System.Windows.Forms.Button();
-            this.btnUpdateBooking = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tpAddBooking = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -82,22 +79,30 @@
             this.btnBookingBookIn = new System.Windows.Forms.Button();
             this.btnBookingClearControls = new System.Windows.Forms.Button();
             this.btnQuestUpdate = new System.Windows.Forms.Button();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUpdateBooking = new System.Windows.Forms.Button();
+            this.btnRemoveBooking = new System.Windows.Forms.Button();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblSelectedGuest = new System.Windows.Forms.Label();
+            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.radBookingAsc = new System.Windows.Forms.RadioButton();
+            this.radBookingDesc = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.tabControlBooking.SuspendLayout();
             this.tpOverview.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtvBookingOverview)).BeginInit();
+            this.tableLayoutPanel13.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.tpAddBooking.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -109,10 +114,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookingRooms)).BeginInit();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
+            this.tableLayoutPanel17.SuspendLayout();
+            this.tableLayoutPanel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -122,7 +130,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1279, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1279, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -132,7 +140,7 @@
             this.dataToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // dataToolStripMenuItem
@@ -162,11 +170,11 @@
             this.tabControlBooking.Controls.Add(this.tpOverview);
             this.tabControlBooking.Controls.Add(this.tpAddBooking);
             this.tabControlBooking.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlBooking.Location = new System.Drawing.Point(0, 28);
+            this.tabControlBooking.Location = new System.Drawing.Point(0, 30);
             this.tabControlBooking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControlBooking.Name = "tabControlBooking";
             this.tabControlBooking.SelectedIndex = 0;
-            this.tabControlBooking.Size = new System.Drawing.Size(1279, 789);
+            this.tabControlBooking.Size = new System.Drawing.Size(1279, 787);
             this.tabControlBooking.TabIndex = 2;
             // 
             // tpOverview
@@ -176,7 +184,7 @@
             this.tpOverview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpOverview.Name = "tpOverview";
             this.tpOverview.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpOverview.Size = new System.Drawing.Size(1271, 760);
+            this.tpOverview.Size = new System.Drawing.Size(1271, 758);
             this.tpOverview.TabIndex = 1;
             this.tpOverview.Text = "Overview";
             this.tpOverview.UseVisualStyleBackColor = true;
@@ -194,7 +202,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1265, 756);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1265, 754);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // groupBox1
@@ -205,10 +213,25 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(626, 752);
+            this.groupBox1.Size = new System.Drawing.Size(626, 750);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Currant Guests Booked";
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Controls.Add(this.dtvBookingOverview, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 0, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(620, 731);
+            this.tableLayoutPanel12.TabIndex = 0;
             // 
             // dtvBookingOverview
             // 
@@ -220,9 +243,43 @@
             this.dtvBookingOverview.ReadOnly = true;
             this.dtvBookingOverview.RowHeadersWidth = 51;
             this.dtvBookingOverview.RowTemplate.Height = 24;
-            this.dtvBookingOverview.Size = new System.Drawing.Size(614, 694);
+            this.dtvBookingOverview.Size = new System.Drawing.Size(614, 692);
             this.dtvBookingOverview.TabIndex = 0;
             this.dtvBookingOverview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtvBookingOverview_CellClick);
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 2;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.Controls.Add(this.txtBookingSearch, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.label11, 0, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(614, 29);
+            this.tableLayoutPanel13.TabIndex = 0;
+            // 
+            // txtBookingSearch
+            // 
+            this.txtBookingSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBookingSearch.Location = new System.Drawing.Point(64, 4);
+            this.txtBookingSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBookingSearch.Name = "txtBookingSearch";
+            this.txtBookingSearch.Size = new System.Drawing.Size(546, 22);
+            this.txtBookingSearch.TabIndex = 0;
+            this.txtBookingSearch.TextChanged += new System.EventHandler(this.txtBookingSearch_TextChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 16);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Search:";
             // 
             // groupBox2
             // 
@@ -232,7 +289,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(627, 752);
+            this.groupBox2.Size = new System.Drawing.Size(627, 750);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -249,102 +306,19 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(621, 733);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(621, 731);
             this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.tableLayoutPanel5);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(4, 4);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(613, 358);
-            this.groupBox6.TabIndex = 0;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Action";
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(605, 335);
-            this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel14, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(597, 159);
-            this.tableLayoutPanel6.TabIndex = 2;
-            // 
-            // txtBookingSearch
-            // 
-            this.txtBookingSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingSearch.Location = new System.Drawing.Point(64, 4);
-            this.txtBookingSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBookingSearch.Name = "txtBookingSearch";
-            this.txtBookingSearch.Size = new System.Drawing.Size(546, 22);
-            this.txtBookingSearch.TabIndex = 0;
-            this.txtBookingSearch.TextChanged += new System.EventHandler(this.txtBookingSearch_TextChanged);
-            // 
-            // lblSelectedGuest
-            // 
-            this.lblSelectedGuest.AutoSize = true;
-            this.lblSelectedGuest.Location = new System.Drawing.Point(3, 0);
-            this.lblSelectedGuest.Name = "lblSelectedGuest";
-            this.lblSelectedGuest.Size = new System.Drawing.Size(120, 16);
-            this.lblSelectedGuest.TabIndex = 2;
-            this.lblSelectedGuest.Text = "No Guest Selected";
-            this.lblSelectedGuest.Click += new System.EventHandler(this.lblSelectedGuest_Click);
-            // 
-            // btnRemoveBooking
-            // 
-            this.btnRemoveBooking.Location = new System.Drawing.Point(4, 39);
-            this.btnRemoveBooking.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRemoveBooking.Name = "btnRemoveBooking";
-            this.btnRemoveBooking.Size = new System.Drawing.Size(164, 27);
-            this.btnRemoveBooking.TabIndex = 1;
-            this.btnRemoveBooking.Text = "Remove Booking";
-            this.btnRemoveBooking.UseVisualStyleBackColor = true;
-            this.btnRemoveBooking.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnUpdateBooking
-            // 
-            this.btnUpdateBooking.Location = new System.Drawing.Point(4, 74);
-            this.btnUpdateBooking.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpdateBooking.Name = "btnUpdateBooking";
-            this.btnUpdateBooking.Size = new System.Drawing.Size(164, 27);
-            this.btnUpdateBooking.TabIndex = 0;
-            this.btnUpdateBooking.Text = "Update Booking";
-            this.btnUpdateBooking.UseVisualStyleBackColor = true;
-            this.btnUpdateBooking.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.tableLayoutPanel17);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(4, 370);
+            this.groupBox7.Location = new System.Drawing.Point(4, 369);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox7.Size = new System.Drawing.Size(613, 359);
+            this.groupBox7.Size = new System.Drawing.Size(613, 358);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Filter";
@@ -751,44 +725,48 @@
             this.btnQuestUpdate.UseVisualStyleBackColor = true;
             this.btnQuestUpdate.Click += new System.EventHandler(this.btnBookingUpdate_Click);
             // 
-            // tableLayoutPanel12
+            // groupBox6
             // 
-            this.tableLayoutPanel12.ColumnCount = 1;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Controls.Add(this.dtvBookingOverview, 0, 1);
-            this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 0, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 17);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 2;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(620, 733);
-            this.tableLayoutPanel12.TabIndex = 0;
+            this.groupBox6.Controls.Add(this.tableLayoutPanel5);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox6.Size = new System.Drawing.Size(613, 357);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Action";
             // 
-            // tableLayoutPanel13
+            // tableLayoutPanel5
             // 
-            this.tableLayoutPanel13.ColumnCount = 2;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Controls.Add(this.txtBookingSearch, 1, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 1;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(614, 29);
-            this.tableLayoutPanel13.TabIndex = 0;
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(605, 334);
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // label11
+            // tableLayoutPanel6
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 16);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Search:";
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel14, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(597, 159);
+            this.tableLayoutPanel6.TabIndex = 2;
             // 
             // tableLayoutPanel14
             // 
@@ -808,6 +786,26 @@
             this.tableLayoutPanel14.Size = new System.Drawing.Size(292, 153);
             this.tableLayoutPanel14.TabIndex = 0;
             // 
+            // btnUpdateBooking
+            // 
+            this.btnUpdateBooking.Location = new System.Drawing.Point(4, 74);
+            this.btnUpdateBooking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateBooking.Name = "btnUpdateBooking";
+            this.btnUpdateBooking.Size = new System.Drawing.Size(164, 27);
+            this.btnUpdateBooking.TabIndex = 0;
+            this.btnUpdateBooking.Text = "Update Booking";
+            this.btnUpdateBooking.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveBooking
+            // 
+            this.btnRemoveBooking.Location = new System.Drawing.Point(4, 39);
+            this.btnRemoveBooking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRemoveBooking.Name = "btnRemoveBooking";
+            this.btnRemoveBooking.Size = new System.Drawing.Size(164, 27);
+            this.btnRemoveBooking.TabIndex = 1;
+            this.btnRemoveBooking.Text = "Remove Booking";
+            this.btnRemoveBooking.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel15
             // 
             this.tableLayoutPanel15.ColumnCount = 1;
@@ -821,6 +819,82 @@
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel15.Size = new System.Drawing.Size(286, 29);
             this.tableLayoutPanel15.TabIndex = 2;
+            // 
+            // lblSelectedGuest
+            // 
+            this.lblSelectedGuest.AutoSize = true;
+            this.lblSelectedGuest.ForeColor = System.Drawing.Color.Blue;
+            this.lblSelectedGuest.Location = new System.Drawing.Point(3, 0);
+            this.lblSelectedGuest.Name = "lblSelectedGuest";
+            this.lblSelectedGuest.Size = new System.Drawing.Size(120, 16);
+            this.lblSelectedGuest.TabIndex = 2;
+            this.lblSelectedGuest.Text = "No Guest Selected";
+            // 
+            // tableLayoutPanel17
+            // 
+            this.tableLayoutPanel17.ColumnCount = 2;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 0, 0);
+            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
+            this.tableLayoutPanel17.RowCount = 1;
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(605, 335);
+            this.tableLayoutPanel17.TabIndex = 2;
+            // 
+            // tableLayoutPanel18
+            // 
+            this.tableLayoutPanel18.ColumnCount = 1;
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel18.Controls.Add(this.label12, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.radBookingAsc, 0, 1);
+            this.tableLayoutPanel18.Controls.Add(this.radBookingDesc, 0, 2);
+            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+            this.tableLayoutPanel18.RowCount = 5;
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(296, 329);
+            this.tableLayoutPanel18.TabIndex = 0;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(84, 16);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Sort by Date:";
+            // 
+            // radBookingAsc
+            // 
+            this.radBookingAsc.AutoSize = true;
+            this.radBookingAsc.Location = new System.Drawing.Point(3, 38);
+            this.radBookingAsc.Name = "radBookingAsc";
+            this.radBookingAsc.Size = new System.Drawing.Size(129, 20);
+            this.radBookingAsc.TabIndex = 2;
+            this.radBookingAsc.TabStop = true;
+            this.radBookingAsc.Text = "Ascending Order";
+            this.radBookingAsc.UseVisualStyleBackColor = true;
+            this.radBookingAsc.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
+            // 
+            // radBookingDesc
+            // 
+            this.radBookingDesc.AutoSize = true;
+            this.radBookingDesc.Location = new System.Drawing.Point(3, 73);
+            this.radBookingDesc.Name = "radBookingDesc";
+            this.radBookingDesc.Size = new System.Drawing.Size(138, 20);
+            this.radBookingDesc.TabIndex = 3;
+            this.radBookingDesc.TabStop = true;
+            this.radBookingDesc.Text = "Descending Order";
+            this.radBookingDesc.UseVisualStyleBackColor = true;
+            this.radBookingDesc.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // Booking_Form
             // 
@@ -840,12 +914,13 @@
             this.tpOverview.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtvBookingOverview)).EndInit();
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             this.tpAddBooking.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -860,12 +935,15 @@
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.tableLayoutPanel13.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
+            this.tableLayoutPanel17.ResumeLayout(false);
+            this.tableLayoutPanel18.ResumeLayout(false);
+            this.tableLayoutPanel18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -882,12 +960,7 @@
         private System.Windows.Forms.DataGridView dtvBookingOverview;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TextBox txtBookingSearch;
-        private System.Windows.Forms.Button btnRemoveBooking;
-        private System.Windows.Forms.Button btnUpdateBooking;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TabPage tpAddBooking;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -922,7 +995,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Button btnBookingBookIn;
         private System.Windows.Forms.Button btnBookingClearControls;
-        private System.Windows.Forms.Label lblSelectedGuest;
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeDatabaseToolStripMenuItem;
         private System.Windows.Forms.Button btnQuestUpdate;
@@ -930,7 +1002,18 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.Button btnUpdateBooking;
+        private System.Windows.Forms.Button btnRemoveBooking;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
+        private System.Windows.Forms.Label lblSelectedGuest;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.RadioButton radBookingAsc;
+        private System.Windows.Forms.RadioButton radBookingDesc;
     }
 }
