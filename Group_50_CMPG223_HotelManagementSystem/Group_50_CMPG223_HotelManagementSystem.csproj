@@ -129,6 +129,9 @@
     <EmbeddedResource Include="Manage Guests.resx">
       <DependentUpon>Manage Guests.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Manage Rooms.resx">
+      <DependentUpon>Manage Rooms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
