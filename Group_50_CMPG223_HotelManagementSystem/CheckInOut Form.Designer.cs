@@ -32,31 +32,43 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControlChecked = new System.Windows.Forms.TabControl();
+            this.tbCheckinForm = new System.Windows.Forms.TabControl();
             this.tpOverview = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.dgvCheckBooking = new System.Windows.Forms.DataGridView();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.dgvCheckedCheckin = new System.Windows.Forms.DataGridView();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.tgvCheckedBanking = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.lblSelectedGuest = new System.Windows.Forms.Label();
-            this.btnGuestCheckStatus = new System.Windows.Forms.Button();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
+            this.gbCHeckinButtons = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUpdateCheckin = new System.Windows.Forms.Button();
             this.btnCheckOut = new System.Windows.Forms.Button();
+            this.gbBookedButtons = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBookOut = new System.Windows.Forms.Button();
+            this.btnCheckin = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.rdNone = new System.Windows.Forms.RadioButton();
             this.rdAscending = new System.Windows.Forms.RadioButton();
             this.rdDescending = new System.Windows.Forms.RadioButton();
-            this.tpAddBooking = new System.Windows.Forms.TabPage();
+            this.tpCheckin = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,20 +79,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtBookingIDnum = new System.Windows.Forms.TextBox();
-            this.txtBookingName = new System.Windows.Forms.TextBox();
-            this.txtBookingSurname = new System.Windows.Forms.TextBox();
-            this.txtBookingContactNum = new System.Windows.Forms.TextBox();
-            this.txtBookingEmail = new System.Windows.Forms.TextBox();
-            this.txtBookingStreet = new System.Windows.Forms.TextBox();
-            this.txtBookingCity = new System.Windows.Forms.TextBox();
+            this.txtCheckinName = new System.Windows.Forms.TextBox();
+            this.txtCheckinSurname = new System.Windows.Forms.TextBox();
+            this.txtCheckinContactNum = new System.Windows.Forms.TextBox();
+            this.txtCheckinEmail = new System.Windows.Forms.TextBox();
+            this.txtCheckinStreet = new System.Windows.Forms.TextBox();
+            this.txtCheckinCity = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.lblCheckInRSelected = new System.Windows.Forms.Label();
-            this.dgvBookingRooms = new System.Windows.Forms.DataGridView();
+            this.dgvCheckinRooms = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -102,29 +113,42 @@
             this.cbBankType = new System.Windows.Forms.ComboBox();
             this.txtCardNumber = new System.Windows.Forms.TextBox();
             this.cbCardType = new System.Windows.Forms.ComboBox();
-            this.cbDebitOrCredit = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.cbMonth = new System.Windows.Forms.ComboBox();
             this.cbYear = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
+            this.radDebit = new System.Windows.Forms.RadioButton();
+            this.radCredit = new System.Windows.Forms.RadioButton();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.txtCheckIDNum = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
-            this.tabControlChecked.SuspendLayout();
+            this.tbCheckinForm.SuspendLayout();
             this.tpOverview.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel15.SuspendLayout();
+            this.tableLayoutPanel19.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCheckBooking)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCheckedCheckin)).BeginInit();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tgvCheckedBanking)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel20.SuspendLayout();
+            this.gbCHeckinButtons.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
+            this.gbBookedButtons.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
             this.tableLayoutPanel18.SuspendLayout();
-            this.tpAddBooking.SuspendLayout();
+            this.tpCheckin.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -132,12 +156,13 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBookingRooms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCheckinRooms)).BeginInit();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
+            this.tableLayoutPanel22.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -164,19 +189,18 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // tabControlChecked
+            // tbCheckinForm
             // 
-            this.tabControlChecked.Controls.Add(this.tpOverview);
-            this.tabControlChecked.Controls.Add(this.tpAddBooking);
-            this.tabControlChecked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlChecked.Location = new System.Drawing.Point(0, 28);
-            this.tabControlChecked.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabControlChecked.Name = "tabControlChecked";
-            this.tabControlChecked.SelectedIndex = 0;
-            this.tabControlChecked.Size = new System.Drawing.Size(1219, 663);
-            this.tabControlChecked.TabIndex = 3;
+            this.tbCheckinForm.Controls.Add(this.tpOverview);
+            this.tbCheckinForm.Controls.Add(this.tpCheckin);
+            this.tbCheckinForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbCheckinForm.Location = new System.Drawing.Point(0, 28);
+            this.tbCheckinForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbCheckinForm.Name = "tbCheckinForm";
+            this.tbCheckinForm.SelectedIndex = 0;
+            this.tbCheckinForm.Size = new System.Drawing.Size(1219, 663);
+            this.tbCheckinForm.TabIndex = 3;
             // 
             // tpOverview
             // 
@@ -223,8 +247,8 @@
             // 
             this.tableLayoutPanel14.ColumnCount = 1;
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Controls.Add(this.dataGridView1, 0, 1);
             this.tableLayoutPanel14.Controls.Add(this.tableLayoutPanel15, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.tableLayoutPanel19, 0, 1);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -233,19 +257,6 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel14.Size = new System.Drawing.Size(590, 607);
             this.tableLayoutPanel14.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 37);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(584, 568);
-            this.dataGridView1.TabIndex = 1;
             // 
             // tableLayoutPanel15
             // 
@@ -279,6 +290,92 @@
             this.label17.Size = new System.Drawing.Size(53, 29);
             this.label17.TabIndex = 0;
             this.label17.Text = "Search :";
+            // 
+            // tableLayoutPanel19
+            // 
+            this.tableLayoutPanel19.ColumnCount = 1;
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel19.Controls.Add(this.groupBox8, 0, 0);
+            this.tableLayoutPanel19.Controls.Add(this.groupBox9, 0, 1);
+            this.tableLayoutPanel19.Controls.Add(this.groupBox10, 0, 2);
+            this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(3, 38);
+            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
+            this.tableLayoutPanel19.RowCount = 3;
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(584, 566);
+            this.tableLayoutPanel19.TabIndex = 1;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.dgvCheckBooking);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(578, 220);
+            this.groupBox8.TabIndex = 0;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Booked In Guests";
+            // 
+            // dgvCheckBooking
+            // 
+            this.dgvCheckBooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCheckBooking.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCheckBooking.Location = new System.Drawing.Point(3, 18);
+            this.dgvCheckBooking.Name = "dgvCheckBooking";
+            this.dgvCheckBooking.RowHeadersWidth = 51;
+            this.dgvCheckBooking.RowTemplate.Height = 24;
+            this.dgvCheckBooking.Size = new System.Drawing.Size(572, 199);
+            this.dgvCheckBooking.TabIndex = 0;
+            this.dgvCheckBooking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCheckBooking_CellClick);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.dgvCheckedCheckin);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(3, 229);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(578, 220);
+            this.groupBox9.TabIndex = 1;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Checked In Guests";
+            // 
+            // dgvCheckedCheckin
+            // 
+            this.dgvCheckedCheckin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCheckedCheckin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCheckedCheckin.Location = new System.Drawing.Point(3, 18);
+            this.dgvCheckedCheckin.Name = "dgvCheckedCheckin";
+            this.dgvCheckedCheckin.RowHeadersWidth = 51;
+            this.dgvCheckedCheckin.RowTemplate.Height = 24;
+            this.dgvCheckedCheckin.Size = new System.Drawing.Size(572, 199);
+            this.dgvCheckedCheckin.TabIndex = 0;
+            this.dgvCheckedCheckin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCheckedCheckin_CellClick);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.tgvCheckedBanking);
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox10.Location = new System.Drawing.Point(3, 455);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(578, 108);
+            this.groupBox10.TabIndex = 2;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Banking Details Checked in Guest";
+            // 
+            // tgvCheckedBanking
+            // 
+            this.tgvCheckedBanking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tgvCheckedBanking.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tgvCheckedBanking.Location = new System.Drawing.Point(3, 18);
+            this.tgvCheckedBanking.Name = "tgvCheckedBanking";
+            this.tgvCheckedBanking.RowHeadersWidth = 51;
+            this.tgvCheckedBanking.RowTemplate.Height = 24;
+            this.tgvCheckedBanking.Size = new System.Drawing.Size(572, 87);
+            this.tgvCheckedBanking.TabIndex = 0;
+            this.tgvCheckedBanking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCheckedBanking_CellClick);
             // 
             // groupBox2
             // 
@@ -320,55 +417,37 @@
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Actions";
-            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel20, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 19);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.99578F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.00422F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(575, 272);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel16, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lblSelectedGuest, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(4, 4);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(567, 128);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(567, 27);
             this.tableLayoutPanel6.TabIndex = 2;
-            // 
-            // tableLayoutPanel16
-            // 
-            this.tableLayoutPanel16.ColumnCount = 1;
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Controls.Add(this.lblSelectedGuest, 0, 0);
-            this.tableLayoutPanel16.Controls.Add(this.btnGuestCheckStatus, 0, 1);
-            this.tableLayoutPanel16.Controls.Add(this.btnCheckOut, 0, 2);
-            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
-            this.tableLayoutPanel16.RowCount = 4;
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(277, 122);
-            this.tableLayoutPanel16.TabIndex = 0;
             // 
             // lblSelectedGuest
             // 
@@ -380,24 +459,121 @@
             this.lblSelectedGuest.TabIndex = 2;
             this.lblSelectedGuest.Text = "No Guest Selected";
             // 
-            // btnGuestCheckStatus
+            // tableLayoutPanel20
             // 
-            this.btnGuestCheckStatus.Location = new System.Drawing.Point(3, 38);
-            this.btnGuestCheckStatus.Name = "btnGuestCheckStatus";
-            this.btnGuestCheckStatus.Size = new System.Drawing.Size(164, 29);
-            this.btnGuestCheckStatus.TabIndex = 3;
-            this.btnGuestCheckStatus.Text = "Guest checkin status";
-            this.btnGuestCheckStatus.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel20.ColumnCount = 2;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.Controls.Add(this.gbCHeckinButtons, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.gbBookedButtons, 0, 0);
+            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(3, 38);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 1;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(569, 167);
+            this.tableLayoutPanel20.TabIndex = 3;
+            // 
+            // gbCHeckinButtons
+            // 
+            this.gbCHeckinButtons.Controls.Add(this.tableLayoutPanel21);
+            this.gbCHeckinButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbCHeckinButtons.Location = new System.Drawing.Point(287, 3);
+            this.gbCHeckinButtons.Name = "gbCHeckinButtons";
+            this.gbCHeckinButtons.Size = new System.Drawing.Size(279, 161);
+            this.gbCHeckinButtons.TabIndex = 1;
+            this.gbCHeckinButtons.TabStop = false;
+            this.gbCHeckinButtons.Text = "Checked in Guests";
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 1;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel21.Controls.Add(this.btnUpdateCheckin, 0, 1);
+            this.tableLayoutPanel21.Controls.Add(this.btnCheckOut, 0, 2);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 18);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 4;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(273, 140);
+            this.tableLayoutPanel21.TabIndex = 1;
+            // 
+            // btnUpdateCheckin
+            // 
+            this.btnUpdateCheckin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUpdateCheckin.Location = new System.Drawing.Point(3, 38);
+            this.btnUpdateCheckin.Name = "btnUpdateCheckin";
+            this.btnUpdateCheckin.Size = new System.Drawing.Size(267, 29);
+            this.btnUpdateCheckin.TabIndex = 3;
+            this.btnUpdateCheckin.Text = "Update Checked in Guest";
+            this.btnUpdateCheckin.UseVisualStyleBackColor = true;
+            this.btnUpdateCheckin.Click += new System.EventHandler(this.btnUpdateCheckin_Click);
             // 
             // btnCheckOut
             // 
+            this.btnCheckOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCheckOut.Location = new System.Drawing.Point(4, 74);
             this.btnCheckOut.Margin = new System.Windows.Forms.Padding(4);
             this.btnCheckOut.Name = "btnCheckOut";
-            this.btnCheckOut.Size = new System.Drawing.Size(164, 27);
+            this.btnCheckOut.Size = new System.Drawing.Size(265, 27);
             this.btnCheckOut.TabIndex = 1;
             this.btnCheckOut.Text = "Check out";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
+            // 
+            // gbBookedButtons
+            // 
+            this.gbBookedButtons.Controls.Add(this.tableLayoutPanel16);
+            this.gbBookedButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbBookedButtons.Location = new System.Drawing.Point(3, 3);
+            this.gbBookedButtons.Name = "gbBookedButtons";
+            this.gbBookedButtons.Size = new System.Drawing.Size(278, 161);
+            this.gbBookedButtons.TabIndex = 0;
+            this.gbBookedButtons.TabStop = false;
+            this.gbBookedButtons.Text = "Booked in Guests";
+            // 
+            // tableLayoutPanel16
+            // 
+            this.tableLayoutPanel16.ColumnCount = 1;
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.Controls.Add(this.btnBookOut, 0, 1);
+            this.tableLayoutPanel16.Controls.Add(this.btnCheckin, 0, 2);
+            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(3, 18);
+            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
+            this.tableLayoutPanel16.RowCount = 4;
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(272, 140);
+            this.tableLayoutPanel16.TabIndex = 0;
+            // 
+            // btnBookOut
+            // 
+            this.btnBookOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBookOut.Location = new System.Drawing.Point(3, 38);
+            this.btnBookOut.Name = "btnBookOut";
+            this.btnBookOut.Size = new System.Drawing.Size(266, 29);
+            this.btnBookOut.TabIndex = 3;
+            this.btnBookOut.Text = "Book Guest Out";
+            this.btnBookOut.UseVisualStyleBackColor = true;
+            // 
+            // btnCheckin
+            // 
+            this.btnCheckin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCheckin.Location = new System.Drawing.Point(4, 74);
+            this.btnCheckin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCheckin.Name = "btnCheckin";
+            this.btnCheckin.Size = new System.Drawing.Size(264, 27);
+            this.btnCheckin.TabIndex = 1;
+            this.btnCheckin.Text = "Check Guest in";
+            this.btnCheckin.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -444,7 +620,6 @@
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel18.Size = new System.Drawing.Size(281, 267);
             this.tableLayoutPanel18.TabIndex = 0;
-            this.tableLayoutPanel18.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel18_Paint);
             // 
             // rdNone
             // 
@@ -479,17 +654,17 @@
             this.rdDescending.Text = "Descending Order";
             this.rdDescending.UseVisualStyleBackColor = true;
             // 
-            // tpAddBooking
+            // tpCheckin
             // 
-            this.tpAddBooking.Controls.Add(this.tableLayoutPanel2);
-            this.tpAddBooking.Location = new System.Drawing.Point(4, 25);
-            this.tpAddBooking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpAddBooking.Name = "tpAddBooking";
-            this.tpAddBooking.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpAddBooking.Size = new System.Drawing.Size(1211, 634);
-            this.tpAddBooking.TabIndex = 0;
-            this.tpAddBooking.Text = "Check in/out";
-            this.tpAddBooking.UseVisualStyleBackColor = true;
+            this.tpCheckin.Controls.Add(this.tableLayoutPanel2);
+            this.tpCheckin.Location = new System.Drawing.Point(4, 25);
+            this.tpCheckin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tpCheckin.Name = "tpCheckin";
+            this.tpCheckin.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tpCheckin.Size = new System.Drawing.Size(1211, 634);
+            this.tpCheckin.TabIndex = 0;
+            this.tpCheckin.Text = "Check in";
+            this.tpCheckin.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -536,13 +711,13 @@
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel3.Controls.Add(this.label7, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingIDnum, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingName, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingSurname, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingContactNum, 1, 3);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingEmail, 1, 4);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingStreet, 1, 5);
-            this.tableLayoutPanel3.Controls.Add(this.txtBookingCity, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckinName, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckinSurname, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckinContactNum, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckinEmail, 1, 4);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckinStreet, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckinCity, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.txtCheckIDNum, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -621,68 +796,59 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "City";
             // 
-            // txtBookingIDnum
+            // txtCheckinName
             // 
-            this.txtBookingIDnum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingIDnum.Location = new System.Drawing.Point(180, 2);
-            this.txtBookingIDnum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingIDnum.Name = "txtBookingIDnum";
-            this.txtBookingIDnum.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingIDnum.TabIndex = 7;
+            this.txtCheckinName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCheckinName.Location = new System.Drawing.Point(180, 33);
+            this.txtCheckinName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCheckinName.Name = "txtCheckinName";
+            this.txtCheckinName.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckinName.TabIndex = 8;
             // 
-            // txtBookingName
+            // txtCheckinSurname
             // 
-            this.txtBookingName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingName.Location = new System.Drawing.Point(180, 33);
-            this.txtBookingName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingName.Name = "txtBookingName";
-            this.txtBookingName.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingName.TabIndex = 8;
+            this.txtCheckinSurname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCheckinSurname.Location = new System.Drawing.Point(180, 64);
+            this.txtCheckinSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCheckinSurname.Name = "txtCheckinSurname";
+            this.txtCheckinSurname.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckinSurname.TabIndex = 9;
             // 
-            // txtBookingSurname
+            // txtCheckinContactNum
             // 
-            this.txtBookingSurname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingSurname.Location = new System.Drawing.Point(180, 64);
-            this.txtBookingSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingSurname.Name = "txtBookingSurname";
-            this.txtBookingSurname.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingSurname.TabIndex = 9;
+            this.txtCheckinContactNum.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCheckinContactNum.Location = new System.Drawing.Point(180, 95);
+            this.txtCheckinContactNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCheckinContactNum.Name = "txtCheckinContactNum";
+            this.txtCheckinContactNum.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckinContactNum.TabIndex = 10;
             // 
-            // txtBookingContactNum
+            // txtCheckinEmail
             // 
-            this.txtBookingContactNum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingContactNum.Location = new System.Drawing.Point(180, 95);
-            this.txtBookingContactNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingContactNum.Name = "txtBookingContactNum";
-            this.txtBookingContactNum.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingContactNum.TabIndex = 10;
+            this.txtCheckinEmail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCheckinEmail.Location = new System.Drawing.Point(180, 126);
+            this.txtCheckinEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCheckinEmail.Name = "txtCheckinEmail";
+            this.txtCheckinEmail.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckinEmail.TabIndex = 11;
             // 
-            // txtBookingEmail
+            // txtCheckinStreet
             // 
-            this.txtBookingEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingEmail.Location = new System.Drawing.Point(180, 126);
-            this.txtBookingEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingEmail.Name = "txtBookingEmail";
-            this.txtBookingEmail.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingEmail.TabIndex = 11;
+            this.txtCheckinStreet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCheckinStreet.Location = new System.Drawing.Point(180, 157);
+            this.txtCheckinStreet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCheckinStreet.Name = "txtCheckinStreet";
+            this.txtCheckinStreet.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckinStreet.TabIndex = 12;
             // 
-            // txtBookingStreet
+            // txtCheckinCity
             // 
-            this.txtBookingStreet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingStreet.Location = new System.Drawing.Point(180, 157);
-            this.txtBookingStreet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingStreet.Name = "txtBookingStreet";
-            this.txtBookingStreet.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingStreet.TabIndex = 12;
-            // 
-            // txtBookingCity
-            // 
-            this.txtBookingCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingCity.Location = new System.Drawing.Point(180, 188);
-            this.txtBookingCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBookingCity.Name = "txtBookingCity";
-            this.txtBookingCity.Size = new System.Drawing.Size(409, 22);
-            this.txtBookingCity.TabIndex = 13;
+            this.txtCheckinCity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCheckinCity.Location = new System.Drawing.Point(180, 188);
+            this.txtCheckinCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCheckinCity.Name = "txtCheckinCity";
+            this.txtCheckinCity.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckinCity.TabIndex = 13;
             // 
             // groupBox5
             // 
@@ -718,7 +884,7 @@
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 1);
-            this.tableLayoutPanel8.Controls.Add(this.dgvBookingRooms, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.dgvCheckinRooms, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -762,23 +928,23 @@
             this.lblCheckInRSelected.TabIndex = 2;
             this.lblCheckInRSelected.Text = "No Room Selected!";
             // 
-            // dgvBookingRooms
+            // dgvCheckinRooms
             // 
-            this.dgvBookingRooms.AllowDrop = true;
-            this.dgvBookingRooms.AllowUserToAddRows = false;
-            this.dgvBookingRooms.AllowUserToDeleteRows = false;
-            this.dgvBookingRooms.AllowUserToOrderColumns = true;
-            this.dgvBookingRooms.AllowUserToResizeColumns = false;
-            this.dgvBookingRooms.AllowUserToResizeRows = false;
-            this.dgvBookingRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBookingRooms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBookingRooms.Location = new System.Drawing.Point(3, 3);
-            this.dgvBookingRooms.Name = "dgvBookingRooms";
-            this.dgvBookingRooms.ReadOnly = true;
-            this.dgvBookingRooms.RowHeadersWidth = 51;
-            this.dgvBookingRooms.RowTemplate.Height = 24;
-            this.dgvBookingRooms.Size = new System.Drawing.Size(282, 185);
-            this.dgvBookingRooms.TabIndex = 1;
+            this.dgvCheckinRooms.AllowDrop = true;
+            this.dgvCheckinRooms.AllowUserToAddRows = false;
+            this.dgvCheckinRooms.AllowUserToDeleteRows = false;
+            this.dgvCheckinRooms.AllowUserToOrderColumns = true;
+            this.dgvCheckinRooms.AllowUserToResizeColumns = false;
+            this.dgvCheckinRooms.AllowUserToResizeRows = false;
+            this.dgvCheckinRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCheckinRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCheckinRooms.Location = new System.Drawing.Point(3, 3);
+            this.dgvCheckinRooms.Name = "dgvCheckinRooms";
+            this.dgvCheckinRooms.ReadOnly = true;
+            this.dgvCheckinRooms.RowHeadersWidth = 51;
+            this.dgvCheckinRooms.RowTemplate.Height = 24;
+            this.dgvCheckinRooms.Size = new System.Drawing.Size(282, 185);
+            this.dgvCheckinRooms.TabIndex = 1;
             // 
             // tableLayoutPanel10
             // 
@@ -849,7 +1015,6 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(595, 234);
             this.tableLayoutPanel11.TabIndex = 3;
-            this.tableLayoutPanel11.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel11_Paint);
             // 
             // btnCheckInCheckedIn
             // 
@@ -878,7 +1043,6 @@
             this.btnQuestsUpdate.TabIndex = 2;
             this.btnQuestsUpdate.Text = "Update Quests";
             this.btnQuestsUpdate.UseVisualStyleBackColor = true;
-            this.btnQuestsUpdate.Click += new System.EventHandler(this.btnQuestsUpdate_Click);
             // 
             // groupBox4
             // 
@@ -906,8 +1070,8 @@
             this.tableLayoutPanel12.Controls.Add(this.cbBankType, 1, 1);
             this.tableLayoutPanel12.Controls.Add(this.txtCardNumber, 1, 2);
             this.tableLayoutPanel12.Controls.Add(this.cbCardType, 1, 3);
-            this.tableLayoutPanel12.Controls.Add(this.cbDebitOrCredit, 1, 4);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 1, 5);
+            this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel22, 1, 4);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 18);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -1015,17 +1179,6 @@
             this.cbCardType.Size = new System.Drawing.Size(184, 24);
             this.cbCardType.TabIndex = 10;
             // 
-            // cbDebitOrCredit
-            // 
-            this.cbDebitOrCredit.FormattingEnabled = true;
-            this.cbDebitOrCredit.Items.AddRange(new object[] {
-            "Debit",
-            "Credit"});
-            this.cbDebitOrCredit.Location = new System.Drawing.Point(299, 123);
-            this.cbDebitOrCredit.Name = "cbDebitOrCredit";
-            this.cbDebitOrCredit.Size = new System.Drawing.Size(184, 24);
-            this.cbDebitOrCredit.TabIndex = 11;
-            // 
             // tableLayoutPanel13
             // 
             this.tableLayoutPanel13.ColumnCount = 3;
@@ -1081,12 +1234,56 @@
             this.cbYear.Size = new System.Drawing.Size(90, 24);
             this.cbYear.TabIndex = 13;
             // 
+            // tableLayoutPanel22
+            // 
+            this.tableLayoutPanel22.ColumnCount = 2;
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.Controls.Add(this.radDebit, 0, 0);
+            this.tableLayoutPanel22.Controls.Add(this.radCredit, 1, 0);
+            this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(299, 123);
+            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
+            this.tableLayoutPanel22.RowCount = 1;
+            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(290, 24);
+            this.tableLayoutPanel22.TabIndex = 13;
+            // 
+            // radDebit
+            // 
+            this.radDebit.AutoSize = true;
+            this.radDebit.Location = new System.Drawing.Point(3, 3);
+            this.radDebit.Name = "radDebit";
+            this.radDebit.Size = new System.Drawing.Size(60, 18);
+            this.radDebit.TabIndex = 0;
+            this.radDebit.TabStop = true;
+            this.radDebit.Text = "Debit";
+            this.radDebit.UseVisualStyleBackColor = true;
+            // 
+            // radCredit
+            // 
+            this.radCredit.AutoSize = true;
+            this.radCredit.Location = new System.Drawing.Point(148, 3);
+            this.radCredit.Name = "radCredit";
+            this.radCredit.Size = new System.Drawing.Size(63, 18);
+            this.radCredit.TabIndex = 1;
+            this.radCredit.TabStop = true;
+            this.radCredit.Text = "Credit";
+            this.radCredit.UseVisualStyleBackColor = true;
+            // 
+            // txtCheckIDNum
+            // 
+            this.txtCheckIDNum.Location = new System.Drawing.Point(180, 3);
+            this.txtCheckIDNum.Name = "txtCheckIDNum";
+            this.txtCheckIDNum.Size = new System.Drawing.Size(409, 22);
+            this.txtCheckIDNum.TabIndex = 14;
+            // 
             // CheckInOut_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 691);
-            this.Controls.Add(this.tabControlChecked);
+            this.Controls.Add(this.tbCheckinForm);
             this.Controls.Add(this.menuStrip1);
             this.Name = "CheckInOut_Form";
             this.Text = "CheckInOut_Form";
@@ -1094,26 +1291,36 @@
             this.Load += new System.EventHandler(this.CheckInOut_Form_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControlChecked.ResumeLayout(false);
+            this.tbCheckinForm.ResumeLayout(false);
             this.tpOverview.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
+            this.tableLayoutPanel19.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCheckBooking)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCheckedCheckin)).EndInit();
+            this.groupBox10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tgvCheckedBanking)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel20.ResumeLayout(false);
+            this.gbCHeckinButtons.ResumeLayout(false);
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.gbBookedButtons.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
-            this.tableLayoutPanel16.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel18.ResumeLayout(false);
             this.tableLayoutPanel18.PerformLayout();
-            this.tpAddBooking.ResumeLayout(false);
+            this.tpCheckin.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -1123,7 +1330,7 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBookingRooms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCheckinRooms)).EndInit();
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
@@ -1131,6 +1338,8 @@
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel22.ResumeLayout(false);
+            this.tableLayoutPanel22.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1141,7 +1350,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabControlChecked;
+        private System.Windows.Forms.TabControl tbCheckinForm;
         private System.Windows.Forms.TabPage tpOverview;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1152,9 +1361,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label lblSelectedGuest;
-        private System.Windows.Forms.Button btnCheckOut;
+        private System.Windows.Forms.Button btnCheckin;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TabPage tpAddBooking;
+        private System.Windows.Forms.TabPage tpCheckin;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -1165,20 +1374,19 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtBookingIDnum;
-        private System.Windows.Forms.TextBox txtBookingName;
-        private System.Windows.Forms.TextBox txtBookingSurname;
-        private System.Windows.Forms.TextBox txtBookingContactNum;
-        private System.Windows.Forms.TextBox txtBookingEmail;
-        private System.Windows.Forms.TextBox txtBookingStreet;
-        private System.Windows.Forms.TextBox txtBookingCity;
+        private System.Windows.Forms.TextBox txtCheckinName;
+        private System.Windows.Forms.TextBox txtCheckinSurname;
+        private System.Windows.Forms.TextBox txtCheckinContactNum;
+        private System.Windows.Forms.TextBox txtCheckinEmail;
+        private System.Windows.Forms.TextBox txtCheckinStreet;
+        private System.Windows.Forms.TextBox txtCheckinCity;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblCheckInRSelected;
-        private System.Windows.Forms.DataGridView dgvBookingRooms;
+        private System.Windows.Forms.DataGridView dgvCheckinRooms;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -1200,15 +1408,13 @@
         private System.Windows.Forms.ComboBox cbBankType;
         private System.Windows.Forms.TextBox txtCardNumber;
         private System.Windows.Forms.ComboBox cbCardType;
-        private System.Windows.Forms.ComboBox cbDebitOrCredit;
         private System.Windows.Forms.ComboBox cbMonth;
         private System.Windows.Forms.ComboBox cbYear;
-        private System.Windows.Forms.Button btnGuestCheckStatus;
+        private System.Windows.Forms.Button btnBookOut;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
@@ -1217,5 +1423,22 @@
         private System.Windows.Forms.RadioButton rdAscending;
         private System.Windows.Forms.RadioButton rdDescending;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.DataGridView dgvCheckBooking;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.DataGridView dgvCheckedCheckin;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.DataGridView tgvCheckedBanking;
+        private System.Windows.Forms.GroupBox gbBookedButtons;
+        private System.Windows.Forms.GroupBox gbCHeckinButtons;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
+        private System.Windows.Forms.Button btnUpdateCheckin;
+        private System.Windows.Forms.Button btnCheckOut;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
+        private System.Windows.Forms.RadioButton radDebit;
+        private System.Windows.Forms.RadioButton radCredit;
+        private System.Windows.Forms.TextBox txtCheckIDNum;
     }
 }
