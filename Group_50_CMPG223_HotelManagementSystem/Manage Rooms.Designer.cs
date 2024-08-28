@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabOverviewRooms = new System.Windows.Forms.TabPage();
+            this.tcRooms = new System.Windows.Forms.TabControl();
+            this.tpOverview = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblRoomSelected = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -38,94 +39,107 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView_Room = new System.Windows.Forms.DataGridView();
-            this.tabAddRooms = new System.Windows.Forms.TabPage();
+            this.dgvRoom = new System.Windows.Forms.DataGridView();
+            this.tpAddRooms = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnAddRoomUpdate = new System.Windows.Forms.Button();
             this.btnAddRooms = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtRoomType_Insert = new System.Windows.Forms.TextBox();
-            this.txtRoomNum_Insert = new System.Windows.Forms.TextBox();
+            this.txtRoomType = new System.Windows.Forms.TextBox();
+            this.txtRoomNum = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1.SuspendLayout();
-            this.tabOverviewRooms.SuspendLayout();
+            this.tcRooms.SuspendLayout();
+            this.tpOverview.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Room)).BeginInit();
-            this.tabAddRooms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).BeginInit();
+            this.tpAddRooms.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tcRooms
             // 
-            this.tabControl1.Controls.Add(this.tabOverviewRooms);
-            this.tabControl1.Controls.Add(this.tabAddRooms);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 28);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(985, 526);
-            this.tabControl1.TabIndex = 3;
+            this.tcRooms.Controls.Add(this.tpOverview);
+            this.tcRooms.Controls.Add(this.tpAddRooms);
+            this.tcRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcRooms.Location = new System.Drawing.Point(0, 28);
+            this.tcRooms.Margin = new System.Windows.Forms.Padding(4);
+            this.tcRooms.Name = "tcRooms";
+            this.tcRooms.SelectedIndex = 0;
+            this.tcRooms.Size = new System.Drawing.Size(985, 526);
+            this.tcRooms.TabIndex = 3;
             // 
-            // tabOverviewRooms
+            // tpOverview
             // 
-            this.tabOverviewRooms.Controls.Add(this.groupBox4);
-            this.tabOverviewRooms.Controls.Add(this.groupBox5);
-            this.tabOverviewRooms.Controls.Add(this.groupBox1);
-            this.tabOverviewRooms.Location = new System.Drawing.Point(4, 25);
-            this.tabOverviewRooms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabOverviewRooms.Name = "tabOverviewRooms";
-            this.tabOverviewRooms.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabOverviewRooms.Size = new System.Drawing.Size(977, 497);
-            this.tabOverviewRooms.TabIndex = 0;
-            this.tabOverviewRooms.Text = "Overview";
-            this.tabOverviewRooms.UseVisualStyleBackColor = true;
+            this.tpOverview.Controls.Add(this.groupBox4);
+            this.tpOverview.Controls.Add(this.groupBox5);
+            this.tpOverview.Controls.Add(this.groupBox1);
+            this.tpOverview.Location = new System.Drawing.Point(4, 25);
+            this.tpOverview.Margin = new System.Windows.Forms.Padding(4);
+            this.tpOverview.Name = "tpOverview";
+            this.tpOverview.Padding = new System.Windows.Forms.Padding(4);
+            this.tpOverview.Size = new System.Drawing.Size(977, 497);
+            this.tpOverview.TabIndex = 0;
+            this.tpOverview.Text = "Overview";
+            this.tpOverview.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.lblRoomSelected);
             this.groupBox4.Controls.Add(this.btnUpdate);
             this.groupBox4.Controls.Add(this.btnDelete);
             this.groupBox4.Location = new System.Drawing.Point(524, 220);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(365, 228);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Actions";
             // 
+            // lblRoomSelected
+            // 
+            this.lblRoomSelected.AutoSize = true;
+            this.lblRoomSelected.Location = new System.Drawing.Point(76, 32);
+            this.lblRoomSelected.Name = "lblRoomSelected";
+            this.lblRoomSelected.Size = new System.Drawing.Size(101, 16);
+            this.lblRoomSelected.TabIndex = 2;
+            this.lblRoomSelected.Text = "Room Selected";
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(76, 126);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(185, 52);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update Room";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(76, 55);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(185, 49);
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Text = "Delete Room";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.groupBox2);
             this.groupBox5.Location = new System.Drawing.Point(524, 7);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(365, 206);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
@@ -136,9 +150,9 @@
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(8, 37);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(349, 100);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
@@ -147,10 +161,11 @@
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(117, 33);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(135, 22);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label1
             // 
@@ -164,62 +179,76 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView_Room);
+            this.groupBox1.Controls.Add(this.dgvRoom);
             this.groupBox1.Location = new System.Drawing.Point(8, 7);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(508, 481);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Room Information";
             // 
-            // dataGridView_Room
+            // dgvRoom
             // 
-            this.dataGridView_Room.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Room.Location = new System.Drawing.Point(0, 23);
-            this.dataGridView_Room.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridView_Room.Name = "dataGridView_Room";
-            this.dataGridView_Room.RowHeadersWidth = 51;
-            this.dataGridView_Room.Size = new System.Drawing.Size(473, 448);
-            this.dataGridView_Room.TabIndex = 0;
+            this.dgvRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRoom.Location = new System.Drawing.Point(0, 23);
+            this.dgvRoom.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvRoom.Name = "dgvRoom";
+            this.dgvRoom.ReadOnly = true;
+            this.dgvRoom.RowHeadersWidth = 51;
+            this.dgvRoom.Size = new System.Drawing.Size(473, 448);
+            this.dgvRoom.TabIndex = 0;
+            this.dgvRoom.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoom_CellClick);
             // 
-            // tabAddRooms
+            // tpAddRooms
             // 
-            this.tabAddRooms.Controls.Add(this.groupBox7);
-            this.tabAddRooms.Location = new System.Drawing.Point(4, 25);
-            this.tabAddRooms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabAddRooms.Name = "tabAddRooms";
-            this.tabAddRooms.Size = new System.Drawing.Size(977, 497);
-            this.tabAddRooms.TabIndex = 3;
-            this.tabAddRooms.Text = "Add Room";
-            this.tabAddRooms.UseVisualStyleBackColor = true;
+            this.tpAddRooms.Controls.Add(this.groupBox7);
+            this.tpAddRooms.Location = new System.Drawing.Point(4, 25);
+            this.tpAddRooms.Margin = new System.Windows.Forms.Padding(4);
+            this.tpAddRooms.Name = "tpAddRooms";
+            this.tpAddRooms.Size = new System.Drawing.Size(977, 497);
+            this.tpAddRooms.TabIndex = 3;
+            this.tpAddRooms.Text = "Add Room";
+            this.tpAddRooms.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.btnAddRoomUpdate);
             this.groupBox7.Controls.Add(this.btnAddRooms);
             this.groupBox7.Controls.Add(this.label3);
             this.groupBox7.Controls.Add(this.label7);
-            this.groupBox7.Controls.Add(this.txtRoomType_Insert);
-            this.groupBox7.Controls.Add(this.txtRoomNum_Insert);
+            this.groupBox7.Controls.Add(this.txtRoomType);
+            this.groupBox7.Controls.Add(this.txtRoomNum);
             this.groupBox7.Location = new System.Drawing.Point(20, 12);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox7.Size = new System.Drawing.Size(377, 293);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Room Information";
             // 
+            // btnAddRoomUpdate
+            // 
+            this.btnAddRoomUpdate.Location = new System.Drawing.Point(111, 232);
+            this.btnAddRoomUpdate.Name = "btnAddRoomUpdate";
+            this.btnAddRoomUpdate.Size = new System.Drawing.Size(149, 54);
+            this.btnAddRoomUpdate.TabIndex = 10;
+            this.btnAddRoomUpdate.Text = "Update";
+            this.btnAddRoomUpdate.UseVisualStyleBackColor = true;
+            this.btnAddRoomUpdate.Click += new System.EventHandler(this.btnAddRoomUpdate_Click);
+            // 
             // btnAddRooms
             // 
             this.btnAddRooms.Location = new System.Drawing.Point(111, 156);
-            this.btnAddRooms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddRooms.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddRooms.Name = "btnAddRooms";
             this.btnAddRooms.Size = new System.Drawing.Size(149, 68);
             this.btnAddRooms.TabIndex = 9;
             this.btnAddRooms.Text = "Add Room";
             this.btnAddRooms.UseVisualStyleBackColor = true;
+            this.btnAddRooms.Click += new System.EventHandler(this.btnAddRooms_Click);
             // 
             // label3
             // 
@@ -241,21 +270,21 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Room Number:";
             // 
-            // txtRoomType_Insert
+            // txtRoomType
             // 
-            this.txtRoomType_Insert.Location = new System.Drawing.Point(201, 94);
-            this.txtRoomType_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtRoomType_Insert.Name = "txtRoomType_Insert";
-            this.txtRoomType_Insert.Size = new System.Drawing.Size(132, 22);
-            this.txtRoomType_Insert.TabIndex = 4;
+            this.txtRoomType.Location = new System.Drawing.Point(201, 94);
+            this.txtRoomType.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRoomType.Name = "txtRoomType";
+            this.txtRoomType.Size = new System.Drawing.Size(132, 22);
+            this.txtRoomType.TabIndex = 4;
             // 
-            // txtRoomNum_Insert
+            // txtRoomNum
             // 
-            this.txtRoomNum_Insert.Location = new System.Drawing.Point(201, 43);
-            this.txtRoomNum_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtRoomNum_Insert.Name = "txtRoomNum_Insert";
-            this.txtRoomNum_Insert.Size = new System.Drawing.Size(132, 22);
-            this.txtRoomNum_Insert.TabIndex = 0;
+            this.txtRoomNum.Location = new System.Drawing.Point(201, 43);
+            this.txtRoomNum.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRoomNum.Name = "txtRoomNum";
+            this.txtRoomNum.Size = new System.Drawing.Size(132, 22);
+            this.txtRoomNum.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -266,8 +295,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(985, 28);
             this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
+            this.menuStrip1.Text = "menuStrip1";            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -279,20 +307,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 554);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tcRooms);
             this.Controls.Add(this.menuStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Manage_Rooms";
             this.Text = "Manage_Rooms";
-            this.tabControl1.ResumeLayout(false);
-            this.tabOverviewRooms.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Manage_Rooms_Load);
+            this.tcRooms.ResumeLayout(false);
+            this.tpOverview.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Room)).EndInit();
-            this.tabAddRooms.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).EndInit();
+            this.tpAddRooms.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -304,8 +334,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabOverviewRooms;
+        private System.Windows.Forms.TabControl tcRooms;
+        private System.Windows.Forms.TabPage tpOverview;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
@@ -314,15 +344,17 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView_Room;
-        private System.Windows.Forms.TabPage tabAddRooms;
+        private System.Windows.Forms.DataGridView dgvRoom;
+        private System.Windows.Forms.TabPage tpAddRooms;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnAddRooms;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtRoomType_Insert;
-        private System.Windows.Forms.TextBox txtRoomNum_Insert;
+        private System.Windows.Forms.TextBox txtRoomType;
+        private System.Windows.Forms.TextBox txtRoomNum;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.Label lblRoomSelected;
+        private System.Windows.Forms.Button btnAddRoomUpdate;
     }
 }
