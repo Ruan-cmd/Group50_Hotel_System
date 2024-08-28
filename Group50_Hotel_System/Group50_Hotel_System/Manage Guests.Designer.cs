@@ -30,6 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookingFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkInoutFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -47,10 +51,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.guestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookingFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkInoutFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -81,6 +81,36 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // guestsToolStripMenuItem
+            // 
+            this.guestsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bookingFormToolStripMenuItem,
+            this.checkInoutFormToolStripMenuItem});
+            this.guestsToolStripMenuItem.Name = "guestsToolStripMenuItem";
+            this.guestsToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.guestsToolStripMenuItem.Text = "Guests";
+            // 
+            // bookingFormToolStripMenuItem
+            // 
+            this.bookingFormToolStripMenuItem.Name = "bookingFormToolStripMenuItem";
+            this.bookingFormToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            this.bookingFormToolStripMenuItem.Text = "Booking Form";
+            this.bookingFormToolStripMenuItem.Click += new System.EventHandler(this.bookingFormToolStripMenuItem_Click);
+            // 
+            // checkInoutFormToolStripMenuItem
+            // 
+            this.checkInoutFormToolStripMenuItem.Name = "checkInoutFormToolStripMenuItem";
+            this.checkInoutFormToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            this.checkInoutFormToolStripMenuItem.Text = "Check in/out Form";
+            this.checkInoutFormToolStripMenuItem.Click += new System.EventHandler(this.checkInoutFormToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -302,36 +332,6 @@
             this.textBox1.Size = new System.Drawing.Size(497, 22);
             this.textBox1.TabIndex = 1;
             // 
-            // guestsToolStripMenuItem
-            // 
-            this.guestsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bookingFormToolStripMenuItem,
-            this.checkInoutFormToolStripMenuItem});
-            this.guestsToolStripMenuItem.Name = "guestsToolStripMenuItem";
-            this.guestsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.guestsToolStripMenuItem.Text = "Guests";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // bookingFormToolStripMenuItem
-            // 
-            this.bookingFormToolStripMenuItem.Name = "bookingFormToolStripMenuItem";
-            this.bookingFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.bookingFormToolStripMenuItem.Text = "Booking Form";
-            this.bookingFormToolStripMenuItem.Click += new System.EventHandler(this.bookingFormToolStripMenuItem_Click);
-            // 
-            // checkInoutFormToolStripMenuItem
-            // 
-            this.checkInoutFormToolStripMenuItem.Name = "checkInoutFormToolStripMenuItem";
-            this.checkInoutFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.checkInoutFormToolStripMenuItem.Text = "Check in/out Form";
-            this.checkInoutFormToolStripMenuItem.Click += new System.EventHandler(this.checkInoutFormToolStripMenuItem_Click);
-            // 
             // Manage_Guests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -342,6 +342,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Manage_Guests";
             this.Text = "Manage_Guests";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
