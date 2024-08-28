@@ -33,10 +33,7 @@ namespace Group50_Hotel_System
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Manage_Rooms manage_Rooms = new Manage_Rooms();
-            manage_Rooms.ShowDialog();
-            this.Close();
+
         }
 
         private void btnGoBack_Click(object sender, EventArgs e)
@@ -44,6 +41,14 @@ namespace Group50_Hotel_System
             this.Hide();
             Login Login = new Login();
             Login.ShowDialog();
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Manage_Rooms manage_Rooms = new Manage_Rooms();
+            manage_Rooms.ShowDialog();
             this.Close();
         }
     }

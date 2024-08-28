@@ -17,7 +17,7 @@ namespace Group50_Hotel_System
         public Login()
         {
             InitializeComponent();
-            
+            AddDefaultEmployee();
         }
 
         private void Login_Load(object sender, EventArgs e)
