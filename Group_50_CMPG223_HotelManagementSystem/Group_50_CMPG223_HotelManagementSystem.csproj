@@ -167,12 +167,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HotelManagementSystem.mdf">
+    <Content Include="HotelSystemGroup50.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HotelManagementSystem_log.ldf">
+    <Content Include="HotelSystemGroup50_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>HotelManagementSystem.mdf</DependentUpon>
+      <DependentUpon>HotelSystemGroup50.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
