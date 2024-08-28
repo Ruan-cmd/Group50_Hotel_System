@@ -79,3 +79,4 @@ C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group_50_CM
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group_50_CMPG223_HotelManagementSystem\obj\Debug\Group_50_CMPG223_HotelManagementSystem.csproj.CoreCompileInputs.cache
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group_50_CMPG223_HotelManagementSystem\obj\Debug\Group_50_CMPG223_HotelManagementSystem.exe
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group_50_CMPG223_HotelManagementSystem\obj\Debug\Group_50_CMPG223_HotelManagementSystem.pdb
+C:\Users\Ruan\Desktop\GitHub CMPG323 Project\Hotel System\Group_50_CMPG223_HotelManagementSystem\obj\Debug\Group_50_CMPG223_HotelManagementSystem.Manage_Rooms.resources
