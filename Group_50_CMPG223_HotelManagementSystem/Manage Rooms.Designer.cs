@@ -106,7 +106,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(185, 52);
             this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "Update Rooms";
+            this.btnUpdate.Text = "Update Room";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDelete
@@ -116,7 +116,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(185, 49);
             this.btnDelete.TabIndex = 0;
-            this.btnDelete.Text = "Delete Rooms";
+            this.btnDelete.Text = "Delete Room";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // groupBox5
@@ -192,7 +192,7 @@
             this.tabAddRooms.Name = "tabAddRooms";
             this.tabAddRooms.Size = new System.Drawing.Size(977, 497);
             this.tabAddRooms.TabIndex = 3;
-            this.tabAddRooms.Text = "Add rooms";
+            this.tabAddRooms.Text = "Add Room";
             this.tabAddRooms.UseVisualStyleBackColor = true;
             // 
             // groupBox7
