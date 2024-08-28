@@ -501,7 +501,7 @@
             this.tpAddBooking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpAddBooking.Name = "tpAddBooking";
             this.tpAddBooking.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpAddBooking.Size = new System.Drawing.Size(1271, 758);
+            this.tpAddBooking.Size = new System.Drawing.Size(1271, 760);
             this.tpAddBooking.TabIndex = 0;
             this.tpAddBooking.Text = "Add Booking";
             this.tpAddBooking.UseVisualStyleBackColor = true;
@@ -522,7 +522,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1265, 754);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1265, 756);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // groupBox3
