@@ -1,0 +1,13 @@
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.AssemblyReference.cache
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.SuggestedBindingRedirects.cache
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Properties.Resources.resources
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.GenerateResource.cache
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.CoreCompileInputs.cache
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\HotelManagementSystem.mdf
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\HotelManagementSystem_log.ldf
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Group50_Hotel_System.exe.config
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Group50_Hotel_System.exe
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Group50_Hotel_System.pdb
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Login.resources
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.exe
+C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.pdb
