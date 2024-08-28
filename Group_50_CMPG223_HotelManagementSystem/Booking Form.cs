@@ -417,62 +417,11 @@ namespace Group_50_CMPG223_HotelManagementSystem
             }
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            if (selectedBookingID != 0)
-            {
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this guest's booking?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-                    {
-                        connection.Open();
 
-                        string getRoomIDQuery = "SELECT Room_ID FROM Guest_Booking WHERE Booking_ID = @BookingID";
-                        SqlCommand getRoomIDCommand = new SqlCommand(getRoomIDQuery, connection);
-                        getRoomIDCommand.Parameters.AddWithValue("@BookingID", selectedBookingID);
-                        int roomID = Convert.ToInt32(getRoomIDCommand.ExecuteScalar());
-
-                        string deleteBookingQuery = "DELETE FROM Guest_Booking WHERE Booking_ID = @BookingID";
-                        SqlCommand deleteCommand = new SqlCommand(deleteBookingQuery, connection);
-                        deleteCommand.Parameters.AddWithValue("@BookingID", selectedBookingID);
-                        deleteCommand.ExecuteNonQuery();
-
-                        string updateRoomStatusQuery = "UPDATE Rooms SET Room_Status = 0 WHERE Room_ID = @RoomID";
-                        SqlCommand updateRoomStatusCommand = new SqlCommand(updateRoomStatusQuery, connection);
-                        updateRoomStatusCommand.Parameters.AddWithValue("@RoomID", roomID);
-                        updateRoomStatusCommand.ExecuteNonQuery();
-
-                        string reorderPKQuery = @"
-                            DECLARE @MaxID INT;
-                            SELECT @MaxID = ISNULL(MAX(Booking_ID), 0) FROM Guest_Booking;
-                            DBCC CHECKIDENT ('Guest_Booking', RESEED, @MaxID)";
-                        SqlCommand reorderPKCommand = new SqlCommand(reorderPKQuery, connection);
-                        reorderPKCommand.ExecuteNonQuery();
-
-                        MessageBox.Show("Guest booking deleted successfully!");
-
-                        LoadGuestsNotCheckedIn();
-                        LoadRooms(DateTime.Now, DateTime.Now.AddDays(1));
-
-                        selectedBookingID = 0;
-                        lblSelectedGuest.Text = "No Guest Selected";
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Guest booking deletion canceled.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a guest booking to delete.");
-            }
-        }
 
         private void removeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to clear the entire database except for Employees and reset all rooms to available?", "Confirm Database Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("Are you sure you want to clear the entire database including all tables? This action cannot be undone.", "Confirm Database Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
@@ -502,17 +451,30 @@ namespace Group_50_CMPG223_HotelManagementSystem
                         SqlCommand clearAddressCommand = new SqlCommand(clearAddressQuery, connection, transaction);
                         clearAddressCommand.ExecuteNonQuery();
 
-                        // Reset Room_Status in Rooms table
-                        string updateRoomsQuery = "UPDATE Rooms SET Room_Status = 0";
-                        SqlCommand updateRoomsCommand = new SqlCommand(updateRoomsQuery, connection, transaction);
-                        updateRoomsCommand.ExecuteNonQuery();
+                        // Clear Employees table except for the default employee
+                        string clearEmployeesQuery = "DELETE FROM Employees WHERE Username <> 'Default'";
+                        SqlCommand clearEmployeesCommand = new SqlCommand(clearEmployeesQuery, connection, transaction);
+                        clearEmployeesCommand.ExecuteNonQuery();
+
+                        // Clear Rooms table
+                        string clearRoomsQuery = "DELETE FROM Rooms";
+                        SqlCommand clearRoomsCommand = new SqlCommand(clearRoomsQuery, connection, transaction);
+                        clearRoomsCommand.ExecuteNonQuery();
+
+                        // Reset Room_Status in Rooms table (if Rooms are not deleted and just reset status)
+                        string updateRoomsStatusQuery = "UPDATE Rooms SET Room_Status = 0";
+                        SqlCommand updateRoomsStatusCommand = new SqlCommand(updateRoomsStatusQuery, connection, transaction);
+                        updateRoomsStatusCommand.ExecuteNonQuery();
+
+                        // Clear Roles table except for the default role
+                        string clearRolesQuery = "DELETE FROM Roles WHERE Role_ID <> 1";
+                        SqlCommand clearRolesCommand = new SqlCommand(clearRolesQuery, connection, transaction);
+                        clearRolesCommand.ExecuteNonQuery();
 
                         // Commit the transaction
                         transaction.Commit();
 
-                        MessageBox.Show("Database cleared successfully! All rooms are now available.");
-                        LoadGuestsNotCheckedIn();
-                        LoadRooms(DateTime.Now, DateTime.Now.AddDays(1));
+                        MessageBox.Show("Database cleared successfully! All data has been removed.");
                     }
                     catch (Exception ex)
                     {
@@ -538,22 +500,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
             LoadRooms(dtpBookInDate.Value, dtpBookOutDate.Value);
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (selectedBookingID != 0)
-            {
-                tabControlBooking.SelectedTab = tpAddBooking;
-                btnBookingBookIn.Visible = false;
-                btnQuestUpdate.Visible = true;
-                tpOverview.Enabled = false;
-                isUpdateMode = true;
-                LoadSelectedGuestDetails(selectedBookingID);
-            }
-            else
-            {
-                MessageBox.Show("Please select a guest to update.", "No Guest Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+
 
 
         private void LoadSelectedGuestDetails(int bookingID)
@@ -625,7 +572,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
         }
 
 
-        private void btnBookingUpdate_Click(object sender, EventArgs e)
+        private void btnQuestUpdate_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
@@ -748,15 +695,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
             }
         }
 
-        private void lblSelectedGuest_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (radBookingAsc.Checked)
@@ -774,7 +713,75 @@ namespace Group_50_CMPG223_HotelManagementSystem
             LoadGuestsNotCheckedIn(sortOrder);
         }
 
+        private void btnRemoveBooking_Click(object sender, EventArgs e)
+        {
+            if (selectedBookingID != 0)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this guest's booking?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+                    {
+                        connection.Open();
 
+                        string getRoomIDQuery = "SELECT Room_ID FROM Guest_Booking WHERE Booking_ID = @BookingID";
+                        SqlCommand getRoomIDCommand = new SqlCommand(getRoomIDQuery, connection);
+                        getRoomIDCommand.Parameters.AddWithValue("@BookingID", selectedBookingID);
+                        int roomID = Convert.ToInt32(getRoomIDCommand.ExecuteScalar());
+
+                        string deleteBookingQuery = "DELETE FROM Guest_Booking WHERE Booking_ID = @BookingID";
+                        SqlCommand deleteCommand = new SqlCommand(deleteBookingQuery, connection);
+                        deleteCommand.Parameters.AddWithValue("@BookingID", selectedBookingID);
+                        deleteCommand.ExecuteNonQuery();
+
+                        string updateRoomStatusQuery = "UPDATE Rooms SET Room_Status = 0 WHERE Room_ID = @RoomID";
+                        SqlCommand updateRoomStatusCommand = new SqlCommand(updateRoomStatusQuery, connection);
+                        updateRoomStatusCommand.Parameters.AddWithValue("@RoomID", roomID);
+                        updateRoomStatusCommand.ExecuteNonQuery();
+
+                        string reorderPKQuery = @"
+                            DECLARE @MaxID INT;
+                            SELECT @MaxID = ISNULL(MAX(Booking_ID), 0) FROM Guest_Booking;
+                            DBCC CHECKIDENT ('Guest_Booking', RESEED, @MaxID)";
+                        SqlCommand reorderPKCommand = new SqlCommand(reorderPKQuery, connection);
+                        reorderPKCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Guest booking deleted successfully!");
+
+                        LoadGuestsNotCheckedIn();
+                        LoadRooms(DateTime.Now, DateTime.Now.AddDays(1));
+
+                        selectedBookingID = 0;
+                        lblSelectedGuest.Text = "No Guest Selected";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Guest booking deletion canceled.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a guest booking to delete.");
+            }
+        }
+
+        private void btnUpdateBooking_Click(object sender, EventArgs e)
+        {
+            if (selectedBookingID != 0)
+            {
+                tabControlBooking.SelectedTab = tpAddBooking;
+                btnBookingBookIn.Visible = false;
+                btnQuestUpdate.Visible = true;
+                tpOverview.Enabled = false;
+                isUpdateMode = true;
+                LoadSelectedGuestDetails(selectedBookingID);
+            }
+            else
+            {
+                MessageBox.Show("Please select a guest to update.", "No Guest Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
 
