@@ -442,7 +442,6 @@ namespace Group_50_CMPG223_HotelManagementSystem
                 return;
             }
 
-            // Step 3: Execute the check-in process (only updates Is_CheckedIn and inserts banking details)
             try
             {
                 using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
@@ -452,12 +451,13 @@ namespace Group_50_CMPG223_HotelManagementSystem
                     {
                         try
                         {
-                            // Step 3a: Update the booking to set Is_CheckedIn to true
+                            // Step 3: Update the booking to set Is_CheckedIn to true
                             SqlCommand command = new SqlCommand("UPDATE Guest_Booking SET Is_CheckedIn = 1 WHERE Booking_ID = @BookingID", connection, transaction);
                             command.Parameters.AddWithValue("@BookingID", bookingID);
+                            command.CommandTimeout = 120;  // Increase timeout if needed
                             command.ExecuteNonQuery();
 
-                            // Step 3b: Save banking details
+                            // Step 4: Save banking details
                             SqlCommand bankingCommand = new SqlCommand(@"
                     INSERT INTO BankingDetails (Guest_ID, Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
                     VALUES (@GuestID, @CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate)", connection, transaction);
@@ -469,20 +469,16 @@ namespace Group_50_CMPG223_HotelManagementSystem
                             bankingCommand.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? "Debit" : "Credit");
                             bankingCommand.Parameters.AddWithValue("@CardHolder", txtCheckinName.Text + " " + txtCheckinSurname.Text);
                             bankingCommand.Parameters.AddWithValue("@ExpirationDate", new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1));
-
+                            bankingCommand.CommandTimeout = 120;  // Increase timeout if needed
                             bankingCommand.ExecuteNonQuery();
 
                             // Commit the transaction
                             transaction.Commit();
                             MessageBox.Show("Guest checked in successfully!");
 
-                            // Refresh the grids and clear the controls
-                            LoadBookedGuests();
-                            LoadCheckedInGuests();
-                            ClearCheckInControls();
-
-                            // Switch back to the overview tab
+                            // Step 5: Switch back to the overview tab and refresh the data
                             tbCheckinForm.SelectedTab = tpOverview;
+                            LoadCheckedInGuests();  // Refresh the list of checked-in guests
                         }
                         catch (Exception ex)
                         {
@@ -497,7 +493,6 @@ namespace Group_50_CMPG223_HotelManagementSystem
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
-
         private void dgvCheckinRooms_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
