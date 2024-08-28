@@ -472,37 +472,45 @@ namespace Group_50_CMPG223_HotelManagementSystem
 
         private void removeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to clear the entire database except Employees and make all rooms available?", "Confirm Database Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("Are you sure you want to clear the entire database except for Employees and reset all rooms to available?", "Confirm Database Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
                 {
                     connection.Open();
-
                     SqlTransaction transaction = connection.BeginTransaction();
 
                     try
                     {
+                        // Clear Guest_Booking table
                         string clearGuestBookingQuery = "DELETE FROM Guest_Booking";
-                        string clearGuestsQuery = "DELETE FROM Guests";
-                        string clearBankingDetailsQuery = "DELETE FROM BankingDetails";
-
                         SqlCommand clearGuestBookingCommand = new SqlCommand(clearGuestBookingQuery, connection, transaction);
-                        SqlCommand clearGuestsCommand = new SqlCommand(clearGuestsQuery, connection, transaction);
-                        SqlCommand clearBankingDetailsCommand = new SqlCommand(clearBankingDetailsQuery, connection, transaction);
-
                         clearGuestBookingCommand.ExecuteNonQuery();
-                        clearGuestsCommand.ExecuteNonQuery();
+
+                        // Clear BankingDetails table
+                        string clearBankingDetailsQuery = "DELETE FROM BankingDetails";
+                        SqlCommand clearBankingDetailsCommand = new SqlCommand(clearBankingDetailsQuery, connection, transaction);
                         clearBankingDetailsCommand.ExecuteNonQuery();
 
+                        // Clear Guests table
+                        string clearGuestsQuery = "DELETE FROM Guests";
+                        SqlCommand clearGuestsCommand = new SqlCommand(clearGuestsQuery, connection, transaction);
+                        clearGuestsCommand.ExecuteNonQuery();
+
+                        // Clear Address table
+                        string clearAddressQuery = "DELETE FROM Address";
+                        SqlCommand clearAddressCommand = new SqlCommand(clearAddressQuery, connection, transaction);
+                        clearAddressCommand.ExecuteNonQuery();
+
+                        // Reset Room_Status in Rooms table
                         string updateRoomsQuery = "UPDATE Rooms SET Room_Status = 0";
                         SqlCommand updateRoomsCommand = new SqlCommand(updateRoomsQuery, connection, transaction);
                         updateRoomsCommand.ExecuteNonQuery();
 
+                        // Commit the transaction
                         transaction.Commit();
 
                         MessageBox.Show("Database cleared successfully! All rooms are now available.");
-
                         LoadGuestsNotCheckedIn();
                         LoadRooms(DateTime.Now, DateTime.Now.AddDays(1));
                     }
@@ -518,6 +526,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
                 MessageBox.Show("Database clear operation canceled.");
             }
         }
+
 
         private void dtpBookInDate_ValueChanged(object sender, EventArgs e)
         {
