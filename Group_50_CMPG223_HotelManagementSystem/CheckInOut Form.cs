@@ -76,7 +76,9 @@ namespace Group_50_CMPG223_HotelManagementSystem
                             command.CommandTimeout = 120;  // Increase timeout if needed
                             command.ExecuteNonQuery();
 
-                            // Step 4: Save banking details
+                            // Step 4: Prepare and save banking details
+                            DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
+
                             SqlCommand bankingCommand = new SqlCommand(@"
                         INSERT INTO BankingDetails (Guest_ID, Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
                         VALUES (@GuestID, @CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate)", connection, transaction);
@@ -85,9 +87,13 @@ namespace Group_50_CMPG223_HotelManagementSystem
                             bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
-                            bankingCommand.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? "Debit" : "Credit");
+
+                            // Store 0 for Debit and 1 for Credit
+                            bankingCommand.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
+
                             bankingCommand.Parameters.AddWithValue("@CardHolder", txtCheckinName.Text + " " + txtCheckinSurname.Text);
-                            bankingCommand.Parameters.AddWithValue("@ExpirationDate", new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1));
+                            bankingCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate); // Store as a Date
+
                             bankingCommand.CommandTimeout = 120;  // Increase timeout if needed
                             bankingCommand.ExecuteNonQuery();
 
@@ -102,6 +108,7 @@ namespace Group_50_CMPG223_HotelManagementSystem
                         catch (Exception ex)
                         {
                             transaction.Rollback();
+                            LogDetailedError(ex, "SQL Command Execution Error");
                             MessageBox.Show("An error occurred while checking in the guest: " + ex.Message);
                         }
                     }
@@ -109,9 +116,28 @@ namespace Group_50_CMPG223_HotelManagementSystem
             }
             catch (Exception ex)
             {
+                LogDetailedError(ex, "Database Connection Error");
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
+
+        private void LogDetailedError(Exception ex, string context)
+        {
+            string detailedMessage = $"Context: {context}\n" +
+                                     $"Message: {ex.Message}\n" +
+                                     $"Stack Trace: {ex.StackTrace}";
+
+            if (ex.InnerException != null)
+            {
+                detailedMessage += $"\nInner Exception Message: {ex.InnerException.Message}\n" +
+                                   $"Inner Exception Stack Trace: {ex.InnerException.StackTrace}";
+            }
+
+            MessageBox.Show(detailedMessage, "Detailed Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+
 
         private void LoadBookedGuests()
         {
@@ -212,20 +238,42 @@ namespace Group_50_CMPG223_HotelManagementSystem
         private int GetGuestIDForBooking(string bookingID)
         {
             int guestID = -1;
-            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+            try
             {
-                SqlCommand command = new SqlCommand("SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID", connection);
-                command.Parameters.AddWithValue("@BookingID", bookingID);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
                 {
-                    guestID = int.Parse(reader["Guest_ID"].ToString());
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID", connection);
+                    command.Parameters.AddWithValue("@BookingID", bookingID);
+                    command.CommandTimeout = 30;  // Reduced timeout to detect issues faster
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            guestID = int.Parse(reader["Guest_ID"].ToString());
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No Guest ID found for Booking ID: {bookingID}", "Guest Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
                 }
-                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                LogDetailedError(ex, "SQL Error in GetGuestIDForBooking");
+                MessageBox.Show("A database error occurred while retrieving the Guest ID. Please try again later.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                LogDetailedError(ex, "Error in GetGuestIDForBooking");
+                MessageBox.Show("An unexpected error occurred while retrieving the Guest ID. Please try again.", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return guestID;
         }
+
+
 
         private void LoadGuestDetailsForCheckIn(int guestID)
         {
