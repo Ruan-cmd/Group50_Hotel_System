@@ -1275,15 +1275,13 @@
             // 
             this.cbYear.FormattingEnabled = true;
             this.cbYear.Items.AddRange(new object[] {
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32"});
+            "2024",
+            "2025",
+            "2026",
+            "2027",
+            "2028",
+            "2029",
+            "2030"});
             this.cbYear.Location = new System.Drawing.Point(99, 2);
             this.cbYear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbYear.Name = "cbYear";
