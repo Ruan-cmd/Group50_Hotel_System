@@ -43,5 +43,13 @@ namespace Group_50_CMPG223_HotelManagementSystem
             Login.ShowDialog();
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Manage_Rooms manage_Rooms = new Manage_Rooms();
+            manage_Rooms.ShowDialog();
+            this.Close();
+        }
     }
 }
