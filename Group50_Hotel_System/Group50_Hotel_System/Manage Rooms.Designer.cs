@@ -312,6 +312,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Manage_Rooms";
             this.Text = "Manage_Rooms";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Manage_Rooms_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

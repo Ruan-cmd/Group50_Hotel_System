@@ -141,6 +141,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Main_Form";
             this.Text = "Main_Form";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
