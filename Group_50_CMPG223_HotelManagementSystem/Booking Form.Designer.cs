@@ -380,6 +380,7 @@
             this.btnUpdateBooking.TabIndex = 0;
             this.btnUpdateBooking.Text = "Update Booking";
             this.btnUpdateBooking.UseVisualStyleBackColor = true;
+            this.btnUpdateBooking.Click += new System.EventHandler(this.btnUpdateBooking_Click);
             // 
             // btnRemoveBooking
             // 
@@ -390,6 +391,7 @@
             this.btnRemoveBooking.TabIndex = 1;
             this.btnRemoveBooking.Text = "Remove Booking";
             this.btnRemoveBooking.UseVisualStyleBackColor = true;
+            this.btnRemoveBooking.Click += new System.EventHandler(this.btnRemoveBooking_Click);
             // 
             // tableLayoutPanel15
             // 
@@ -894,7 +896,7 @@
             this.btnQuestUpdate.TabIndex = 2;
             this.btnQuestUpdate.Text = "Update Quests";
             this.btnQuestUpdate.UseVisualStyleBackColor = true;
-            this.btnQuestUpdate.Click += new System.EventHandler(this.btnBookingUpdate_Click);
+            this.btnQuestUpdate.Click += new System.EventHandler(this.btnQuestUpdate_Click);
             // 
             // Booking_Form
             // 

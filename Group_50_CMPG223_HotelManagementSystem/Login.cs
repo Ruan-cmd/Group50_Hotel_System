@@ -93,5 +93,10 @@ namespace Group_50_CMPG223_HotelManagementSystem
         {
 
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
