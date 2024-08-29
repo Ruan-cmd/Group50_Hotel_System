@@ -1,17 +1,9 @@
 ﻿using Group_50_CMPG223_HotelManagementSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using System.Windows.Forms;
 
 namespace Group50_Hotel_System
 {
@@ -20,13 +12,13 @@ namespace Group50_Hotel_System
         public Login()
         {
             InitializeComponent();
-            
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-            
+            // Load event logic if needed
         }
+
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -40,7 +32,6 @@ namespace Group50_Hotel_System
                 return builder.ToString();
             }
         }
-        
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -55,9 +46,7 @@ namespace Group50_Hotel_System
 
             string hashedEnteredPassword = HashPassword(enteredPassword);  // Hash the entered password
 
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 try
                 {
@@ -70,12 +59,9 @@ namespace Group50_Hotel_System
                         command.Parameters.AddWithValue("@Username", enteredUsername);
 
                         string storedHashedPassword = command.ExecuteScalar() as string;
-                      
-
 
                         if (storedHashedPassword != null)
                         {
-                            
                             if (hashedEnteredPassword == storedHashedPassword)
                             {
                                 this.Hide();
@@ -100,7 +86,6 @@ namespace Group50_Hotel_System
                 }
             }
         }
-        
 
         private void btnForget_Click(object sender, EventArgs e)
         {

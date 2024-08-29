@@ -37,10 +37,13 @@
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAddEployee = new System.Windows.Forms.Button();
-            this.btnDeleteEmployees = new System.Windows.Forms.Button();
             this.btnResetPassword = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDeleteEmployees = new System.Windows.Forms.Button();
+            this.btnAddEployee = new System.Windows.Forms.Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblDisplay = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.addEmployees = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -70,22 +73,19 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblDisplay = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Overview.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.addEmployees.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.updateEmployees.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.menuStrip2.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -98,7 +98,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1120, 422);
+            this.tabControl1.Size = new System.Drawing.Size(1120, 548);
             this.tabControl1.TabIndex = 8;
             // 
             // Overview
@@ -109,7 +109,7 @@
             this.Overview.Margin = new System.Windows.Forms.Padding(4);
             this.Overview.Name = "Overview";
             this.Overview.Padding = new System.Windows.Forms.Padding(4);
-            this.Overview.Size = new System.Drawing.Size(1112, 393);
+            this.Overview.Size = new System.Drawing.Size(1112, 519);
             this.Overview.TabIndex = 0;
             this.Overview.Text = "Overview";
             this.Overview.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1104, 385);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1104, 511);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -171,7 +171,7 @@
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowHeadersWidth = 51;
             this.dgvEmployees.RowTemplate.Height = 24;
-            this.dgvEmployees.Size = new System.Drawing.Size(781, 350);
+            this.dgvEmployees.Size = new System.Drawing.Size(781, 476);
             this.dgvEmployees.TabIndex = 1;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellContentClick);
             this.dgvEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellContentClick);
@@ -205,28 +205,8 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.94737F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.05264F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(311, 350);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(311, 476);
             this.tableLayoutPanel3.TabIndex = 3;
-            // 
-            // btnAddEployee
-            // 
-            this.btnAddEployee.Location = new System.Drawing.Point(3, 43);
-            this.btnAddEployee.Name = "btnAddEployee";
-            this.btnAddEployee.Size = new System.Drawing.Size(139, 30);
-            this.btnAddEployee.TabIndex = 0;
-            this.btnAddEployee.Text = "Add Employee";
-            this.btnAddEployee.UseVisualStyleBackColor = true;
-            this.btnAddEployee.Click += new System.EventHandler(this.btnAddEployee_Click);
-            // 
-            // btnDeleteEmployees
-            // 
-            this.btnDeleteEmployees.Location = new System.Drawing.Point(3, 83);
-            this.btnDeleteEmployees.Name = "btnDeleteEmployees";
-            this.btnDeleteEmployees.Size = new System.Drawing.Size(139, 34);
-            this.btnDeleteEmployees.TabIndex = 3;
-            this.btnDeleteEmployees.Text = "Delete Employee";
-            this.btnDeleteEmployees.UseVisualStyleBackColor = true;
-            this.btnDeleteEmployees.Click += new System.EventHandler(this.btnDeleteEmployees_Click);
             // 
             // btnResetPassword
             // 
@@ -247,6 +227,57 @@
             this.btnUpdate.Text = "Update Employee";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDeleteEmployees
+            // 
+            this.btnDeleteEmployees.Location = new System.Drawing.Point(3, 83);
+            this.btnDeleteEmployees.Name = "btnDeleteEmployees";
+            this.btnDeleteEmployees.Size = new System.Drawing.Size(139, 34);
+            this.btnDeleteEmployees.TabIndex = 3;
+            this.btnDeleteEmployees.Text = "Delete Employee";
+            this.btnDeleteEmployees.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployees.Click += new System.EventHandler(this.btnDeleteEmployees_Click);
+            // 
+            // btnAddEployee
+            // 
+            this.btnAddEployee.Location = new System.Drawing.Point(3, 43);
+            this.btnAddEployee.Name = "btnAddEployee";
+            this.btnAddEployee.Size = new System.Drawing.Size(139, 30);
+            this.btnAddEployee.TabIndex = 0;
+            this.btnAddEployee.Text = "Add Employee";
+            this.btnAddEployee.UseVisualStyleBackColor = true;
+            this.btnAddEployee.Click += new System.EventHandler(this.btnAddEployee_Click);
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.47368F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.52632F));
+            this.tableLayoutPanel7.Controls.Add(this.label12, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.lblDisplay, 1, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(285, 34);
+            this.tableLayoutPanel7.TabIndex = 5;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(126, 16);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Selected Employee";
+            // 
+            // lblDisplay
+            // 
+            this.lblDisplay.AutoSize = true;
+            this.lblDisplay.Location = new System.Drawing.Point(143, 0);
+            this.lblDisplay.Name = "lblDisplay";
+            this.lblDisplay.Size = new System.Drawing.Size(0, 16);
+            this.lblDisplay.TabIndex = 1;
             // 
             // dataGridView2
             // 
@@ -549,42 +580,11 @@
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.47368F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.52632F));
-            this.tableLayoutPanel7.Controls.Add(this.label12, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.lblDisplay, 1, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(285, 34);
-            this.tableLayoutPanel7.TabIndex = 5;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(126, 16);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Selected Employee";
-            // 
-            // lblDisplay
-            // 
-            this.lblDisplay.AutoSize = true;
-            this.lblDisplay.Location = new System.Drawing.Point(143, 0);
-            this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(0, 16);
-            this.lblDisplay.TabIndex = 1;
-            // 
             // Manage_Employees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 450);
+            this.ClientSize = new System.Drawing.Size(1120, 576);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip2);
             this.Name = "Manage_Employees";
@@ -599,6 +599,8 @@
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.addEmployees.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -608,8 +610,6 @@
             this.tableLayoutPanel6.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

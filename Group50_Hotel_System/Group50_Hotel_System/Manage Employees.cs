@@ -1,41 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Group_50_CMPG223_HotelManagementSystem;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Text;
-using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Group50_Hotel_System
 {
-   
     public partial class Manage_Employees : Form
     {
-
         private DataTable dataTable;
         private int hiddenEmployeeId;
+
         public Manage_Employees()
         {
             InitializeComponent();
             LoadEmployees();
         }
+
         private void LoadEmployees()
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
             string selectQuery = @"
-    SELECT Employees.Employee_ID, Employees.Username, Employees.Surname, Employees.First_Name, Employees.Password, Roles.Role_Desc
-    FROM Employees
-    JOIN Roles ON Employees.Role_ID = Roles.Role_ID;";
+            SELECT Employees.Employee_ID, Employees.Username, Employees.Surname, Employees.First_Name, Employees.Password, Roles.Role_Desc
+            FROM Employees
+            JOIN Roles ON Employees.Role_ID = Roles.Role_ID;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(selectQuery, connection);
-                dataTable = new DataTable(); 
+                dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
                 dgvEmployees.DataSource = dataTable;
             }
@@ -86,15 +81,10 @@ namespace Group50_Hotel_System
         {
             if (e.RowIndex >= 0)
             {
-                
                 dgvEmployees.Rows[e.RowIndex].Selected = true;
-
-                
                 string employeeName = dgvEmployees.Rows[e.RowIndex].Cells["First_Name"].Value.ToString();
-
                 lblDisplay.ForeColor = Color.Blue;
                 lblDisplay.Text = $" {employeeName}";
-
             }
         }
 
@@ -105,66 +95,57 @@ namespace Group50_Hotel_System
 
         private void btnDeleteEmployees_Click(object sender, EventArgs e)
         {
-            
-                if (dgvEmployees.SelectedRows.Count > 0)
+            if (dgvEmployees.SelectedRows.Count > 0)
+            {
+                int selectedEmployeeId = (int)dgvEmployees.SelectedRows[0].Cells["Employee_ID"].Value;
+
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this employee?",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
                 {
-                    // Get the selected employee's ID
-                    int selectedEmployeeId = (int)dgvEmployees.SelectedRows[0].Cells["Employee_ID"].Value;
+                    string deleteEmployeeQuery = "DELETE FROM Employees WHERE Employee_ID = @Employee_ID";
 
-                    // Display a confirmation dialog
-                    DialogResult result = MessageBox.Show(
-                        "Are you sure you want to delete this employee?",
-                        "Confirm Deletion",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning);
-
-                    // If the user clicks 'Yes', proceed with the deletion
-                    if (result == DialogResult.Yes)
+                    using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
                     {
-                        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
-                        string deleteEmployeeQuery = "DELETE FROM Employees WHERE Employee_ID = @Employee_ID";
-
-                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        try
                         {
-                            try
+                            connection.Open();
+
+                            using (SqlCommand command = new SqlCommand(deleteEmployeeQuery, connection))
                             {
-                                connection.Open();
+                                command.Parameters.AddWithValue("@Employee_ID", selectedEmployeeId);
 
-                                using (SqlCommand command = new SqlCommand(deleteEmployeeQuery, connection))
+                                int rowsAffected = command.ExecuteNonQuery();
+                                if (rowsAffected > 0)
                                 {
-                                    // Add parameter for Employee_ID
-                                    command.Parameters.AddWithValue("@Employee_ID", selectedEmployeeId);
-
-                                    int rowsAffected = command.ExecuteNonQuery();
-                                    if (rowsAffected > 0)
-                                    {
-                                        MessageBox.Show("Employee deleted successfully.");
-                                        LoadEmployees(); // Refresh the DataGridView after deletion
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Employee deletion failed.");
-                                    }
+                                    MessageBox.Show("Employee deleted successfully.");
+                                    LoadEmployees(); // Refresh the DataGridView after deletion
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Employee deletion failed.");
                                 }
                             }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"An error occurred: {ex.Message}");
-                            }
                         }
-                    }
-                    else
-                    {
-                        // If the user clicks 'No', cancel the deletion
-                        MessageBox.Show("Deleting was canceled.");
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"An error occurred: {ex.Message}");
+                        }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please select an employee from the list to delete.");
+                    MessageBox.Show("Deleting was canceled.");
                 }
-            
-
+            }
+            else
+            {
+                MessageBox.Show("Please select an employee from the list to delete.");
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -179,7 +160,6 @@ namespace Group50_Hotel_System
                 txtUpdateUsername.Text = selectedRow.Cells["Username"].Value.ToString();
                 cbUpdate.SelectedItem = selectedRow.Cells["Role_Desc"].Value.ToString();
                 hiddenEmployeeId = (int)selectedRow.Cells["Employee_ID"].Value;
-
             }
             else
             {
@@ -192,7 +172,6 @@ namespace Group50_Hotel_System
             if (dgvEmployees.SelectedRows.Count > 0)
             {
                 int selectedEmployeeId = (int)dgvEmployees.SelectedRows[0].Cells["Employee_ID"].Value;
-
                 string newPassword = PromptForPassword("Enter the new password:");
 
                 if (string.IsNullOrEmpty(newPassword))
@@ -202,12 +181,9 @@ namespace Group50_Hotel_System
                 }
 
                 string hashedPassword = HashPassword(newPassword);
-
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
-
                 string updatePasswordQuery = "UPDATE Employees SET Password = @Password WHERE Employee_ID = @Employee_ID";
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
                 {
                     try
                     {
@@ -259,9 +235,7 @@ namespace Group50_Hotel_System
 
             string hashedPassword = HashPassword(password);
 
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 try
                 {
@@ -303,7 +277,6 @@ namespace Group50_Hotel_System
                     }
 
                     MessageBox.Show("Employee information saved successfully!");
-
                     LoadEmployees();
                 }
                 catch (Exception ex)
@@ -334,12 +307,9 @@ namespace Group50_Hotel_System
 
             bool changesMade = false;
 
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 connection.Open();
-
 
                 string selectQuery = "SELECT Username, Surname, First_Name, Role_ID FROM Employees WHERE Employee_ID = @Employee_ID";
                 SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
@@ -354,17 +324,14 @@ namespace Group50_Hotel_System
                     int currentRoleId = (int)reader["Role_ID"];
                     reader.Close();
 
-
                     if (username != currentUsername || surname != currentSurname || name != currentName || role != cbUpdate.SelectedItem.ToString())
                     {
                         changesMade = true;
-
 
                         string getRoleIdQuery = "SELECT Role_ID FROM Roles WHERE Role_Desc = @Role_Desc";
                         SqlCommand roleIdCommand = new SqlCommand(getRoleIdQuery, connection);
                         roleIdCommand.Parameters.AddWithValue("@Role_Desc", role);
                         int roleId = (int)roleIdCommand.ExecuteScalar();
-
 
                         string updateQuery = @"
                         UPDATE Employees
@@ -390,10 +357,8 @@ namespace Group50_Hotel_System
                     MessageBox.Show("No updates were made.");
                 }
 
-
                 tabControl1.SelectedTab = Overview;
                 LoadEmployees();
-
             }
         }
 
@@ -409,17 +374,12 @@ namespace Group50_Hotel_System
         {
             if (dataTable != null)
             {
-                // Convert the search text to lowercase for case-insensitive comparison
                 string searchText = textBox1.Text.ToLower();
-
-                // Filter expression to search in Username, Surname, and First_Name columns
                 string filterExpression = $"Username LIKE '%{searchText}%' OR Surname LIKE '%{searchText}%' OR First_Name LIKE '%{searchText}%'";
-
                 DataView dataView = new DataView(dataTable)
                 {
                     RowFilter = filterExpression
                 };
-
                 dgvEmployees.DataSource = dataView;
             }
         }
