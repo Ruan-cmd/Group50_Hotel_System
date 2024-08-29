@@ -70,6 +70,9 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblDisplay = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Overview.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -82,6 +85,7 @@
             this.updateEmployees.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -184,12 +188,13 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.26688F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.73312F));
-            this.tableLayoutPanel3.Controls.Add(this.btnAddEployee, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnDeleteEmployees, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.btnResetPassword, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.btnUpdate, 0, 2);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.49839F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.501608F));
+            this.tableLayoutPanel3.Controls.Add(this.btnResetPassword, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.btnUpdate, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnDeleteEmployees, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnAddEployee, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(790, 32);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -198,14 +203,14 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.94737F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.05264F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(311, 350);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // btnAddEployee
             // 
-            this.btnAddEployee.Location = new System.Drawing.Point(3, 3);
+            this.btnAddEployee.Location = new System.Drawing.Point(3, 43);
             this.btnAddEployee.Name = "btnAddEployee";
             this.btnAddEployee.Size = new System.Drawing.Size(139, 30);
             this.btnAddEployee.TabIndex = 0;
@@ -215,7 +220,7 @@
             // 
             // btnDeleteEmployees
             // 
-            this.btnDeleteEmployees.Location = new System.Drawing.Point(3, 43);
+            this.btnDeleteEmployees.Location = new System.Drawing.Point(3, 83);
             this.btnDeleteEmployees.Name = "btnDeleteEmployees";
             this.btnDeleteEmployees.Size = new System.Drawing.Size(139, 34);
             this.btnDeleteEmployees.TabIndex = 3;
@@ -225,9 +230,9 @@
             // 
             // btnResetPassword
             // 
-            this.btnResetPassword.Location = new System.Drawing.Point(3, 123);
+            this.btnResetPassword.Location = new System.Drawing.Point(3, 163);
             this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(139, 31);
+            this.btnResetPassword.Size = new System.Drawing.Size(139, 30);
             this.btnResetPassword.TabIndex = 2;
             this.btnResetPassword.Text = "Reset Password";
             this.btnResetPassword.UseVisualStyleBackColor = true;
@@ -235,7 +240,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(3, 83);
+            this.btnUpdate.Location = new System.Drawing.Point(3, 123);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(139, 34);
             this.btnUpdate.TabIndex = 4;
@@ -544,6 +549,37 @@
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.47368F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.52632F));
+            this.tableLayoutPanel7.Controls.Add(this.label12, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.lblDisplay, 1, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(285, 34);
+            this.tableLayoutPanel7.TabIndex = 5;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(126, 16);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Selected Employee";
+            // 
+            // lblDisplay
+            // 
+            this.lblDisplay.AutoSize = true;
+            this.lblDisplay.Location = new System.Drawing.Point(143, 0);
+            this.lblDisplay.Name = "lblDisplay";
+            this.lblDisplay.Size = new System.Drawing.Size(0, 16);
+            this.lblDisplay.TabIndex = 1;
+            // 
             // Manage_Employees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -572,6 +608,8 @@
             this.tableLayoutPanel6.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -621,5 +659,8 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblDisplay;
     }
 }

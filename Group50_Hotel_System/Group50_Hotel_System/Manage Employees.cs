@@ -86,7 +86,15 @@ namespace Group50_Hotel_System
         {
             if (e.RowIndex >= 0)
             {
+                
                 dgvEmployees.Rows[e.RowIndex].Selected = true;
+
+                
+                string employeeName = dgvEmployees.Rows[e.RowIndex].Cells["First_Name"].Value.ToString();
+
+                lblDisplay.ForeColor = Color.Blue;
+                lblDisplay.Text = $" {employeeName}";
+
             }
         }
 
@@ -97,45 +105,66 @@ namespace Group50_Hotel_System
 
         private void btnDeleteEmployees_Click(object sender, EventArgs e)
         {
-            if (dgvEmployees.SelectedRows.Count > 0)
-            {
-                int selectedEmployeeId = (int)dgvEmployees.SelectedRows[0].Cells["Employee_ID"].Value;
-
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
-                string deleteEmployeeQuery = "DELETE FROM Employees WHERE Employee_ID = @Employee_ID";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
+            
+                if (dgvEmployees.SelectedRows.Count > 0)
                 {
-                    try
+                    // Get the selected employee's ID
+                    int selectedEmployeeId = (int)dgvEmployees.SelectedRows[0].Cells["Employee_ID"].Value;
+
+                    // Display a confirmation dialog
+                    DialogResult result = MessageBox.Show(
+                        "Are you sure you want to delete this employee?",
+                        "Confirm Deletion",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    // If the user clicks 'Yes', proceed with the deletion
+                    if (result == DialogResult.Yes)
                     {
-                        connection.Open();
+                        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
+                        string deleteEmployeeQuery = "DELETE FROM Employees WHERE Employee_ID = @Employee_ID";
 
-                        using (SqlCommand command = new SqlCommand(deleteEmployeeQuery, connection))
+                        using (SqlConnection connection = new SqlConnection(connectionString))
                         {
-                            command.Parameters.AddWithValue("@Employee_ID", selectedEmployeeId);
+                            try
+                            {
+                                connection.Open();
 
-                            int rowsAffected = command.ExecuteNonQuery();
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Employee deleted successfully.");
-                                LoadEmployees();
+                                using (SqlCommand command = new SqlCommand(deleteEmployeeQuery, connection))
+                                {
+                                    // Add parameter for Employee_ID
+                                    command.Parameters.AddWithValue("@Employee_ID", selectedEmployeeId);
+
+                                    int rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 0)
+                                    {
+                                        MessageBox.Show("Employee deleted successfully.");
+                                        LoadEmployees(); // Refresh the DataGridView after deletion
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Employee deletion failed.");
+                                    }
+                                }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                MessageBox.Show("Employee deletion failed.");
+                                MessageBox.Show($"An error occurred: {ex.Message}");
                             }
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show($"An error occurred: {ex.Message}");
+                        // If the user clicks 'No', cancel the deletion
+                        MessageBox.Show("Deleting was canceled.");
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Please select an employee from the list to delete.");
-            }
+                else
+                {
+                    MessageBox.Show("Please select an employee from the list to delete.");
+                }
+            
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
