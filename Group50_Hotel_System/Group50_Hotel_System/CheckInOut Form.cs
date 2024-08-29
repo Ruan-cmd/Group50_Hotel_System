@@ -262,7 +262,7 @@ namespace Group50_Hotel_System
 
         private void dgvCheckBooking_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgvCheckBooking.Rows[e.RowIndex].Cells["Booking_ID"].Value != DBNull.Value)
             {
                 DataGridViewRow row = dgvCheckBooking.Rows[e.RowIndex];
                 int bookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
@@ -272,24 +272,38 @@ namespace Group50_Hotel_System
 
                 LoadGuestDetailsForCheckIn(bookingID);
             }
+            else
+            {
+                // Set label to indicate no valid guest is selected
+                lblSelectedGuest.Text = "No valid guest selected.";
+            }
         }
+
+
 
         private void dgvCheckedCheckin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgvCheckedCheckin.Rows[e.RowIndex].Cells["Booking_ID"].Value != DBNull.Value)
             {
                 DataGridViewRow row = dgvCheckedCheckin.Rows[e.RowIndex];
                 int bookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
+
                 lblSelectedGuest.Text = "Selected Guest: " + row.Cells["First_Name"].Value.ToString() + " " + row.Cells["Last_Name"].Value.ToString();
 
                 LoadGuestDetailsForCheckIn(bookingID);
                 LoadBankingDetailsForCheckedInGuest(bookingID);
             }
+            else
+            {
+                // Set label to indicate no valid guest is selected
+                lblSelectedGuest.Text = "No valid guest selected.";
+            }
         }
+
 
         private void dgvCheckinRooms_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgvCheckinRooms.Rows[e.RowIndex].Cells["Room_ID"].Value != DBNull.Value)
             {
                 DataGridViewRow row = dgvCheckinRooms.Rows[e.RowIndex];
                 string roomNumber = row.Cells["Room_Number"].Value.ToString();
@@ -298,7 +312,14 @@ namespace Group50_Hotel_System
                 // Store Room_ID for later use
                 lblCheckInRSelected.Tag = row.Cells["Room_ID"].Value;
             }
+            else
+            {
+                // Set label to indicate no valid room is selected
+                lblCheckInRSelected.Text = "No Room Selected!";
+            }
         }
+
+
 
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
@@ -345,7 +366,20 @@ namespace Group50_Hotel_System
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
-                string query = "SELECT * FROM BankingDetails WHERE Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
+                string query = @"
+        SELECT 
+            Banking_ID, 
+            Card_Type, 
+            Bank, 
+            Card_Num, 
+            CASE WHEN Debit_Credit = 0 THEN 'Debit' ELSE 'Credit' END AS DebitOrCredit,
+            Card_Holder, 
+            Expiration_Date
+        FROM 
+            BankingDetails 
+        WHERE 
+            Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
+
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@BookingID", bookingID);
 
@@ -356,8 +390,12 @@ namespace Group50_Hotel_System
             }
         }
 
+
         private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
         {
+            // Unlock the controls when the Check-In button is clicked
+            UnlockCheckInControls();
+
             // Step 1: Validate if all banking details are entered
             if (cbBankType.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
                 cbCardType.SelectedIndex == -1 || cbMonth.SelectedIndex == -1 ||
@@ -384,9 +422,12 @@ namespace Group50_Hotel_System
                     {
                         try
                         {
-                            // Step 3: Update the booking to set Is_CheckedIn to true
-                            SqlCommand command = new SqlCommand("UPDATE Guest_Booking SET Is_CheckedIn = 1 WHERE Booking_ID = @BookingID", connection, transaction);
+                            // Step 3: Update the booking to set Is_CheckedIn to true and Payment_Date to today's date
+                            SqlCommand command = new SqlCommand(
+                                "UPDATE Guest_Booking SET Is_CheckedIn = 1, Payment_Date = @PaymentDate WHERE Booking_ID = @BookingID",
+                                connection, transaction);
                             command.Parameters.AddWithValue("@BookingID", bookingID);
+                            command.Parameters.AddWithValue("@PaymentDate", DateTime.Today); // Store today's date as Payment_Date
                             command.CommandTimeout = 120;  // Increase timeout if needed
                             command.ExecuteNonQuery();
 
@@ -394,9 +435,9 @@ namespace Group50_Hotel_System
                             DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
 
                             SqlCommand bankingCommand = new SqlCommand(@"
-                INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
-                VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
-                SELECT SCOPE_IDENTITY();", connection, transaction);
+                        INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
+                        VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
+                        SELECT SCOPE_IDENTITY();", connection, transaction);
 
                             bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
@@ -442,6 +483,31 @@ namespace Group50_Hotel_System
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
+
+        private void UnlockCheckInControls()
+        {
+            // Enable guest information controls
+            txtCheckIDNum.Enabled = true;
+            txtCheckinName.Enabled = true;
+            txtCheckinSurname.Enabled = true;
+            txtCheckinContactNum.Enabled = true;
+            txtCheckinEmail.Enabled = true;
+            txtCheckinStreet.Enabled = true;
+            txtCheckinCity.Enabled = true;
+            lblCheckInRSelected.Enabled = true;
+
+            // Enable other check-in controls
+            dtpCheckInDate.Enabled = true;
+            dtpCheckOutDate.Enabled = true;
+            cbBankType.Enabled = true;
+            txtCardNumber.Enabled = true;
+            cbCardType.Enabled = true;
+            cbMonth.Enabled = true;
+            cbYear.Enabled = true;
+            radDebit.Enabled = true;
+            radCredit.Enabled = true;
+        }
+
 
     }
 }
