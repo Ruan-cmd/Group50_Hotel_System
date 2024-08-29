@@ -115,12 +115,6 @@ namespace Group50_Hotel_System
             txtPassword.UseSystemPasswordChar = !cbView.Checked;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Review_Hotel ReviewH = new Review_Hotel();
-            ReviewH.ShowDialog();
-            this.Close();
-        }
+
     }
 }
