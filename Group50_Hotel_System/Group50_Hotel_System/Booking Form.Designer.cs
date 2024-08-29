@@ -907,6 +907,7 @@
             this.Name = "Booking_Form";
             this.Text = "Booking_Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Booking_Form_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControlBooking.ResumeLayout(false);

@@ -356,6 +356,7 @@
             this.dgvCheckedCheckin.Location = new System.Drawing.Point(3, 17);
             this.dgvCheckedCheckin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCheckedCheckin.Name = "dgvCheckedCheckin";
+            this.dgvCheckedCheckin.ReadOnly = true;
             this.dgvCheckedCheckin.RowHeadersWidth = 51;
             this.dgvCheckedCheckin.RowTemplate.Height = 24;
             this.dgvCheckedCheckin.Size = new System.Drawing.Size(656, 201);
@@ -382,6 +383,7 @@
             this.dgvCheckedBanking.Location = new System.Drawing.Point(3, 17);
             this.dgvCheckedBanking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCheckedBanking.Name = "dgvCheckedBanking";
+            this.dgvCheckedBanking.ReadOnly = true;
             this.dgvCheckedBanking.RowHeadersWidth = 51;
             this.dgvCheckedBanking.RowTemplate.Height = 24;
             this.dgvCheckedBanking.Size = new System.Drawing.Size(656, 90);

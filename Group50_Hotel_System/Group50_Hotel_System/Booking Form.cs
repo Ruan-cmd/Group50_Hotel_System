@@ -787,6 +787,9 @@ namespace Group50_Hotel_System
             }
         }
 
+        private void Booking_Form_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
