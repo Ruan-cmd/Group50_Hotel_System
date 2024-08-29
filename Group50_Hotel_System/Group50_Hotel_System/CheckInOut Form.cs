@@ -243,6 +243,7 @@ namespace Group50_Hotel_System
             cbYear.SelectedIndex = -1;
             radDebit.Checked = false;
             radCredit.Checked = false;
+            txtCardHolder.Clear();  // Ensure the card holder textbox is cleared
 
             // Re-enable fields for the next use
             txtCheckIDNum.Enabled = true;
@@ -258,6 +259,7 @@ namespace Group50_Hotel_System
             btnCheckInCheckedIn.Visible = true;
             btnQuestsUpdate.Visible = false;
         }
+
 
         private void dgvCheckBooking_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -336,12 +338,12 @@ namespace Group50_Hotel_System
                 adapter.Fill(table);
 
                 dgvCheckedBanking.DataSource = table;
-            }
 
-            // Populate the textbox with the card holder's name
-            if (dgvCheckedBanking.Rows.Count > 0)
-            {
-                txtCheckinName.Text = dgvCheckedBanking.Rows[0].Cells["Card_Holder"].Value.ToString();
+                // Update the txtCardHolder textbox with the cardholder name
+                if (table.Rows.Count > 0)
+                {
+                    txtCardHolder.Text = table.Rows[0]["Card_Holder"].ToString();
+                }
             }
         }
 
@@ -565,7 +567,9 @@ namespace Group50_Hotel_System
                     cbCardType.SelectedItem = reader["Card_Type"].ToString();
                     cbBankType.SelectedItem = reader["Bank"].ToString();
                     txtCardNumber.Text = reader["Card_Num"].ToString();
-                    txtCheckinName.Text = reader["Card_Holder"].ToString();
+
+                    // Assign the cardholder name to the txtCardHolder TextBox
+                    txtCardHolder.Text = reader["Card_Holder"].ToString();
 
                     // Check if Debit_Credit is not null and cast accordingly
                     if (reader["Debit_Credit"] != DBNull.Value)
@@ -586,6 +590,8 @@ namespace Group50_Hotel_System
                 reader.Close();
             }
         }
+
+
         private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
         {
             // Unlock the controls when the Check-In button is clicked
@@ -845,14 +851,18 @@ namespace Group50_Hotel_System
                             int selectedRoomID = (int)lblCheckInRSelected.Tag;
                             UpdateGuestRoomInDatabase(selectedBookingID, selectedRoomID, connection, transaction);
 
+                            // Update banking details
+                            UpdateBankingDetailsForGuest(selectedBookingID, connection, transaction);
+
                             // Commit the transaction
                             transaction.Commit();
                             MessageBox.Show("Guest information updated successfully!");
 
                             // Refresh all DataGridViews
-                            LoadBookedGuests();      // Refresh the list of booked guests
-                            LoadCheckedInGuests();   // Refresh the list of checked-in guests
+                            LoadBookedGuests();       // Refresh the list of booked guests
+                            LoadCheckedInGuests();    // Refresh the list of checked-in guests
                             LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, selectedRoomID); // Refresh the available rooms
+                            LoadBankingDetailsIntoDGV(selectedBookingID);  // Refresh the banking details DataGridView
 
                             // Switch back to the overview tab and reset
                             tbcCheckinForm.SelectedTab = tpOverview;
@@ -875,6 +885,33 @@ namespace Group50_Hotel_System
             {
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
+        }
+
+        private void UpdateBankingDetailsForGuest(int bookingID, SqlConnection connection, SqlTransaction transaction)
+        {
+            string query = @"
+        UPDATE BankingDetails
+        SET 
+            Card_Type = @CardType, 
+            Bank = @Bank, 
+            Card_Num = @CardNum, 
+            Debit_Credit = @DebitCredit, 
+            Card_Holder = @CardHolder, 
+            Expiration_Date = @ExpirationDate
+        WHERE 
+            Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
+
+            SqlCommand command = new SqlCommand(query, connection, transaction);
+
+            command.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
+            command.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
+            command.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
+            command.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
+            command.Parameters.AddWithValue("@CardHolder", txtCardHolder.Text);
+            command.Parameters.AddWithValue("@ExpirationDate", new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1));
+            command.Parameters.AddWithValue("@BookingID", bookingID);
+
+            command.ExecuteNonQuery();
         }
     }
 }
