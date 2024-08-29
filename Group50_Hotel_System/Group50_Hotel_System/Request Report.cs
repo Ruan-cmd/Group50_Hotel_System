@@ -245,5 +245,10 @@ namespace Group50_Hotel_System
 
             dateTimePicker3.Focus();
         }
+
+        private void Request_Report_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
