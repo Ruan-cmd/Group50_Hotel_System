@@ -14,7 +14,6 @@ C:\Cmpg223\Group50\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_H
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.AssemblyReference.cache
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Login.resources
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Main_Form.resources
-C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Guests.resources
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Rooms.resources
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Properties.Resources.resources
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.GenerateResource.cache
@@ -65,3 +64,4 @@ C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_
 C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.CoreCompileInputs.cache
 C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.exe
 C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.pdb
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Request_Report.resources
