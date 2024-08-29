@@ -33,7 +33,12 @@ namespace Group50_Hotel_System
             }
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
         {
             string enteredUsername = txtUsername.Text;
             string enteredPassword = txtPassword.Text;
@@ -100,17 +105,12 @@ namespace Group50_Hotel_System
             }
         }
 
-        private void btnForget_Click(object sender, EventArgs e)
+        private void btnForget_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("Please contact administration at HTI@gmail.com");
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void cbView_CheckedChanged(object sender, EventArgs e)
+        private void cbView_CheckedChanged_1(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = !cbView.Checked;
         }
