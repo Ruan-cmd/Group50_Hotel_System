@@ -99,6 +99,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Request Report.Designer.cs">
+      <DependentUpon>Request Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="SessionManager.cs" />
     <EmbeddedResource Include="Booking Form.resx">
       <DependentUpon>Booking Form.cs</DependentUpon>
