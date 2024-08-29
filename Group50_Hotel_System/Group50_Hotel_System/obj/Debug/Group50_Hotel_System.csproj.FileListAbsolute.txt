@@ -47,3 +47,21 @@ C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\G
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.CoreCompileInputs.cache
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.exe
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.pdb
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\HotelManagementSystem.mdf
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\HotelManagementSystem_log.ldf
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Group50_Hotel_System.exe.config
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Group50_Hotel_System.exe
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Group50_Hotel_System.pdb
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.AssemblyReference.cache
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Booking_Form.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.CheckInOut_Form.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Login.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Main_Form.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Employees.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Rooms.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Properties.Resources.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Request_Report.resources
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.GenerateResource.cache
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.CoreCompileInputs.cache
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.exe
+C:\Users\duple\OneDrive\Desktop\Cmpg223_Hotel_System\Hotel-System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.pdb
