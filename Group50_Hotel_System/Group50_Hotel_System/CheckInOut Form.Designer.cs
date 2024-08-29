@@ -31,7 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbCheckinForm = new System.Windows.Forms.TabControl();
+            this.tbcCheckinForm = new System.Windows.Forms.TabControl();
             this.tpOverview = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -53,7 +53,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lblSelectedGuest = new System.Windows.Forms.Label();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.gbCHeckinButtons = new System.Windows.Forms.GroupBox();
+            this.gbCheckinButtons = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdateCheckin = new System.Windows.Forms.Button();
             this.btnCheckOut = new System.Windows.Forms.Button();
@@ -120,7 +120,7 @@
             this.radDebit = new System.Windows.Forms.RadioButton();
             this.radCredit = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
-            this.tbCheckinForm.SuspendLayout();
+            this.tbcCheckinForm.SuspendLayout();
             this.tpOverview.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -139,7 +139,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel20.SuspendLayout();
-            this.gbCHeckinButtons.SuspendLayout();
+            this.gbCheckinButtons.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
             this.gbBookedButtons.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
@@ -185,21 +185,21 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // tbCheckinForm
+            // tbcCheckinForm
             // 
-            this.tbCheckinForm.Controls.Add(this.tpOverview);
-            this.tbCheckinForm.Controls.Add(this.tpCheckin);
-            this.tbCheckinForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbCheckinForm.Location = new System.Drawing.Point(0, 28);
-            this.tbCheckinForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbCheckinForm.Name = "tbCheckinForm";
-            this.tbCheckinForm.SelectedIndex = 0;
-            this.tbCheckinForm.Size = new System.Drawing.Size(1387, 655);
-            this.tbCheckinForm.TabIndex = 4;
+            this.tbcCheckinForm.Controls.Add(this.tpOverview);
+            this.tbcCheckinForm.Controls.Add(this.tpCheckin);
+            this.tbcCheckinForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbcCheckinForm.Location = new System.Drawing.Point(0, 28);
+            this.tbcCheckinForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbcCheckinForm.Name = "tbcCheckinForm";
+            this.tbcCheckinForm.SelectedIndex = 0;
+            this.tbcCheckinForm.Size = new System.Drawing.Size(1387, 655);
+            this.tbcCheckinForm.TabIndex = 4;
             // 
             // tpOverview
             // 
@@ -477,7 +477,7 @@
             this.tableLayoutPanel20.ColumnCount = 2;
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel20.Controls.Add(this.gbCHeckinButtons, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.gbCheckinButtons, 1, 0);
             this.tableLayoutPanel20.Controls.Add(this.gbBookedButtons, 0, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Location = new System.Drawing.Point(3, 36);
@@ -489,18 +489,18 @@
             this.tableLayoutPanel20.Size = new System.Drawing.Size(653, 166);
             this.tableLayoutPanel20.TabIndex = 3;
             // 
-            // gbCHeckinButtons
+            // gbCheckinButtons
             // 
-            this.gbCHeckinButtons.Controls.Add(this.tableLayoutPanel21);
-            this.gbCHeckinButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbCHeckinButtons.Location = new System.Drawing.Point(329, 2);
-            this.gbCHeckinButtons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbCHeckinButtons.Name = "gbCHeckinButtons";
-            this.gbCHeckinButtons.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbCHeckinButtons.Size = new System.Drawing.Size(321, 162);
-            this.gbCHeckinButtons.TabIndex = 1;
-            this.gbCHeckinButtons.TabStop = false;
-            this.gbCHeckinButtons.Text = "Checked in Guests";
+            this.gbCheckinButtons.Controls.Add(this.tableLayoutPanel21);
+            this.gbCheckinButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbCheckinButtons.Location = new System.Drawing.Point(329, 2);
+            this.gbCheckinButtons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbCheckinButtons.Name = "gbCheckinButtons";
+            this.gbCheckinButtons.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbCheckinButtons.Size = new System.Drawing.Size(321, 162);
+            this.gbCheckinButtons.TabIndex = 1;
+            this.gbCheckinButtons.TabStop = false;
+            this.gbCheckinButtons.Text = "Checked in Guests";
             // 
             // tableLayoutPanel21
             // 
@@ -1334,7 +1334,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1387, 683);
-            this.Controls.Add(this.tbCheckinForm);
+            this.Controls.Add(this.tbcCheckinForm);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CheckInOut_Form";
@@ -1343,7 +1343,7 @@
             this.Load += new System.EventHandler(this.CheckInOut_Form_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tbCheckinForm.ResumeLayout(false);
+            this.tbcCheckinForm.ResumeLayout(false);
             this.tpOverview.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1364,7 +1364,7 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel20.ResumeLayout(false);
-            this.gbCHeckinButtons.ResumeLayout(false);
+            this.gbCheckinButtons.ResumeLayout(false);
             this.tableLayoutPanel21.ResumeLayout(false);
             this.gbBookedButtons.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
@@ -1402,7 +1402,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.TabControl tbCheckinForm;
+        private System.Windows.Forms.TabControl tbcCheckinForm;
         private System.Windows.Forms.TabPage tpOverview;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1424,7 +1424,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label lblSelectedGuest;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
-        private System.Windows.Forms.GroupBox gbCHeckinButtons;
+        private System.Windows.Forms.GroupBox gbCheckinButtons;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
         private System.Windows.Forms.Button btnUpdateCheckin;
         private System.Windows.Forms.Button btnCheckOut;
