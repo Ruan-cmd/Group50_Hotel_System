@@ -37,7 +37,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -263,7 +263,7 @@
             this.tableLayoutPanel15.ColumnCount = 2;
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel15.Controls.Add(this.textBox8, 1, 0);
+            this.tableLayoutPanel15.Controls.Add(this.txtSearch, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.label17, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 2);
@@ -274,14 +274,15 @@
             this.tableLayoutPanel15.Size = new System.Drawing.Size(668, 30);
             this.tableLayoutPanel15.TabIndex = 0;
             // 
-            // textBox8
+            // txtSearch
             // 
-            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(64, 4);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(600, 22);
-            this.textBox8.TabIndex = 0;
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearch.Location = new System.Drawing.Point(64, 4);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(600, 22);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label17
             // 
@@ -530,6 +531,7 @@
             this.btnUpdateCheckin.TabIndex = 3;
             this.btnUpdateCheckin.Text = "Update Checked in Guest";
             this.btnUpdateCheckin.UseVisualStyleBackColor = true;
+            this.btnUpdateCheckin.Click += new System.EventHandler(this.btnUpdateCheckin_Click);
             // 
             // btnCheckOut
             // 
@@ -1089,6 +1091,7 @@
             this.btnQuestsUpdate.TabIndex = 2;
             this.btnQuestsUpdate.Text = "Update Quests";
             this.btnQuestsUpdate.UseVisualStyleBackColor = true;
+            this.btnQuestsUpdate.Click += new System.EventHandler(this.btnQuestsUpdate_Click);
             // 
             // groupBox4
             // 
@@ -1408,7 +1411,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
         private System.Windows.Forms.GroupBox groupBox8;
