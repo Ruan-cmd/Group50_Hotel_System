@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCheckIn = new System.Windows.Forms.Button();
+            this.btnBooking = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnManageRooms = new System.Windows.Forms.Button();
             this.btnManageEmployees = new System.Windows.Forms.Button();
-            this.btnManageGuests = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnGoBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,10 +42,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCheckIn);
+            this.groupBox1.Controls.Add(this.btnBooking);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.btnManageRooms);
             this.groupBox1.Controls.Add(this.btnManageEmployees);
-            this.groupBox1.Controls.Add(this.btnManageGuests);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(206, 82);
@@ -56,9 +58,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Main System";
             // 
+            // btnCheckIn
+            // 
+            this.btnCheckIn.Location = new System.Drawing.Point(59, 90);
+            this.btnCheckIn.Name = "btnCheckIn";
+            this.btnCheckIn.Size = new System.Drawing.Size(185, 34);
+            this.btnCheckIn.TabIndex = 7;
+            this.btnCheckIn.Text = "Check In/out";
+            this.btnCheckIn.UseVisualStyleBackColor = true;
+            this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
+            // 
+            // btnBooking
+            // 
+            this.btnBooking.Location = new System.Drawing.Point(59, 34);
+            this.btnBooking.Name = "btnBooking";
+            this.btnBooking.Size = new System.Drawing.Size(185, 34);
+            this.btnBooking.TabIndex = 6;
+            this.btnBooking.Text = "Bookings";
+            this.btnBooking.UseVisualStyleBackColor = true;
+            this.btnBooking.Click += new System.EventHandler(this.btnBooking_Click);
+            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(59, 214);
+            this.button4.Location = new System.Drawing.Point(59, 243);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(185, 39);
@@ -69,7 +91,7 @@
             // 
             // btnManageRooms
             // 
-            this.btnManageRooms.Location = new System.Drawing.Point(59, 156);
+            this.btnManageRooms.Location = new System.Drawing.Point(59, 195);
             this.btnManageRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManageRooms.Name = "btnManageRooms";
             this.btnManageRooms.Size = new System.Drawing.Size(185, 33);
@@ -80,7 +102,7 @@
             // 
             // btnManageEmployees
             // 
-            this.btnManageEmployees.Location = new System.Drawing.Point(59, 94);
+            this.btnManageEmployees.Location = new System.Drawing.Point(59, 143);
             this.btnManageEmployees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManageEmployees.Name = "btnManageEmployees";
             this.btnManageEmployees.Size = new System.Drawing.Size(185, 34);
@@ -88,17 +110,6 @@
             this.btnManageEmployees.Text = "Manage employees";
             this.btnManageEmployees.UseVisualStyleBackColor = true;
             this.btnManageEmployees.Click += new System.EventHandler(this.btnManageEmployees_Click);
-            // 
-            // btnManageGuests
-            // 
-            this.btnManageGuests.Location = new System.Drawing.Point(59, 39);
-            this.btnManageGuests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnManageGuests.Name = "btnManageGuests";
-            this.btnManageGuests.Size = new System.Drawing.Size(185, 34);
-            this.btnManageGuests.TabIndex = 2;
-            this.btnManageGuests.Text = "Manage guests";
-            this.btnManageGuests.UseVisualStyleBackColor = true;
-            this.btnManageGuests.Click += new System.EventHandler(this.btnManageGuests_Click);
             // 
             // label3
             // 
@@ -156,9 +167,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnManageRooms;
         private System.Windows.Forms.Button btnManageEmployees;
-        private System.Windows.Forms.Button btnManageGuests;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnGoBack;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCheckIn;
+        private System.Windows.Forms.Button btnBooking;
     }
 }

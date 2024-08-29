@@ -88,27 +88,27 @@
             this.bookingFormToolStripMenuItem,
             this.checkInoutFormToolStripMenuItem});
             this.guestsToolStripMenuItem.Name = "guestsToolStripMenuItem";
-            this.guestsToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.guestsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.guestsToolStripMenuItem.Text = "Guests";
             // 
             // bookingFormToolStripMenuItem
             // 
             this.bookingFormToolStripMenuItem.Name = "bookingFormToolStripMenuItem";
-            this.bookingFormToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            this.bookingFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.bookingFormToolStripMenuItem.Text = "Booking Form";
             this.bookingFormToolStripMenuItem.Click += new System.EventHandler(this.bookingFormToolStripMenuItem_Click);
             // 
             // checkInoutFormToolStripMenuItem
             // 
             this.checkInoutFormToolStripMenuItem.Name = "checkInoutFormToolStripMenuItem";
-            this.checkInoutFormToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            this.checkInoutFormToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.checkInoutFormToolStripMenuItem.Text = "Check in/out Form";
             this.checkInoutFormToolStripMenuItem.Click += new System.EventHandler(this.checkInoutFormToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
