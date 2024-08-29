@@ -1,13 +1,6 @@
 ﻿using Group_50_CMPG223_HotelManagementSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Group50_Hotel_System
@@ -18,6 +11,7 @@ namespace Group50_Hotel_System
         {
             InitializeComponent();
         }
+
         private void CheckInOut_Form_Load(object sender, EventArgs e)
         {
             LoadBookedGuests();
@@ -35,39 +29,16 @@ namespace Group50_Hotel_System
             }
 
             // Step 2: Retrieve and load guest details into the Check-In tab controls
-            int guestID = GetGuestIDForBooking(bookingID.ToString());
-
-            // Load guest details and get the selected room ID
-            LoadGuestDetailsForCheckIn(guestID);
-            int selectedRoomID = (int)lblCheckInRSelected.Tag; // Assuming lblCheckInRSelected.Tag holds the Room_ID
+            LoadGuestDetailsForCheckIn(bookingID);
 
             // Step 3: Load available rooms based on the selected dates and the guest's room ID
+            int selectedRoomID = (int)lblCheckInRSelected.Tag; // Assuming lblCheckInRSelected.Tag holds the Room_ID
             LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, selectedRoomID);
 
             // Step 4: Switch to the Check-In tab and set focus
             tbCheckinForm.SelectedTab = tpCheckin;
             tpCheckin.Focus(); // Ensures the tab is focused
         }
-
-       
-
-        private void LogDetailedError(Exception ex, string context)
-        {
-            string detailedMessage = $"Context: {context}\n" +
-                                     $"Message: {ex.Message}\n" +
-                                     $"Stack Trace: {ex.StackTrace}";
-
-            if (ex.InnerException != null)
-            {
-                detailedMessage += $"\nInner Exception Message: {ex.InnerException.Message}\n" +
-                                   $"Inner Exception Stack Trace: {ex.InnerException.StackTrace}";
-            }
-
-            MessageBox.Show(detailedMessage, "Detailed Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-
-
 
         private void LoadBookedGuests()
         {
@@ -165,77 +136,37 @@ namespace Group50_Hotel_System
             }
         }
 
-        private int GetGuestIDForBooking(string bookingID)
-        {
-            int guestID = -1;
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand("SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID", connection);
-                    command.Parameters.AddWithValue("@BookingID", bookingID);
-                    command.CommandTimeout = 30;  // Reduced timeout to detect issues faster
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            guestID = int.Parse(reader["Guest_ID"].ToString());
-                        }
-                        else
-                        {
-                            MessageBox.Show($"No Guest ID found for Booking ID: {bookingID}", "Guest Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                LogDetailedError(ex, "SQL Error in GetGuestIDForBooking");
-                MessageBox.Show("A database error occurred while retrieving the Guest ID. Please try again later.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                LogDetailedError(ex, "Error in GetGuestIDForBooking");
-                MessageBox.Show("An unexpected error occurred while retrieving the Guest ID. Please try again.", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return guestID;
-        }
-
-
-
-        private void LoadGuestDetailsForCheckIn(int guestID)
+        private void LoadGuestDetailsForCheckIn(int bookingID)
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 string query = @"
                     SELECT 
-                        Guests.ID_Number, 
-                        Guests.First_Name, 
-                        Guests.Last_Name, 
-                        Guests.Contact_Num, 
-                        Guests.Email, 
-                        Address.Street_Name, 
-                        Address.Town_City,
-                        Rooms.Room_ID,
-                        Rooms.Room_Number,
-                        Rooms.Room_Type,
+                        g.ID_Number, 
+                        g.First_Name, 
+                        g.Last_Name, 
+                        g.Contact_Num, 
+                        g.Email, 
+                        a.Street_Name, 
+                        a.Town_City,
+                        r.Room_ID,
+                        r.Room_Number,
+                        r.Room_Type,
                         gb.CheckIn_Date,
                         gb.CheckOut_Date
                     FROM 
-                        Guests 
+                        Guests g
                     INNER JOIN 
-                        Address ON Guests.Address_ID = Address.Address_ID
+                        Address a ON g.Address_ID = a.Address_ID
                     INNER JOIN 
-                        Guest_Booking gb ON gb.Guest_ID = Guests.Guest_ID
+                        Guest_Booking gb ON gb.Guest_ID = g.Guest_ID
                     INNER JOIN 
-                        Rooms ON gb.Room_ID = Rooms.Room_ID
+                        Rooms r ON gb.Room_ID = r.Room_ID
                     WHERE 
-                        Guests.Guest_ID = @GuestID";
+                        gb.Booking_ID = @BookingID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@GuestID", guestID);
+                command.Parameters.AddWithValue("@BookingID", bookingID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -334,12 +265,12 @@ namespace Group50_Hotel_System
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvCheckBooking.Rows[e.RowIndex];
-                int guestID = GetGuestIDForBooking(row.Cells["Booking_ID"].Value.ToString());
+                int bookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
 
                 // Display guest name and surname
                 lblSelectedGuest.Text = "Selected Guest: " + row.Cells["First_Name"].Value.ToString() + " " + row.Cells["Last_Name"].Value.ToString();
 
-                LoadGuestDetailsForCheckIn(guestID);
+                LoadGuestDetailsForCheckIn(bookingID);
             }
         }
 
@@ -348,11 +279,11 @@ namespace Group50_Hotel_System
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvCheckedCheckin.Rows[e.RowIndex];
-                int guestID = int.Parse(row.Cells["Guest_ID"].Value.ToString());
-                lblSelectedGuest.Text = "Selected Guest: " + guestID.ToString();
+                int bookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
+                lblSelectedGuest.Text = "Selected Guest: " + row.Cells["First_Name"].Value.ToString() + " " + row.Cells["Last_Name"].Value.ToString();
 
-                LoadGuestDetailsForCheckIn(guestID);
-                LoadBankingDetailsForCheckedInGuest(guestID);
+                LoadGuestDetailsForCheckIn(bookingID);
+                LoadBankingDetailsForCheckedInGuest(bookingID);
             }
         }
 
@@ -371,7 +302,7 @@ namespace Group50_Hotel_System
 
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
-            int guestID = int.Parse(lblSelectedGuest.Text.Replace("Selected Guest: ", ""));
+            int bookingID = int.Parse(lblSelectedGuest.Text.Replace("Selected Guest: ", ""));
             try
             {
                 using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
@@ -381,8 +312,8 @@ namespace Group50_Hotel_System
                     {
                         try
                         {
-                            SqlCommand command = new SqlCommand("UPDATE Guest_Booking SET Is_CheckedOut = 1 WHERE Guest_ID = @GuestID", connection, transaction);
-                            command.Parameters.AddWithValue("@GuestID", guestID);
+                            SqlCommand command = new SqlCommand("UPDATE Guest_Booking SET Is_CheckedOut = 1 WHERE Booking_ID = @BookingID", connection, transaction);
+                            command.Parameters.AddWithValue("@BookingID", bookingID);
                             command.ExecuteNonQuery();
 
                             transaction.Commit();
@@ -410,31 +341,19 @@ namespace Group50_Hotel_System
             ClearCheckInControls();
         }
 
-        private void LoadBankingDetailsForCheckedInGuest(int guestID)
+        private void LoadBankingDetailsForCheckedInGuest(int bookingID)
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
-                string query = "SELECT * FROM BankingDetails WHERE Guest_ID = @GuestID";
+                string query = "SELECT * FROM BankingDetails WHERE Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@GuestID", guestID);
+                command.Parameters.AddWithValue("@BookingID", bookingID);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 System.Data.DataTable table = new System.Data.DataTable();
                 adapter.Fill(table);
                 dgvCheckedBanking.DataSource = table;
             }
-        }
-
-        // This method will handle the 'Update Check-in' button click event.
-        private void btnUpdateCheckin_Click(object sender, EventArgs e)
-        {
-            // Code to update check-in details will go here.
-        }
-
-        // This method will handle the 'Book Out' button click event.
-        private void btnBookOut_Click(object sender, EventArgs e)
-        {
-            // Code to handle guest check-out will go here.
         }
 
         private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
@@ -475,10 +394,10 @@ namespace Group50_Hotel_System
                             DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
 
                             SqlCommand bankingCommand = new SqlCommand(@"
-                        INSERT INTO BankingDetails (Guest_ID, Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
-                        VALUES (@GuestID, @CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate)", connection, transaction);
+                        INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
+                        VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
+                        SELECT SCOPE_IDENTITY();", connection, transaction);
 
-                            bankingCommand.Parameters.AddWithValue("@GuestID", GetGuestIDForBooking(bookingID.ToString()));
                             bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
@@ -490,20 +409,25 @@ namespace Group50_Hotel_System
                             bankingCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate); // Store as a Date
 
                             bankingCommand.CommandTimeout = 120;  // Increase timeout if needed
-                            bankingCommand.ExecuteNonQuery();
+                            int bankingID = Convert.ToInt32(bankingCommand.ExecuteScalar());
+
+                            // Step 5: Update the Guest_Booking table with the new Banking_ID
+                            SqlCommand updateBookingCommand = new SqlCommand("UPDATE Guest_Booking SET Banking_ID = @BankingID WHERE Booking_ID = @BookingID", connection, transaction);
+                            updateBookingCommand.Parameters.AddWithValue("@BankingID", bankingID);
+                            updateBookingCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                            updateBookingCommand.ExecuteNonQuery();
 
                             // Commit the transaction
                             transaction.Commit();
                             MessageBox.Show("Guest checked in successfully!");
 
-                            // Step 5: Switch back to the overview tab and refresh the data
+                            // Step 6: Switch back to the overview tab and refresh the data
                             tbCheckinForm.SelectedTab = tpOverview;
                             LoadCheckedInGuests();  // Refresh the list of checked-in guests
                         }
                         catch (Exception ex)
                         {
                             transaction.Rollback();
-                            LogDetailedError(ex, "SQL Command Execution Error");
                             MessageBox.Show("An error occurred while checking in the guest: " + ex.Message);
                         }
                     }
@@ -511,7 +435,6 @@ namespace Group50_Hotel_System
             }
             catch (Exception ex)
             {
-                LogDetailedError(ex, "Database Connection Error");
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }

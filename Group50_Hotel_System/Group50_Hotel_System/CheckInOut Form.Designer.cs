@@ -527,7 +527,6 @@
             this.btnUpdateCheckin.TabIndex = 3;
             this.btnUpdateCheckin.Text = "Update Checked in Guest";
             this.btnUpdateCheckin.UseVisualStyleBackColor = true;
-            this.btnUpdateCheckin.Click += new System.EventHandler(this.btnUpdateCheckin_Click);
             // 
             // btnCheckOut
             // 
@@ -582,7 +581,6 @@
             this.btnBookOut.TabIndex = 3;
             this.btnBookOut.Text = "Book Guest Out";
             this.btnBookOut.UseVisualStyleBackColor = true;
-            this.btnBookOut.Click += new System.EventHandler(this.btnBookOut_Click);
             // 
             // btnCheckin
             // 
