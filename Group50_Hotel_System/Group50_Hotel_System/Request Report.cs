@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Group_50_CMPG223_HotelManagementSystem;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Group50_Hotel_System
@@ -19,7 +12,7 @@ namespace Group50_Hotel_System
         {
             InitializeComponent();
         }
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Ruan\\Desktop\\GitHub CMPG223 Project\\HotelSystem\\Group50_Hotel_System\\Group50_Hotel_System\\HotelManagementSystem.mdf\";Integrated Security=True";
+
         //Top Guest 
         private void GetTop5Guests(DateTime startDate, DateTime endDate)
         {
@@ -43,7 +36,7 @@ namespace Group50_Hotel_System
                 ORDER BY 
                     Total DESC;";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -69,6 +62,7 @@ namespace Group50_Hotel_System
                 }
             }
         }
+
         private void GetTop5GuestsLongest(DateTime startDate, DateTime endDate)
         {
             // Define the query 
@@ -92,7 +86,7 @@ namespace Group50_Hotel_System
                 ORDER BY 
                     Days_Stayed DESC";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -119,12 +113,9 @@ namespace Group50_Hotel_System
             }
         }
 
-
-
         //Top Weeks
         private void GetBusiestWeeks(DateTime startDate, DateTime endDate)
         {
-
             // Define the query 
             string query = @"
                 SELECT 
@@ -141,7 +132,7 @@ namespace Group50_Hotel_System
                 ORDER BY 
                     Total DESC;";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -163,37 +154,28 @@ namespace Group50_Hotel_System
                     {
                         MessageBox.Show("An error occurred: " + ex.Message);
                     }
-
-
-
-
                 }
             }
         }
 
-        //Hotel Reviews
-
+        //Hotel Reviews by Year
         private void GetHotelReviewsYear(DateTime startDate, DateTime endDate)
         {
-
             // Define the query 
             string query = @"
                 SELECT 
                     DATEPART(YEAR, CheckOut_Date) AS Year,
-                    AVG(CAST(Review_Hotel AS FLOAT))as Rating
-                    
-                    
+                    AVG(CAST(Review_Hotel AS FLOAT)) as Rating
                 FROM 
                     Guest_Booking
                 WHERE 
                     CheckOut_Date BETWEEN @StartDate AND @EndDate
-              GROUP BY 
-                    DATEPART(YEAR, CheckIn_Date),
-            
-              ORDER BY 
+                GROUP BY 
+                    DATEPART(YEAR, CheckOut_Date)
+                ORDER BY 
                     Year";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -215,36 +197,28 @@ namespace Group50_Hotel_System
                     {
                         MessageBox.Show("An error occurred: " + ex.Message);
                     }
-
-
-
-
                 }
             }
         }
 
+        //Hotel Reviews by Month
         private void GetHotelReviewsMonth(DateTime startDate, DateTime endDate)
         {
-
             // Define the query 
             string query = @"
                 SELECT 
-                 
                     DATEPART(MONTH, CheckOut_Date) as Month,
-                    AVG(CAST(Review_Hotel AS FLOAT))as Rating
-                    
+                    AVG(CAST(Review_Hotel AS FLOAT)) as Rating
                 FROM 
                     Guest_Booking
                 WHERE 
                     CheckOut_Date BETWEEN @StartDate AND @EndDate
-              GROUP BY 
-                    
-                    DATEPART(MONTH, CheckIn_Date)
-                    
-              ORDER BY 
+                GROUP BY 
+                    DATEPART(MONTH, CheckOut_Date)
+                ORDER BY 
                     Month";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -266,35 +240,28 @@ namespace Group50_Hotel_System
                     {
                         MessageBox.Show("An error occurred: " + ex.Message);
                     }
-
-
-
-
                 }
             }
         }
 
+        //Hotel Reviews by Week
         private void GetHotelReviewsWeek(DateTime startDate, DateTime endDate)
         {
-            int rating = 0;
             // Define the query 
             string query = @"
                 SELECT 
-                    
                     DATEPART(WEEK, CheckOut_Date) AS Week,
-                    AVG(CAST(Review_Hotel AS FLOAT))as Rating
-                    
+                    AVG(CAST(Review_Hotel AS FLOAT)) as Rating
                 FROM 
                     Guest_Booking
                 WHERE 
                     CheckOut_Date BETWEEN @StartDate AND @EndDate
-              GROUP BY 
-                 
-                    DATEPART(WEEK, CheckIn_Date)
-              ORDER BY 
+                GROUP BY 
+                    DATEPART(WEEK, CheckOut_Date)
+                ORDER BY 
                     Week";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -316,19 +283,9 @@ namespace Group50_Hotel_System
                     {
                         MessageBox.Show("An error occurred: " + ex.Message);
                     }
-
-
-
-
                 }
             }
         }
-
-
-
-
-
-      
 
         private void Request_Report_Load(object sender, EventArgs e)
         {
@@ -337,21 +294,13 @@ namespace Group50_Hotel_System
 
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
-
-
             // Get the selected date from the DateTimePicker
             DateTime selectedDate1 = dateTimePickerStart.Value;
             DateTime selectedDate2 = dateTimePickerEnd.Value;
             if (selectedDate1 >= DateTime.Today.AddDays(1) || selectedDate1 > selectedDate2 || selectedDate2 < selectedDate1 || selectedDate2 >= DateTime.Today.AddDays(1))
             {
-                MessageBox.Show("Date Validation: \n Please make sure you select a startdate and an enddate \n Startdate or Enddate cant be a date in the future  \n Enddate cant be earlier than selcted startdate ");
+                MessageBox.Show("Date Validation: \n Please make sure you select a start date and an end date \n Start date or End date can't be a date in the future \n End date can't be earlier than selected start date ");
             }
-
-
-
-
-            // Check if the dates are the same 
-
             else if (selectedDate1 != dateTimePickerStart.MinDate && selectedDate2 != dateTimePickerEnd.MinDate && selectedDate1 < selectedDate2)
             {
                 // Get the dates from the DateTimePickers
@@ -369,7 +318,6 @@ namespace Group50_Hotel_System
             dataGridViewTopGuests.DataSource = null;
             dataGridViewTopGuests.Rows.Clear();
 
-
             dateTimePickerStart.Focus();
         }
 
@@ -380,14 +328,8 @@ namespace Group50_Hotel_System
             DateTime selectedDate2 = dateTimePicker4.Value;
             if (selectedDate1 >= DateTime.Today.AddDays(1) || selectedDate1 > selectedDate2 || selectedDate2 < selectedDate1 || selectedDate2 >= DateTime.Today.AddDays(1))
             {
-                MessageBox.Show("Date Validation: \n Please make sure you select a startdate and an enddate \n Startdate or Enddate cant be a date in the future  \n Enddate cant be earlier than selcted startdate ");
+                MessageBox.Show("Date Validation: \n Please make sure you select a start date and an end date \n Start date or End date can't be a date in the future \n End date can't be earlier than selected start date ");
             }
-
-
-
-
-            // Check if the dates are the same 
-
             else if (selectedDate1 != dateTimePicker3.MinDate && selectedDate2 != dateTimePicker4.MinDate && selectedDate1 < selectedDate2)
             {
                 // Get the dates from the DateTimePickers
@@ -395,7 +337,6 @@ namespace Group50_Hotel_System
                 DateTime endDate = dateTimePicker4.Value;
 
                 // Call the method 
-
                 GetBusiestWeeks(startDate, endDate);
             }
         }
@@ -404,7 +345,6 @@ namespace Group50_Hotel_System
         {
             dataGridViewTopWeeks.DataSource = null;
             dataGridViewTopWeeks.Rows.Clear();
-
 
             dateTimePicker3.Focus();
         }
@@ -415,14 +355,8 @@ namespace Group50_Hotel_System
             DateTime selectedDate2 = dateTimePicker6.Value;
             if (selectedDate1 >= DateTime.Today.AddDays(1) || selectedDate1 > selectedDate2 || selectedDate2 < selectedDate1 || selectedDate2 >= DateTime.Today.AddDays(1))
             {
-                MessageBox.Show("Date Validation: \n Please make sure you select a startdate and an enddate \n Startdate or Enddate cant be a date in the future  \n Enddate cant be earlier than selcted startdate ");
+                MessageBox.Show("Date Validation: \n Please make sure you select a start date and an end date \n Start date or End date can't be a date in the future \n End date can't be earlier than selected start date ");
             }
-
-
-
-
-            // Check if the dates are the same 
-
             else if (selectedDate1 != dateTimePicker5.MinDate && selectedDate2 != dateTimePicker6.MinDate && selectedDate1 < selectedDate2)
             {
                 // Get the dates from the DateTimePickers

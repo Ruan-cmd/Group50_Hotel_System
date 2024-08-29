@@ -395,6 +395,7 @@ namespace Group50_Hotel_System
             return guestName;
         }
 
+
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
             // Step 1: Validate if a booking is selected
@@ -405,44 +406,59 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            try
+
+            // Step 2: Confirm check-out action
+            DialogResult result = MessageBox.Show("Are you sure you want to check out this guest?", "Confirm Check-Out", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+                // Step 3: Display the review form
+                using (Review_Hotel reviewForm = new Review_Hotel())
                 {
-                    connection.Open();
-                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    if (reviewForm.ShowDialog() == DialogResult.OK)
                     {
+                        int rating = reviewForm.SelectedRating; // Get the selected rating from the review form
+
                         try
                         {
-                            // Step 2: Update the booking to set Is_CheckedOut to true
-                            SqlCommand command = new SqlCommand(
-                                "UPDATE Guest_Booking SET Is_CheckedOut = 1 WHERE Booking_ID = @BookingID",
-                                connection, transaction);
-                            command.Parameters.AddWithValue("@BookingID", bookingID);
-                            command.ExecuteNonQuery();
+                            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+                            {
+                                connection.Open();
+                                using (SqlTransaction transaction = connection.BeginTransaction())
+                                {
+                                    try
+                                    {
+                                        // Step 4: Update the booking to set Is_CheckedOut to true and store the rating
+                                        SqlCommand command = new SqlCommand(
+                                            "UPDATE Guest_Booking SET Is_CheckedOut = 1, Review_Hotel = @Rating WHERE Booking_ID = @BookingID",
+                                            connection, transaction);
+                                        command.Parameters.AddWithValue("@BookingID", bookingID);
+                                        command.Parameters.AddWithValue("@Rating", rating); // Store the rating
+                                        command.ExecuteNonQuery();
 
-                            // Step 3: Commit the transaction
-                            transaction.Commit();
-                            MessageBox.Show("Guest checked out successfully!");
+                                        // Step 5: Commit the transaction
+                                        transaction.Commit();
+                                        MessageBox.Show("Guest checked out successfully!");
 
-                            // Step 4: Refresh the DataGridViews
-                            LoadCheckedInGuests(); // Refresh the list of checked-in guests
-                            ClearCheckInControls(); // Clear the input controls
+                                        // Step 6: Refresh the DataGridViews
+                                        LoadCheckedInGuests(); // Refresh the list of checked-in guests
+                                        ClearCheckInControls(); // Clear the input controls
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("An error occurred while checking out the guest: " + ex.Message);
+                                    }
+                                }
+                            }
                         }
                         catch (Exception ex)
                         {
-                            transaction.Rollback();
-                            MessageBox.Show("An error occurred while checking out the guest: " + ex.Message);
+                            MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
-            }
         }
-
         private int GetSelectedBookingIDFromCheckedIn()
         {
             if (dgvCheckedCheckin.SelectedRows.Count > 0)
