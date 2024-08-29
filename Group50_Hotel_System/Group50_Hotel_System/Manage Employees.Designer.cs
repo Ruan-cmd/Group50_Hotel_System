@@ -297,7 +297,7 @@
             this.addEmployees.Margin = new System.Windows.Forms.Padding(4);
             this.addEmployees.Name = "addEmployees";
             this.addEmployees.Padding = new System.Windows.Forms.Padding(4);
-            this.addEmployees.Size = new System.Drawing.Size(1112, 393);
+            this.addEmployees.Size = new System.Drawing.Size(1112, 519);
             this.addEmployees.TabIndex = 1;
             this.addEmployees.Text = "Add Employees";
             this.addEmployees.UseVisualStyleBackColor = true;
@@ -307,7 +307,7 @@
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 218);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 344);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -341,7 +341,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1104, 385);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1104, 511);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // label3
@@ -444,7 +444,7 @@
             this.updateEmployees.Location = new System.Drawing.Point(4, 25);
             this.updateEmployees.Name = "updateEmployees";
             this.updateEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.updateEmployees.Size = new System.Drawing.Size(1112, 393);
+            this.updateEmployees.Size = new System.Drawing.Size(1112, 519);
             this.updateEmployees.TabIndex = 2;
             this.updateEmployees.Text = "Update Employees";
             this.updateEmployees.UseVisualStyleBackColor = true;
@@ -473,7 +473,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(1106, 387);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1106, 513);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // label8

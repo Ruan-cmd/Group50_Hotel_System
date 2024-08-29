@@ -50,6 +50,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtRoomType = new System.Windows.Forms.TextBox();
             this.txtRoomNum = new System.Windows.Forms.TextBox();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tcRooms.SuspendLayout();
             this.tpOverview.SuspendLayout();
@@ -75,6 +76,8 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -302,6 +305,13 @@
             this.txtRoomNum.Size = new System.Drawing.Size(132, 22);
             this.txtRoomNum.TabIndex = 0;
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // Manage_Rooms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -357,5 +367,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtRoomType;
         private System.Windows.Forms.TextBox txtRoomNum;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
