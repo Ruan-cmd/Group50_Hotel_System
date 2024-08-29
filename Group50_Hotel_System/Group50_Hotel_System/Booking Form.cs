@@ -681,8 +681,8 @@ namespace Group50_Hotel_System
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Manage_Guests manage_Guests = new Manage_Guests();
-            manage_Guests.ShowDialog();
+            Main_Form main_Form = new Main_Form();
+            main_Form.ShowDialog();
             this.Close();
         }
 

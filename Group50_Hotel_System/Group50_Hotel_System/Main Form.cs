@@ -56,5 +56,21 @@ namespace Group50_Hotel_System
         {
 
         }
+
+        private void btnBooking_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Booking_Form booking_Form = new Booking_Form();
+            booking_Form.ShowDialog();
+            this.Close();
+        }
+
+        private void btnCheckIn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CheckInOut_Form checkInOut_Form = new CheckInOut_Form();
+            checkInOut_Form.ShowDialog();
+            this.Close();
+        }
     }
 }

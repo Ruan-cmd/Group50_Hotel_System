@@ -508,6 +508,12 @@ namespace Group50_Hotel_System
             radCredit.Enabled = true;
         }
 
-
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Main_Form main_Form = new Main_Form();
+            main_Form.ShowDialog();
+            this.Close();
+        }
     }
 }
