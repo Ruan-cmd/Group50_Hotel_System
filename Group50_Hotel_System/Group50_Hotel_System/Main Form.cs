@@ -51,5 +51,10 @@ namespace Group50_Hotel_System
             manage_Rooms.ShowDialog();
             this.Close();
         }
+
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

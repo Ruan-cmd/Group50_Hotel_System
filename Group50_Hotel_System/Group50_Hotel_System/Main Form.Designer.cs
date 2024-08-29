@@ -30,7 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnManageRooms = new System.Windows.Forms.Button();
             this.btnManageEmployees = new System.Windows.Forms.Button();
             this.btnManageGuests = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnManageRooms);
             this.groupBox1.Controls.Add(this.btnManageEmployees);
             this.groupBox1.Controls.Add(this.btnManageGuests);
             this.groupBox1.Controls.Add(this.label3);
@@ -67,16 +67,16 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // btnManageRooms
             // 
-            this.button3.Location = new System.Drawing.Point(59, 156);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(185, 33);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Manage rooms";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnManageRooms.Location = new System.Drawing.Point(59, 156);
+            this.btnManageRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnManageRooms.Name = "btnManageRooms";
+            this.btnManageRooms.Size = new System.Drawing.Size(185, 33);
+            this.btnManageRooms.TabIndex = 4;
+            this.btnManageRooms.Text = "Manage rooms";
+            this.btnManageRooms.UseVisualStyleBackColor = true;
+            this.btnManageRooms.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnManageEmployees
             // 
@@ -142,6 +142,7 @@
             this.Name = "Main_Form";
             this.Text = "Main_Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Main_Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -153,7 +154,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnManageRooms;
         private System.Windows.Forms.Button btnManageEmployees;
         private System.Windows.Forms.Button btnManageGuests;
         private System.Windows.Forms.Label label3;
