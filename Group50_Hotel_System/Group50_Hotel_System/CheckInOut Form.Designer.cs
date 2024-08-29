@@ -185,9 +185,8 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
-
             // 
             // tbCheckinForm
             // 
@@ -282,7 +281,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(600, 22);
             this.textBox8.TabIndex = 0;
-
             // 
             // label17
             // 
@@ -388,7 +386,6 @@
             this.dgvCheckedBanking.RowTemplate.Height = 24;
             this.dgvCheckedBanking.Size = new System.Drawing.Size(656, 90);
             this.dgvCheckedBanking.TabIndex = 0;
-
             // 
             // groupBox2
             // 
@@ -485,7 +482,7 @@
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 1;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tableLayoutPanel20.Size = new System.Drawing.Size(653, 166);
             this.tableLayoutPanel20.TabIndex = 3;
             // 
@@ -1030,7 +1027,6 @@
             this.dtpCheckInDate.Name = "dtpCheckInDate";
             this.dtpCheckInDate.Size = new System.Drawing.Size(200, 22);
             this.dtpCheckInDate.TabIndex = 2;
-
             // 
             // dtpCheckOutDate
             // 
@@ -1039,7 +1035,6 @@
             this.dtpCheckOutDate.Name = "dtpCheckOutDate";
             this.dtpCheckOutDate.Size = new System.Drawing.Size(200, 22);
             this.dtpCheckOutDate.TabIndex = 3;
-
             // 
             // tableLayoutPanel11
             // 
@@ -1070,7 +1065,7 @@
             this.btnCheckInCheckedIn.TabIndex = 1;
             this.btnCheckInCheckedIn.Text = "Check Guest in";
             this.btnCheckInCheckedIn.UseVisualStyleBackColor = true;
-
+            this.btnCheckInCheckedIn.Click += new System.EventHandler(this.btnCheckInCheckedIn_Click);
             // 
             // btnCheckedClearControls
             // 
@@ -1092,7 +1087,6 @@
             this.btnQuestsUpdate.TabIndex = 2;
             this.btnQuestsUpdate.Text = "Update Quests";
             this.btnQuestsUpdate.UseVisualStyleBackColor = true;
-
             // 
             // groupBox4
             // 

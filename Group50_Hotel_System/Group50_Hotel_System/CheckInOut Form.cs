@@ -49,84 +49,7 @@ namespace Group50_Hotel_System
             tpCheckin.Focus(); // Ensures the tab is focused
         }
 
-        private void btnCheckInCheckedIn_Click_1(object sender, EventArgs e)
-        {
-            // Step 1: Validate if all banking details are entered
-            if (cbBankType.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
-                cbCardType.SelectedIndex == -1 || cbMonth.SelectedIndex == -1 ||
-                cbYear.SelectedIndex == -1 || (!radDebit.Checked && !radCredit.Checked))
-            {
-                MessageBox.Show("Please ensure all banking details are entered correctly.");
-                return;
-            }
-
-            // Step 2: Validate if a booking is selected
-            int bookingID = GetSelectedBookingID();
-            if (bookingID == -1)
-            {
-                MessageBox.Show("Please select a booking to check in.");
-                return;
-            }
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-                {
-                    connection.Open();
-                    using (SqlTransaction transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            // Step 3: Update the booking to set Is_CheckedIn to true
-                            SqlCommand command = new SqlCommand("UPDATE Guest_Booking SET Is_CheckedIn = 1 WHERE Booking_ID = @BookingID", connection, transaction);
-                            command.Parameters.AddWithValue("@BookingID", bookingID);
-                            command.CommandTimeout = 120;  // Increase timeout if needed
-                            command.ExecuteNonQuery();
-
-                            // Step 4: Prepare and save banking details
-                            DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
-
-                            SqlCommand bankingCommand = new SqlCommand(@"
-                        INSERT INTO BankingDetails (Guest_ID, Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
-                        VALUES (@GuestID, @CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate)", connection, transaction);
-
-                            bankingCommand.Parameters.AddWithValue("@GuestID", GetGuestIDForBooking(bookingID.ToString()));
-                            bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
-                            bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
-                            bankingCommand.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
-
-                            // Store 0 for Debit and 1 for Credit
-                            bankingCommand.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
-
-                            bankingCommand.Parameters.AddWithValue("@CardHolder", txtCheckinName.Text + " " + txtCheckinSurname.Text);
-                            bankingCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate); // Store as a Date
-
-                            bankingCommand.CommandTimeout = 120;  // Increase timeout if needed
-                            bankingCommand.ExecuteNonQuery();
-
-                            // Commit the transaction
-                            transaction.Commit();
-                            MessageBox.Show("Guest checked in successfully!");
-
-                            // Step 5: Switch back to the overview tab and refresh the data
-                            tbCheckinForm.SelectedTab = tpOverview;
-                            LoadCheckedInGuests();  // Refresh the list of checked-in guests
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            LogDetailedError(ex, "SQL Command Execution Error");
-                            MessageBox.Show("An error occurred while checking in the guest: " + ex.Message);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogDetailedError(ex, "Database Connection Error");
-                MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
-            }
-        }
+       
 
         private void LogDetailedError(Exception ex, string context)
         {
@@ -512,6 +435,85 @@ namespace Group50_Hotel_System
         private void btnBookOut_Click(object sender, EventArgs e)
         {
             // Code to handle guest check-out will go here.
+        }
+
+        private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
+        {
+            // Step 1: Validate if all banking details are entered
+            if (cbBankType.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
+                cbCardType.SelectedIndex == -1 || cbMonth.SelectedIndex == -1 ||
+                cbYear.SelectedIndex == -1 || (!radDebit.Checked && !radCredit.Checked))
+            {
+                MessageBox.Show("Please ensure all banking details are entered correctly.");
+                return;
+            }
+
+            // Step 2: Validate if a booking is selected
+            int bookingID = GetSelectedBookingID();
+            if (bookingID == -1)
+            {
+                MessageBox.Show("Please select a booking to check in.");
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Step 3: Update the booking to set Is_CheckedIn to true
+                            SqlCommand command = new SqlCommand("UPDATE Guest_Booking SET Is_CheckedIn = 1 WHERE Booking_ID = @BookingID", connection, transaction);
+                            command.Parameters.AddWithValue("@BookingID", bookingID);
+                            command.CommandTimeout = 120;  // Increase timeout if needed
+                            command.ExecuteNonQuery();
+
+                            // Step 4: Prepare and save banking details
+                            DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
+
+                            SqlCommand bankingCommand = new SqlCommand(@"
+                        INSERT INTO BankingDetails (Guest_ID, Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
+                        VALUES (@GuestID, @CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate)", connection, transaction);
+
+                            bankingCommand.Parameters.AddWithValue("@GuestID", GetGuestIDForBooking(bookingID.ToString()));
+                            bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
+                            bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
+                            bankingCommand.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
+
+                            // Store 0 for Debit and 1 for Credit
+                            bankingCommand.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
+
+                            bankingCommand.Parameters.AddWithValue("@CardHolder", txtCheckinName.Text + " " + txtCheckinSurname.Text);
+                            bankingCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate); // Store as a Date
+
+                            bankingCommand.CommandTimeout = 120;  // Increase timeout if needed
+                            bankingCommand.ExecuteNonQuery();
+
+                            // Commit the transaction
+                            transaction.Commit();
+                            MessageBox.Show("Guest checked in successfully!");
+
+                            // Step 5: Switch back to the overview tab and refresh the data
+                            tbCheckinForm.SelectedTab = tpOverview;
+                            LoadCheckedInGuests();  // Refresh the list of checked-in guests
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            LogDetailedError(ex, "SQL Command Execution Error");
+                            MessageBox.Show("An error occurred while checking in the guest: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogDetailedError(ex, "Database Connection Error");
+                MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
+            }
         }
     }
 }
