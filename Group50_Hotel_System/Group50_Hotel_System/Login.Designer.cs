@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbView = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnExit
@@ -74,6 +75,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(161, 22);
             this.txtPassword.TabIndex = 20;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
@@ -112,11 +114,23 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Employee Login";
             // 
+            // cbView
+            // 
+            this.cbView.AutoSize = true;
+            this.cbView.Location = new System.Drawing.Point(465, 170);
+            this.cbView.Name = "cbView";
+            this.cbView.Size = new System.Drawing.Size(121, 20);
+            this.cbView.TabIndex = 24;
+            this.cbView.Text = "View Password";
+            this.cbView.UseVisualStyleBackColor = true;
+            this.cbView.CheckedChanged += new System.EventHandler(this.cbView_CheckedChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbView);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnForget);
             this.Controls.Add(this.btnLogin);
@@ -143,5 +157,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cbView;
     }
 }

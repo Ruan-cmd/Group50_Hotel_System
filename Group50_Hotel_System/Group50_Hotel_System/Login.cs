@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Group50_Hotel_System
 {
@@ -17,80 +20,87 @@ namespace Group50_Hotel_System
         public Login()
         {
             InitializeComponent();
-            AddDefaultEmployee();
+            
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
             
         }
-
-        private void AddDefaultEmployee()
+        private string HashPassword(string password)
         {
-            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+            using (SHA256 sha256 = SHA256.Create())
             {
-                connection.Open();
-
-                string checkRoleQuery = "SELECT COUNT(*) FROM Roles WHERE Role_ID = 1";
-                SqlCommand checkRoleCommand = new SqlCommand(checkRoleQuery, connection);
-                int roleCount = (int)checkRoleCommand.ExecuteScalar();
-
-                if (roleCount == 0)
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
                 {
-                    string insertRoleQuery = @"
-                    INSERT INTO Roles (Role_Desc)
-                    VALUES ('DefaultRole')";
-                    SqlCommand insertRoleCommand = new SqlCommand(insertRoleQuery, connection);
-                    insertRoleCommand.ExecuteNonQuery();
+                    builder.Append(b.ToString("x2"));
                 }
-
-                string checkEmployeeQuery = "SELECT COUNT(*) FROM Employees WHERE Username = @Username";
-                SqlCommand checkEmployeeCommand = new SqlCommand(checkEmployeeQuery, connection);
-                checkEmployeeCommand.Parameters.AddWithValue("@Username", "Default");
-
-                int employeeCount = (int)checkEmployeeCommand.ExecuteScalar();
-
-                if (employeeCount == 0)
-                {
-                    string insertEmployeeQuery = @"
-                    INSERT INTO Employees (Role_ID, Username, Surname, First_Name, Password)
-                    VALUES (1, 'Default', 'Admin', 'Admin', 'Default')";
-
-                    SqlCommand insertEmployeeCommand = new SqlCommand(insertEmployeeQuery, connection);
-                    insertEmployeeCommand.ExecuteNonQuery();
-                }
+                return builder.ToString();
             }
         }
+        
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+            string enteredUsername = txtUsername.Text;
+            string enteredPassword = txtPassword.Text;
+
+            if (string.IsNullOrEmpty(enteredUsername) || string.IsNullOrEmpty(enteredPassword))
             {
-                connection.Open();
+                MessageBox.Show("Please enter both username and password.");
+                return;
+            }
 
-                string query = "SELECT Employee_ID FROM Employees WHERE Username = @Username AND Password = @Password";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Username", txtUsername.Text);
-                command.Parameters.AddWithValue("@Password", txtPassword.Text);
+            string hashedEnteredPassword = HashPassword(enteredPassword);  // Hash the entered password
 
-                object result = command.ExecuteScalar();
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\HotelManagementSystem.mdf"";Integrated Security=True";
 
-                if (result != null)
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
                 {
-                    int employeeID = Convert.ToInt32(result);
-                    SessionManager.LoggedInEmployeeID = employeeID;
+                    connection.Open();
 
-                    this.Hide();
-                    Main_Form MainForm = new Main_Form();
-                    MainForm.ShowDialog();
-                    this.Close();
+                    string query = "SELECT Password FROM Employees WHERE Username = @Username";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", enteredUsername);
+
+                        string storedHashedPassword = command.ExecuteScalar() as string;
+                      
+
+
+                        if (storedHashedPassword != null)
+                        {
+                            
+                            if (hashedEnteredPassword == storedHashedPassword)
+                            {
+                                this.Hide();
+                                Main_Form main_Form = new Main_Form();
+                                main_Form.ShowDialog();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Incorrect password.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Username not found.");
+                        }
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Invalid username or password. Please try again.");
+                    MessageBox.Show($"Error: {ex.Message}");
                 }
             }
         }
+        
 
         private void btnForget_Click(object sender, EventArgs e)
         {
@@ -99,7 +109,12 @@ namespace Group50_Hotel_System
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void cbView_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !cbView.Checked;
         }
     }
 }
