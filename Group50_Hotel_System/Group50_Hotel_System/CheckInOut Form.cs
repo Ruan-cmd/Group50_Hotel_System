@@ -394,9 +394,9 @@ namespace Group50_Hotel_System
                             DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
 
                             SqlCommand bankingCommand = new SqlCommand(@"
-                        INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
-                        VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
-                        SELECT SCOPE_IDENTITY();", connection, transaction);
+                INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
+                VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
+                SELECT SCOPE_IDENTITY();", connection, transaction);
 
                             bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
@@ -421,9 +421,13 @@ namespace Group50_Hotel_System
                             transaction.Commit();
                             MessageBox.Show("Guest checked in successfully!");
 
-                            // Step 6: Switch back to the overview tab and refresh the data
+                            // Step 6: Refresh all DataGridViews
+                            LoadBookedGuests();      // Refresh the list of booked guests
+                            LoadCheckedInGuests();   // Refresh the list of checked-in guests
+                            LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, (int)lblCheckInRSelected.Tag); // Refresh the available rooms
+
+                            // Step 7: Switch back to the overview tab
                             tbCheckinForm.SelectedTab = tpOverview;
-                            LoadCheckedInGuests();  // Refresh the list of checked-in guests
                         }
                         catch (Exception ex)
                         {
@@ -438,5 +442,6 @@ namespace Group50_Hotel_System
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
+
     }
 }
