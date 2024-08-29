@@ -875,10 +875,11 @@
             // 
             // txtCheckIDNum
             // 
+            this.txtCheckIDNum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCheckIDNum.Location = new System.Drawing.Point(206, 2);
             this.txtCheckIDNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCheckIDNum.Name = "txtCheckIDNum";
-            this.txtCheckIDNum.Size = new System.Drawing.Size(408, 22);
+            this.txtCheckIDNum.Size = new System.Drawing.Size(468, 22);
             this.txtCheckIDNum.TabIndex = 14;
             // 
             // groupBox5
@@ -1288,9 +1289,10 @@
             // 
             // tableLayoutPanel22
             // 
-            this.tableLayoutPanel22.ColumnCount = 2;
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.ColumnCount = 3;
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel22.Controls.Add(this.radDebit, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.radCredit, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1298,7 +1300,7 @@
             this.tableLayoutPanel22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
-            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel22.Size = new System.Drawing.Size(333, 26);
             this.tableLayoutPanel22.TabIndex = 13;
             // 
@@ -1317,7 +1319,7 @@
             // radCredit
             // 
             this.radCredit.AutoSize = true;
-            this.radCredit.Location = new System.Drawing.Point(169, 2);
+            this.radCredit.Location = new System.Drawing.Point(88, 2);
             this.radCredit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radCredit.Name = "radCredit";
             this.radCredit.Size = new System.Drawing.Size(63, 20);
