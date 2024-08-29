@@ -17,13 +17,7 @@ namespace Group50_Hotel_System
             InitializeComponent();
         }
 
-        private void btnManageGuests_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Manage_Guests manage_guests = new Manage_Guests();
-            manage_guests.ShowDialog();
-            this.Close();
-        }
+       
 
         private void btnManageEmployees_Click(object sender, EventArgs e)
         {

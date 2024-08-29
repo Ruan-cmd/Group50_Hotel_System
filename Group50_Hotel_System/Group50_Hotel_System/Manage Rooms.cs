@@ -179,5 +179,13 @@ namespace Group50_Hotel_System
             dgvRoom.Enabled = true;
             txtSearch.Enabled = true;
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Main_Form main_Form = new Main_Form();
+            main_Form.ShowDialog();
+            this.Close();
+        }
     }
 }
