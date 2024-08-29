@@ -270,7 +270,6 @@
             this.txtBookingSearch.Name = "txtBookingSearch";
             this.txtBookingSearch.Size = new System.Drawing.Size(480, 22);
             this.txtBookingSearch.TabIndex = 0;
-            this.txtBookingSearch.TextChanged += new System.EventHandler(this.txtBookingSearch_TextChanged);
             // 
             // label11
             // 
@@ -643,6 +642,7 @@
             this.txtBookingIDnum.Name = "txtBookingIDnum";
             this.txtBookingIDnum.Size = new System.Drawing.Size(384, 22);
             this.txtBookingIDnum.TabIndex = 7;
+            this.txtBookingIDnum.TextChanged += new System.EventHandler(this.txtBookingIDnum_TextChanged_1);
             // 
             // txtBookingName
             // 
@@ -907,7 +907,6 @@
             this.Name = "Booking_Form";
             this.Text = "Booking_Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Booking_Form_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControlBooking.ResumeLayout(false);
