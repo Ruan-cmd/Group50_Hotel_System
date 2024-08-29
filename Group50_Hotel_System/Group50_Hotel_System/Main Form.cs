@@ -25,10 +25,7 @@ namespace Group50_Hotel_System
             manage_Employees.ShowDialog();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnGoBack_Click(object sender, EventArgs e)
         {
@@ -38,17 +35,10 @@ namespace Group50_Hotel_System
             this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Manage_Rooms manage_Rooms = new Manage_Rooms();
-            manage_Rooms.ShowDialog();
-            this.Close();
-        }
-
+       
         private void Main_Form_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnBooking_Click(object sender, EventArgs e)
@@ -64,6 +54,22 @@ namespace Group50_Hotel_System
             this.Hide();
             CheckInOut_Form checkInOut_Form = new CheckInOut_Form();
             checkInOut_Form.ShowDialog();
+            this.Close();
+        }
+
+        private void btnManageRooms_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Manage_Rooms manage_Rooms = new Manage_Rooms();
+            manage_Rooms.ShowDialog();
+            this.Close();
+        }
+
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Request_Report request_Report = new Request_Report();
+            request_Report.ShowDialog();
             this.Close();
         }
     }
