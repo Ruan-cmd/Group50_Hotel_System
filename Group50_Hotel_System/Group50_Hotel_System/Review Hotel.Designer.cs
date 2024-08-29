@@ -35,7 +35,7 @@
             this.starRadioButton3 = new Group50_Hotel_System.StarRadioButton();
             this.starRadioButton4 = new Group50_Hotel_System.StarRadioButton();
             this.starRadioButton5 = new Group50_Hotel_System.StarRadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@
             this.tableLayoutPanel1.Controls.Add(this.starRadioButton3, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.starRadioButton4, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.starRadioButton5, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnOk, 2, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -143,14 +143,15 @@
             this.starRadioButton5.Text = "5 Stars       ";
             this.starRadioButton5.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnOk
             // 
-            this.button1.Location = new System.Drawing.Point(273, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 33);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Ok";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnOk.Location = new System.Drawing.Point(273, 241);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(85, 33);
+            this.btnOk.TabIndex = 6;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // Review_Hotel
             // 
@@ -175,6 +176,6 @@
         private StarRadioButton starRadioButton3;
         private StarRadioButton starRadioButton4;
         private StarRadioButton starRadioButton5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOk;
     }
 }
