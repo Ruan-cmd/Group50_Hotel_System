@@ -105,6 +105,12 @@
     <Compile Include="Request Report.Designer.cs">
       <DependentUpon>Request Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Review Hotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Review Hotel.Designer.cs">
+      <DependentUpon>Review Hotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="SessionManager.cs" />
     <Compile Include="StarRadioButton.cs">
       <SubType>Component</SubType>
@@ -138,6 +144,9 @@
     </Compile>
     <EmbeddedResource Include="Request Report.resx">
       <DependentUpon>Request Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Review Hotel.resx">
+      <DependentUpon>Review Hotel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
