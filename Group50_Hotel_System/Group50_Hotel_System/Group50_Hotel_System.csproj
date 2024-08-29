@@ -106,6 +106,9 @@
       <DependentUpon>Request Report.cs</DependentUpon>
     </Compile>
     <Compile Include="SessionManager.cs" />
+    <Compile Include="StarRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Booking Form.resx">
       <DependentUpon>Booking Form.cs</DependentUpon>
     </EmbeddedResource>
