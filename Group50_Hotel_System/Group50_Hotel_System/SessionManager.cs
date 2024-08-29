@@ -14,6 +14,6 @@ namespace Group_50_CMPG223_HotelManagementSystem
         public static string LoggedInEmployeeSurname { get; set; }
 
         public static string ConnectionString { get; set; } =
-            "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\User\\OneDrive\\Documents\\GITHUB\\RuanCMD\\Group50_Hotel_System\\Group50_Hotel_System\\Group50_Hotel_System\\HotelManagementSystem.mdf;Integrated Security=True";
+            "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Ruan\\Desktop\\GitHub CMPG223 Project\\HotelSystem\\Group50_Hotel_System\\Group50_Hotel_System\\HotelManagementSystem.mdf\";Integrated Security=True";
     }
 }
