@@ -41,7 +41,6 @@ C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\G
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Login.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Main_Form.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Employees.resources
-C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Guests.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Manage_Rooms.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Properties.Resources.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.GenerateResource.cache
