@@ -19,7 +19,7 @@ namespace Group50_Hotel_System
         {
             InitializeComponent();
         }
-        private string connectionString = "";
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Ruan\\Desktop\\GitHub CMPG223 Project\\HotelSystem\\Group50_Hotel_System\\Group50_Hotel_System\\HotelManagementSystem.mdf\";Integrated Security=True";
         //Top Guest 
         private void GetTop5Guests(DateTime startDate, DateTime endDate)
         {
@@ -328,13 +328,7 @@ namespace Group50_Hotel_System
 
 
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Main_Form main_Form = new Main_Form();
-            main_Form.ShowDialog();
-            this.Close();
-        }
+      
 
         private void Request_Report_Load(object sender, EventArgs e)
         {
@@ -452,6 +446,14 @@ namespace Group50_Hotel_System
             dataGridViewYear.Rows.Clear();
 
             dateTimePicker5.Focus();
+        }
+
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Main_Form main_Form = new Main_Form();
+            main_Form.ShowDialog();
+            this.Close();
         }
     }
 }
