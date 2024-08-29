@@ -137,6 +137,18 @@ namespace Group50_Hotel_System
             {
                 connection.Open();
 
+                // Check if the Employee_ID exists in the Employees table
+                string checkEmployeeQuery = "SELECT COUNT(*) FROM Employees WHERE Employee_ID = @EmployeeID";
+                SqlCommand checkEmployeeCommand = new SqlCommand(checkEmployeeQuery, connection);
+                checkEmployeeCommand.Parameters.AddWithValue("@EmployeeID", SessionManager.LoggedInEmployeeID);
+
+                int employeeCount = Convert.ToInt32(checkEmployeeCommand.ExecuteScalar());
+                if (employeeCount == 0)
+                {
+                    MessageBox.Show("The logged-in employee does not exist in the system. Please ensure you are logged in correctly.", "Invalid Employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // Check if the ID number is unique
                 string checkIdQuery = "SELECT COUNT(*) FROM Guests WHERE ID_Number = @IDNumber";
                 SqlCommand checkIdCommand = new SqlCommand(checkIdQuery, connection);

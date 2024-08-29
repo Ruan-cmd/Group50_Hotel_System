@@ -52,31 +52,44 @@ namespace Group50_Hotel_System
                 {
                     connection.Open();
 
-                    string query = "SELECT Password FROM Employees WHERE Username = @Username";
+                    string query = @"
+                        SELECT Employee_ID, First_Name, Surname, Password 
+                        FROM Employees 
+                        WHERE Username = @Username";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Username", enteredUsername);
 
-                        string storedHashedPassword = command.ExecuteScalar() as string;
-
-                        if (storedHashedPassword != null)
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            if (hashedEnteredPassword == storedHashedPassword)
+                            if (reader.Read())
                             {
-                                this.Hide();
-                                Main_Form main_Form = new Main_Form();
-                                main_Form.ShowDialog();
-                                this.Close();
+                                string storedHashedPassword = reader["Password"] as string;
+
+                                if (hashedEnteredPassword == storedHashedPassword)
+                                {
+                                    // Set the session manager properties
+                                    SessionManager.LoggedInEmployeeID = Convert.ToInt32(reader["Employee_ID"]);
+                                    SessionManager.LoggedInEmployeeUsername = enteredUsername;
+                                    SessionManager.LoggedInEmployeeName = reader["First_Name"].ToString();
+                                    SessionManager.LoggedInEmployeeSurname = reader["Surname"].ToString();
+
+                                    // Proceed to main form
+                                    this.Hide();
+                                    Main_Form main_Form = new Main_Form();
+                                    main_Form.ShowDialog();
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Incorrect password.");
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("Incorrect password.");
+                                MessageBox.Show("Username not found.");
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Username not found.");
                         }
                     }
                 }
