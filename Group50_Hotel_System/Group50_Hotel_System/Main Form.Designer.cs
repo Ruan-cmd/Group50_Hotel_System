@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCheckIn = new System.Windows.Forms.Button();
             this.btnBooking = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnRequest = new System.Windows.Forms.Button();
             this.btnManageRooms = new System.Windows.Forms.Button();
             this.btnManageEmployees = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             // 
             this.groupBox1.Controls.Add(this.btnCheckIn);
             this.groupBox1.Controls.Add(this.btnBooking);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.btnRequest);
             this.groupBox1.Controls.Add(this.btnManageRooms);
             this.groupBox1.Controls.Add(this.btnManageEmployees);
             this.groupBox1.Controls.Add(this.label3);
@@ -78,16 +78,16 @@
             this.btnBooking.UseVisualStyleBackColor = true;
             this.btnBooking.Click += new System.EventHandler(this.btnBooking_Click);
             // 
-            // button4
+            // btnRequest
             // 
-            this.button4.Location = new System.Drawing.Point(59, 243);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(185, 39);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Request report";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnRequest.Location = new System.Drawing.Point(59, 243);
+            this.btnRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRequest.Name = "btnRequest";
+            this.btnRequest.Size = new System.Drawing.Size(185, 39);
+            this.btnRequest.TabIndex = 5;
+            this.btnRequest.Text = "Request report";
+            this.btnRequest.UseVisualStyleBackColor = true;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
             // 
             // btnManageRooms
             // 
@@ -98,7 +98,7 @@
             this.btnManageRooms.TabIndex = 4;
             this.btnManageRooms.Text = "Manage rooms";
             this.btnManageRooms.UseVisualStyleBackColor = true;
-            this.btnManageRooms.Click += new System.EventHandler(this.button3_Click);
+            this.btnManageRooms.Click += new System.EventHandler(this.btnManageRooms_Click);
             // 
             // btnManageEmployees
             // 
@@ -164,7 +164,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnRequest;
         private System.Windows.Forms.Button btnManageRooms;
         private System.Windows.Forms.Button btnManageEmployees;
         private System.Windows.Forms.Label label3;
