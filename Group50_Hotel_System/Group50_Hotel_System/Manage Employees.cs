@@ -365,8 +365,8 @@ namespace Group50_Hotel_System
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Login login = new Login();
-            login.ShowDialog();
+            Main_Form mainForm = new Main_Form();
+            mainForm.ShowDialog();
             this.Close();
         }
 

@@ -699,7 +699,7 @@ namespace Group50_Hotel_System
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string sortOrder = radBookingAsc.Checked ? "Asc" : "Desc";
-            string searchTerm = txtBookingSearch.Text.Trim(); // Get the current search term
+            string searchTerm = txtBookingSearch.Text.Trim();
             ApplyBookingFilter(sortOrder, searchTerm);
         }
 
