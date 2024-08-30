@@ -61,37 +61,38 @@ namespace Group50_Hotel_System
         }
 
 
-        private void LoadBookedGuests(string searchTerm = "")
+        private void LoadBookedGuests(string searchTerm = "", string sortOrder = "ASC")
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
-                string query = @"
-            SELECT 
-                gb.Booking_ID, 
-                g.First_Name, 
-                g.Last_Name, 
-                g.Contact_Num, 
-                g.Email, 
-                a.Street_Name, 
-                a.Town_City, 
-                r.Room_Number, 
-                gb.CheckIn_Date, 
-                gb.CheckOut_Date,
-                e.First_Name AS Employee_First_Name,
-                e.Surname AS Employee_Surname
-            FROM 
-                Guest_Booking gb
-            INNER JOIN 
-                Guests g ON gb.Guest_ID = g.Guest_ID
-            INNER JOIN 
-                Address a ON g.Address_ID = a.Address_ID
-            INNER JOIN 
-                Rooms r ON gb.Room_ID = r.Room_ID
-            INNER JOIN 
-                Employees e ON gb.Employee_ID = e.Employee_ID
-            WHERE 
-                gb.Is_CheckedIn = 0 AND 
-                (g.First_Name LIKE @SearchTerm OR g.Last_Name LIKE @SearchTerm OR g.Contact_Num LIKE @SearchTerm)";
+                string query = $@"
+    SELECT 
+        gb.Booking_ID, 
+        g.First_Name, 
+        g.Last_Name, 
+        g.Contact_Num, 
+        g.Email, 
+        a.Street_Name, 
+        a.Town_City, 
+        r.Room_Number, 
+        gb.CheckIn_Date, 
+        gb.CheckOut_Date,
+        e.First_Name AS Employee_First_Name,
+        e.Surname AS Employee_Surname
+    FROM 
+        Guest_Booking gb
+    INNER JOIN 
+        Guests g ON gb.Guest_ID = g.Guest_ID
+    INNER JOIN 
+        Address a ON g.Address_ID = a.Address_ID
+    INNER JOIN 
+        Rooms r ON gb.Room_ID = r.Room_ID
+    INNER JOIN 
+        Employees e ON gb.Employee_ID = e.Employee_ID
+    WHERE 
+        gb.Is_CheckedIn = 0 AND 
+        (g.First_Name LIKE @SearchTerm OR g.Last_Name LIKE @SearchTerm OR g.Contact_Num LIKE @SearchTerm)
+    ORDER BY gb.CheckIn_Date {sortOrder}";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 adapter.SelectCommand.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
@@ -102,38 +103,39 @@ namespace Group50_Hotel_System
             }
         }
 
-        private void LoadCheckedInGuests(string searchTerm = "")
+        private void LoadCheckedInGuests(string searchTerm = "", string sortOrder = "ASC")
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
-                string query = @"
-            SELECT 
-                gb.Booking_ID, 
-                g.First_Name, 
-                g.Last_Name, 
-                g.Contact_Num, 
-                g.Email, 
-                a.Street_Name, 
-                a.Town_City, 
-                r.Room_Number, 
-                gb.CheckIn_Date, 
-                gb.CheckOut_Date,
-                gb.Payment_Date,
-                e.First_Name AS Employee_First_Name,
-                e.Surname AS Employee_Surname
-            FROM 
-                Guest_Booking gb
-            INNER JOIN 
-                Guests g ON gb.Guest_ID = g.Guest_ID
-            INNER JOIN 
-                Address a ON g.Address_ID = a.Address_ID
-            INNER JOIN 
-                Rooms r ON gb.Room_ID = r.Room_ID
-            INNER JOIN 
-                Employees e ON gb.Employee_ID = e.Employee_ID
-            WHERE 
-                gb.Is_CheckedIn = 1 AND gb.Is_CheckedOut = 0 AND 
-                (g.First_Name LIKE @SearchTerm OR g.Last_Name LIKE @SearchTerm OR g.Contact_Num LIKE @SearchTerm)";
+                string query = $@"
+    SELECT 
+        gb.Booking_ID, 
+        g.First_Name, 
+        g.Last_Name, 
+        g.Contact_Num, 
+        g.Email, 
+        a.Street_Name, 
+        a.Town_City, 
+        r.Room_Number, 
+        gb.CheckIn_Date, 
+        gb.CheckOut_Date,
+        gb.Payment_Date,
+        e.First_Name AS Employee_First_Name,
+        e.Surname AS Employee_Surname
+    FROM 
+        Guest_Booking gb
+    INNER JOIN 
+        Guests g ON gb.Guest_ID = g.Guest_ID
+    INNER JOIN 
+        Address a ON g.Address_ID = a.Address_ID
+    INNER JOIN 
+        Rooms r ON gb.Room_ID = r.Room_ID
+    INNER JOIN 
+        Employees e ON gb.Employee_ID = e.Employee_ID
+    WHERE 
+        gb.Is_CheckedIn = 1 AND gb.Is_CheckedOut = 0 AND 
+        (g.First_Name LIKE @SearchTerm OR g.Last_Name LIKE @SearchTerm OR g.Contact_Num LIKE @SearchTerm)
+    ORDER BY gb.CheckIn_Date {sortOrder}";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 adapter.SelectCommand.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
@@ -143,6 +145,7 @@ namespace Group50_Hotel_System
                 dgvCheckedCheckin.DataSource = table;
             }
         }
+
         private int GetSelectedBookingID()
         {
             if (dgvCheckBooking.SelectedRows.Count > 0)
@@ -687,9 +690,9 @@ namespace Group50_Hotel_System
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string searchTerm = txtSearch.Text.Trim();
-            LoadBookedGuests(searchTerm);
-            LoadCheckedInGuests(searchTerm);
+            ApplySorting("ASC", searchTerm);  // Default sortOrder can be "ASC" or whatever is selected by the radio buttons.
         }
+
 
         private void btnUpdateCheckin_Click(object sender, EventArgs e)
         {
@@ -1000,6 +1003,29 @@ namespace Group50_Hotel_System
                 UnlockCheckInControls();
             }
         }
+
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            // Determine which radio button triggered the event
+            RadioButton radioButton = sender as RadioButton;
+
+            // Check if the radio button is checked before applying the sort
+            if (radioButton.Checked)
+            {
+                string sortOrder = radioButton.Name == "rdAscending" ? "ASC" : "DESC";
+                string searchTerm = txtSearch.Text.Trim(); // Get the current search term
+                ApplySorting(sortOrder, searchTerm);
+            }
+        }
+
+        private void ApplySorting(string sortOrder, string searchTerm)
+        {
+            LoadBookedGuests(searchTerm, sortOrder);
+            LoadCheckedInGuests(searchTerm, sortOrder);
+        }
+
+
+
 
     }
 }

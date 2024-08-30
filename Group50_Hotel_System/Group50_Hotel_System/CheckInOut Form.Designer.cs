@@ -661,6 +661,7 @@
             this.rdAscending.TabStop = true;
             this.rdAscending.Text = "Ascending Order";
             this.rdAscending.UseVisualStyleBackColor = true;
+            this.rdAscending.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // rdDescending
             // 
@@ -673,6 +674,7 @@
             this.rdDescending.TabStop = true;
             this.rdDescending.Text = "Descending Order";
             this.rdDescending.UseVisualStyleBackColor = true;
+            this.rdDescending.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // label19
             // 
