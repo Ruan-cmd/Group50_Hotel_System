@@ -723,6 +723,10 @@ namespace Group50_Hotel_System
             cbYear.Enabled = true;
             radDebit.Enabled = true;
             radCredit.Enabled = true;
+
+            // By default, show "Check-In" button and hide "Update" button
+            btnCheckInCheckedIn.Visible = true;
+            btnQuestsUpdate.Visible = false;
         }
 
 
@@ -928,6 +932,91 @@ namespace Group50_Hotel_System
             command.Parameters.AddWithValue("@BookingID", bookingID);
 
             command.ExecuteNonQuery();
+        }
+
+        private void LockCheckInControls()
+        {
+            // Lock the controls related to guest check-in (Booked Guests)
+            txtCheckIDNum.Enabled = false;
+            txtCheckinName.Enabled = false;
+            txtCheckinSurname.Enabled = false;
+            txtCheckinContactNum.Enabled = false;
+            txtCheckinEmail.Enabled = false;
+            txtCheckinStreet.Enabled = false;
+            txtCheckinCity.Enabled = false;
+            lblCheckInRSelected.Enabled = false;
+
+            // Lock other check-in controls
+            dtpCheckInDate.Enabled = false;
+            dtpCheckOutDate.Enabled = false;
+            cbBankType.Enabled = false;
+            txtCardNumber.Enabled = false;
+            cbCardType.Enabled = false;
+            cbMonth.Enabled = false;
+            cbYear.Enabled = false;
+            radDebit.Enabled = false;
+            radCredit.Enabled = false;
+
+            // Hide the "Check-In" button and show the "Update" button
+            btnCheckInCheckedIn.Visible = false;
+            btnQuestsUpdate.Visible = true;
+        }
+
+        private void LockCheckedInControls()
+        {
+            // Lock the controls related to checked-in guests
+            txtCheckIDNum.Enabled = false;
+            txtCheckinName.Enabled = false;
+            txtCheckinSurname.Enabled = false;
+            txtCheckinContactNum.Enabled = false;
+            txtCheckinEmail.Enabled = false;
+            txtCheckinStreet.Enabled = false;
+            txtCheckinCity.Enabled = false;
+            lblCheckInRSelected.Enabled = false;
+
+            // Lock other check-in controls
+            dtpCheckInDate.Enabled = false;
+            dtpCheckOutDate.Enabled = false;
+            cbBankType.Enabled = false;
+            txtCardNumber.Enabled = false;
+            cbCardType.Enabled = false;
+            cbMonth.Enabled = false;
+            cbYear.Enabled = false;
+            radDebit.Enabled = false;
+            radCredit.Enabled = false;
+
+            // Hide the "Check-In" button and show the "Update" button
+            btnCheckInCheckedIn.Visible = false;
+            btnQuestsUpdate.Visible = true;
+        }
+
+        private void tbcCheckinForm_TabIndexChanged(object sender, EventArgs e)
+        {
+            // Check which tab is currently selected
+            if (tbcCheckinForm.SelectedTab == tpCheckin)
+            {
+                // If the "Check in" tab is selected, determine which DataGridView has a selected guest
+                if (dgvCheckBooking.SelectedRows.Count > 0 || dgvCheckBooking.CurrentRow != null)
+                {
+                    // A guest is selected in the "Booked Guests" DataGridView
+                    LockCheckInControls();
+                }
+                else if (dgvCheckedCheckin.SelectedRows.Count > 0 || dgvCheckedCheckin.CurrentRow != null)
+                {
+                    // A guest is selected in the "Checked In Guests" DataGridView
+                    LockCheckedInControls();
+                }
+                else
+                {
+                    // No guest is selected, so unlock all controls
+                    UnlockCheckInControls();
+                }
+            }
+            else if (tbcCheckinForm.SelectedTab == tpOverview)
+            {
+                // If the "Overview" tab is selected, unlock all controls by default
+                UnlockCheckInControls();
+            }
         }
     }
 }
