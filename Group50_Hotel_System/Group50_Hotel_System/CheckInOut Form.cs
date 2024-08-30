@@ -311,27 +311,6 @@ namespace Group50_Hotel_System
             }
         }
 
-
-
-        private void dgvCheckedCheckin_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && dgvCheckedCheckin.Rows[e.RowIndex].Cells["Booking_ID"].Value != DBNull.Value)
-            {
-                DataGridViewRow row = dgvCheckedCheckin.Rows[e.RowIndex];
-                selectedBookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
-
-                // Just update the selectedBookingID and enable the relevant buttons, do not populate textboxes
-                gbCheckinButtons.Enabled = true;
-                gbBookedButtons.Enabled = false;
-            }
-            else
-            {
-                // Set label to indicate no valid guest is selected
-                lblSelectedGuest.Text = "No valid guest selected.";
-                selectedBookingID = -1; // Reset the selected booking ID
-            }
-        }
-
         private void LoadBankingDetailsIntoDGV(int bookingID)
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
@@ -360,12 +339,37 @@ namespace Group50_Hotel_System
                 adapter.Fill(table);
 
                 dgvCheckedBanking.DataSource = table;
+            }
+        }
 
-                // Update the txtCardHolder textbox with the cardholder name
-                if (table.Rows.Count > 0)
-                {
-                    txtCardHolder.Text = table.Rows[0]["Card_Holder"].ToString();
-                }
+
+        private void dgvCheckedCheckin_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvCheckedCheckin.Rows[e.RowIndex].Cells["Booking_ID"].Value != DBNull.Value)
+            {
+                DataGridViewRow row = dgvCheckedCheckin.Rows[e.RowIndex];
+                selectedBookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
+
+                // Update the selected guest label
+                lblSelectedGuest.Text = "Selected Guest: " + row.Cells["First_Name"].Value.ToString() + " " + row.Cells["Last_Name"].Value.ToString();
+                lblSelectedGuest.Tag = selectedBookingID; // Store the BookingID in the Tag property of the label
+
+                // Load the guest's banking details into the controls
+                LoadBankingDetailsForCheckedInGuest(selectedBookingID);
+
+                // Load the banking details into the DataGridView
+                LoadBankingDetailsIntoDGV(selectedBookingID);
+
+                // Enable the relevant buttons for checked-in guests
+                gbCheckinButtons.Enabled = true;
+                gbBookedButtons.Enabled = false;
+            }
+            else
+            {
+                // Set label to indicate no valid guest is selected
+                lblSelectedGuest.Text = "No valid guest selected.";
+                lblSelectedGuest.Tag = null; // Clear the stored BookingID
+                selectedBookingID = -1; // Reset the selected booking ID
             }
         }
 
@@ -529,8 +533,6 @@ namespace Group50_Hotel_System
                 reader.Close();
             }
         }
-
-
 
         private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
         {
@@ -705,21 +707,24 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            // Step 3: Load guest and banking details
+            // Step 3: Clear previous banking details
+            ClearBankingDetails();
+
+            // Step 4: Load guest and banking details
             LoadGuestDetailsForCheckIn(selectedBookingID);
             LoadBankingDetailsForCheckedInGuest(selectedBookingID);
 
-            // Step 4: Lock room DataGridView
+            // Step 5: Lock room DataGridView
             dgvCheckinRooms.Enabled = false;
 
-            // Step 5: Change the tab text to "Update Check In"
+            // Step 6: Change the tab text to "Update Check In"
             tbcCheckinForm.TabPages[tpCheckin.Name].Text = "Update Check In";
 
-            // Step 6: Hide the "Check-In" button and show the "Update" button
+            // Step 7: Hide the "Check-In" button and show the "Update" button
             btnCheckInCheckedIn.Visible = false;
             btnQuestsUpdate.Visible = true;
 
-            // Step 7: Switch to the Check-In tab
+            // Step 8: Switch to the Check-In tab
             tbcCheckinForm.SelectedTab = tpCheckin;
             tpCheckin.Focus();
         }
@@ -802,20 +807,19 @@ namespace Group50_Hotel_System
             }
         }
 
-
         private void UpdateBankingDetailsForGuest(int bookingID, SqlConnection connection, SqlTransaction transaction)
         {
             string query = @"
-        UPDATE BankingDetails
-        SET 
-            Card_Type = @CardType, 
-            Bank = @Bank, 
-            Card_Num = @CardNum, 
-            Debit_Credit = @DebitCredit, 
-            Card_Holder = @CardHolder, 
-            Expiration_Date = @ExpirationDate
-        WHERE 
-            Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
+    UPDATE BankingDetails
+    SET 
+        Card_Type = @CardType, 
+        Bank = @Bank, 
+        Card_Num = @CardNum, 
+        Debit_Credit = @DebitCredit, 
+        Card_Holder = @CardHolder, 
+        Expiration_Date = @ExpirationDate
+    WHERE 
+        Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
 
             SqlCommand command = new SqlCommand(query, connection, transaction);
 
@@ -823,12 +827,13 @@ namespace Group50_Hotel_System
             command.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
             command.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
             command.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
-            command.Parameters.AddWithValue("@CardHolder", txtCardHolder.Text);
+            command.Parameters.AddWithValue("@CardHolder", txtCardHolder.Text); // Use txtCardHolder.Text for Card Holder
             command.Parameters.AddWithValue("@ExpirationDate", new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1));
             command.Parameters.AddWithValue("@BookingID", bookingID);
 
             command.ExecuteNonQuery();
         }
+
 
         private void LockCheckInControls()
         {
