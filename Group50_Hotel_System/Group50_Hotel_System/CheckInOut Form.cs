@@ -21,6 +21,9 @@ namespace Group50_Hotel_System
 
         private void btnCheckin_Click(object sender, EventArgs e)
         {
+            // Clear previous banking details
+            ClearBankingDetails();
+
             // Step 1: Validate if a booking is selected
             int bookingID = GetSelectedBookingID();
             if (bookingID == -1)
@@ -33,8 +36,7 @@ namespace Group50_Hotel_System
             LoadGuestDetailsForCheckIn(bookingID);
 
             // Step 3: Load the guest's room and lock the room DataGridView
-            int selectedRoomID = (int)lblCheckInRSelected.Tag;
-            LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, selectedRoomID);
+            LoadAvailableRooms(bookingID);
             dgvCheckinRooms.Enabled = false;  // Lock the room selection
 
             // Step 4: Switch to the Check-In tab and set focus
@@ -46,6 +48,17 @@ namespace Group50_Hotel_System
             btnCheckInCheckedIn.Visible = true;
         }
 
+        private void ClearBankingDetails()
+        {
+            cbBankType.SelectedIndex = -1;
+            txtCardNumber.Clear();
+            cbCardType.SelectedIndex = -1;
+            cbMonth.SelectedIndex = -1;
+            cbYear.SelectedIndex = -1;
+            radDebit.Checked = false;
+            radCredit.Checked = false;
+            txtCardHolder.Clear();
+        }
 
 
         private void LoadBookedGuests(string searchTerm = "")
@@ -154,29 +167,29 @@ namespace Group50_Hotel_System
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 string query = @"
-            SELECT 
-                g.ID_Number, 
-                g.First_Name, 
-                g.Last_Name, 
-                g.Contact_Num, 
-                g.Email, 
-                a.Street_Name, 
-                a.Town_City,
-                r.Room_ID,
-                r.Room_Number,
-                r.Room_Type,
-                gb.CheckIn_Date,
-                gb.CheckOut_Date
-            FROM 
-                Guests g
-            INNER JOIN 
-                Address a ON g.Address_ID = a.Address_ID
-            INNER JOIN 
-                Guest_Booking gb ON gb.Guest_ID = g.Guest_ID
-            INNER JOIN 
-                Rooms r ON gb.Room_ID = r.Room_ID
-            WHERE 
-                gb.Booking_ID = @BookingID";
+        SELECT 
+            g.ID_Number, 
+            g.First_Name, 
+            g.Last_Name, 
+            g.Contact_Num, 
+            g.Email, 
+            a.Street_Name, 
+            a.Town_City,
+            r.Room_ID,
+            r.Room_Number,
+            r.Room_Type,
+            gb.CheckIn_Date,
+            gb.CheckOut_Date
+        FROM 
+            Guests g
+        INNER JOIN 
+            Address a ON g.Address_ID = a.Address_ID
+        INNER JOIN 
+            Guest_Booking gb ON gb.Guest_ID = g.Guest_ID
+        INNER JOIN 
+            Rooms r ON gb.Room_ID = r.Room_ID
+        WHERE 
+            gb.Booking_ID = @BookingID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@BookingID", bookingID);
@@ -196,40 +209,48 @@ namespace Group50_Hotel_System
 
                     // Store the room ID for further reference
                     lblCheckInRSelected.Tag = reader["Room_ID"];
+
+                    // Populate the date pickers with the check-in and check-out dates
+                    dtpCheckInDate.Value = Convert.ToDateTime(reader["CheckIn_Date"]);
+                    dtpCheckOutDate.Value = Convert.ToDateTime(reader["CheckOut_Date"]);
                 }
                 reader.Close();
             }
         }
-        private void LoadAvailableRooms(DateTime checkInDate, DateTime checkOutDate, int selectedRoomID)
+
+
+        private void LoadAvailableRooms(int bookingID)
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 string query = @"
-                    SELECT Room_ID, Room_Number, Room_Type 
-                    FROM Rooms 
-                    WHERE Room_ID NOT IN (
-                        SELECT Room_ID 
-                        FROM Guest_Booking 
-                        WHERE 
-                            (Room_ID != @SelectedRoomID AND 
-                            ((@CheckInDate BETWEEN CheckIn_Date AND CheckOut_Date)
-                            OR 
-                            (@CheckOutDate BETWEEN CheckIn_Date AND CheckOut_Date)
-                            OR 
-                            (CheckIn_Date BETWEEN @CheckInDate AND @CheckOutDate)))
-                    )";
+            SELECT r.Room_ID, r.Room_Number, r.Room_Type
+            FROM Rooms r
+            INNER JOIN Guest_Booking gb ON r.Room_ID = gb.Room_ID
+            WHERE gb.Booking_ID = @BookingID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CheckInDate", checkInDate);
-                command.Parameters.AddWithValue("@CheckOutDate", checkOutDate);
-                command.Parameters.AddWithValue("@SelectedRoomID", selectedRoomID); // Exclude the guest's current room
+                command.Parameters.AddWithValue("@BookingID", bookingID);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 System.Data.DataTable table = new System.Data.DataTable();
                 adapter.Fill(table);
                 dgvCheckinRooms.DataSource = table;
+
+                // Automatically select the room in the DataGridView
+                if (table.Rows.Count > 0)
+                {
+                    lblCheckInRSelected.Text = $"Selected Room: {table.Rows[0]["Room_Number"]} ({table.Rows[0]["Room_Type"]})";
+                    lblCheckInRSelected.Tag = table.Rows[0]["Room_ID"];
+                }
+                else
+                {
+                    lblCheckInRSelected.Text = "No Room Selected!";
+                    lblCheckInRSelected.Tag = null;
+                }
             }
         }
+
 
         private void ClearCheckInControls()
         {
@@ -291,6 +312,7 @@ namespace Group50_Hotel_System
         }
 
 
+
         private void dgvCheckedCheckin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvCheckedCheckin.Rows[e.RowIndex].Cells["Booking_ID"].Value != DBNull.Value)
@@ -298,11 +320,7 @@ namespace Group50_Hotel_System
                 DataGridViewRow row = dgvCheckedCheckin.Rows[e.RowIndex];
                 selectedBookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
 
-                // Load guest details and banking details
-                LoadGuestDetailsForCheckIn(selectedBookingID);
-                LoadBankingDetailsForCheckedInGuest(selectedBookingID);
-
-                // Unlock Check-In buttons and lock Booked buttons
+                // Just update the selectedBookingID and enable the relevant buttons, do not populate textboxes
                 gbCheckinButtons.Enabled = true;
                 gbBookedButtons.Enabled = false;
             }
@@ -706,8 +724,6 @@ namespace Group50_Hotel_System
             tpCheckin.Focus();
         }
 
-
-
         private void btnQuestsUpdate_Click(object sender, EventArgs e)
         {
             // Validate if a guest is selected
@@ -745,6 +761,15 @@ namespace Group50_Hotel_System
 
                             // Update banking details
                             UpdateBankingDetailsForGuest(selectedBookingID, connection, transaction);
+
+                            // Update the check-in and check-out dates
+                            SqlCommand updateDatesCommand = new SqlCommand(
+                                "UPDATE Guest_Booking SET CheckIn_Date = @CheckInDate, CheckOut_Date = @CheckOutDate WHERE Booking_ID = @BookingID",
+                                connection, transaction);
+                            updateDatesCommand.Parameters.AddWithValue("@CheckInDate", dtpCheckInDate.Value);
+                            updateDatesCommand.Parameters.AddWithValue("@CheckOutDate", dtpCheckOutDate.Value);
+                            updateDatesCommand.Parameters.AddWithValue("@BookingID", selectedBookingID);
+                            updateDatesCommand.ExecuteNonQuery();
 
                             // Commit transaction
                             transaction.Commit();
