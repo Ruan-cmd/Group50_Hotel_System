@@ -270,6 +270,7 @@
             this.txtBookingSearch.Name = "txtBookingSearch";
             this.txtBookingSearch.Size = new System.Drawing.Size(480, 22);
             this.txtBookingSearch.TabIndex = 0;
+            this.txtBookingSearch.TextChanged += new System.EventHandler(this.txtBookingSearch_TextChanged);
             // 
             // label11
             // 

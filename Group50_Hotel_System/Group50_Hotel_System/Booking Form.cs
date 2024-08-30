@@ -36,35 +36,42 @@ namespace Group50_Hotel_System
             dtpBookOutDate.Value = DateTime.Now;
         }
 
-        private void LoadGuestsNotCheckedIn(string sortOrder = "Asc")
+        private void LoadGuestsNotCheckedIn(string sortOrder = "Asc", string searchTerm = "")
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 connection.Open();
 
                 string query = @"
-                    SELECT 
-                        gb.Booking_ID,
-                        g.First_Name,
-                        g.Last_Name,
-                        g.Contact_Num,
-                        g.Email,
-                        g.ID_Number,
-                        r.Room_Number,
-                        gb.CheckIn_Date,
-                        gb.CheckOut_Date,
-                        a.Street_Name AS Street,
-                        a.Town_City AS City
-                    FROM 
-                        Guest_Booking gb
-                    JOIN 
-                        Guests g ON gb.Guest_ID = g.Guest_ID
-                    JOIN 
-                        Rooms r ON gb.Room_ID = r.Room_ID
-                    LEFT JOIN 
-                        Address a ON g.Address_ID = a.Address_ID
-                    WHERE 
-                        gb.Is_CheckedIn = 0";
+            SELECT 
+                gb.Booking_ID,
+                g.First_Name,
+                g.Last_Name,
+                g.Contact_Num,
+                g.Email,
+                g.ID_Number,
+                r.Room_Number,
+                gb.CheckIn_Date,
+                gb.CheckOut_Date,
+                a.Street_Name AS Street,
+                a.Town_City AS City
+            FROM 
+                Guest_Booking gb
+            JOIN 
+                Guests g ON gb.Guest_ID = g.Guest_ID
+            JOIN 
+                Rooms r ON gb.Room_ID = r.Room_ID
+            LEFT JOIN 
+                Address a ON g.Address_ID = a.Address_ID
+            WHERE 
+                gb.Is_CheckedIn = 0
+                AND (
+                    g.First_Name LIKE @SearchTerm
+                    OR g.Last_Name LIKE @SearchTerm
+                    OR g.Contact_Num LIKE @SearchTerm
+                    OR g.Email LIKE @SearchTerm
+                    OR g.ID_Number LIKE @SearchTerm
+                )";
 
                 if (sortOrder == "Asc")
                 {
@@ -76,12 +83,14 @@ namespace Group50_Hotel_System
                 }
 
                 SqlDataAdapter da = new SqlDataAdapter(query, connection);
+                da.SelectCommand.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 dtvBookingOverview.DataSource = dt;
             }
         }
+
 
         private void LoadRooms(DateTime checkInDate, DateTime checkOutDate)
         {
@@ -689,20 +698,16 @@ namespace Group50_Hotel_System
 
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (radBookingAsc.Checked)
-            {
-                ApplyBookingFilter("Asc");
-            }
-            else if (radBookingDesc.Checked)
-            {
-                ApplyBookingFilter("Desc");
-            }
+            string sortOrder = radBookingAsc.Checked ? "Asc" : "Desc";
+            string searchTerm = txtBookingSearch.Text.Trim(); // Get the current search term
+            ApplyBookingFilter(sortOrder, searchTerm);
         }
 
-        private void ApplyBookingFilter(string sortOrder)
+        private void ApplyBookingFilter(string sortOrder, string searchTerm)
         {
-            LoadGuestsNotCheckedIn(sortOrder);
+            LoadGuestsNotCheckedIn(sortOrder, searchTerm);
         }
+
 
         private void btnRemoveBooking_Click(object sender, EventArgs e)
         {
@@ -925,6 +930,13 @@ namespace Group50_Hotel_System
         private void Booking_Form_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBookingSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = txtBookingSearch.Text.Trim();
+            string sortOrder = radBookingAsc.Checked ? "Asc" : "Desc";
+            ApplyBookingFilter(sortOrder, searchTerm);
         }
     }
 }
