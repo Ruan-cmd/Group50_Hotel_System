@@ -200,6 +200,7 @@
             this.tbcCheckinForm.SelectedIndex = 0;
             this.tbcCheckinForm.Size = new System.Drawing.Size(1387, 655);
             this.tbcCheckinForm.TabIndex = 4;
+            this.tbcCheckinForm.TabIndexChanged += new System.EventHandler(this.tbcCheckinForm_TabIndexChanged);
             // 
             // tpOverview
             // 
@@ -390,6 +391,7 @@
             this.dgvCheckedBanking.RowTemplate.Height = 24;
             this.dgvCheckedBanking.Size = new System.Drawing.Size(656, 90);
             this.dgvCheckedBanking.TabIndex = 0;
+            this.dgvCheckedBanking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCheckedBanking_CellClick);
             // 
             // groupBox2
             // 
@@ -586,6 +588,7 @@
             this.btnBookOut.TabIndex = 3;
             this.btnBookOut.Text = "Book Guest Out";
             this.btnBookOut.UseVisualStyleBackColor = true;
+            this.btnBookOut.Click += new System.EventHandler(this.btnBookOut_Click_1);
             // 
             // btnCheckin
             // 
