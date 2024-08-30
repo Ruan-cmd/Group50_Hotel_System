@@ -110,6 +110,26 @@ namespace Group50_Hotel_System
             }
         }
 
+        private bool IsGuestCurrentlyBookedOrCheckedIn(string idNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT COUNT(*) 
+            FROM Guest_Booking gb
+            INNER JOIN Guests g ON gb.Guest_ID = g.Guest_ID
+            WHERE g.ID_Number = @IDNumber AND (gb.Is_CheckedIn = 1 OR gb.Is_CheckedOut = 0)";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IDNumber", idNumber);
+
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+
         private void btnBookingBookIn_Click(object sender, EventArgs e)
         {
             if (lblBookingRSelected.Text == "No Room Selected!")
@@ -124,6 +144,12 @@ namespace Group50_Hotel_System
                 return;
             }
 
+            if (IsGuestCurrentlyBookedOrCheckedIn(txtBookingIDnum.Text))
+            {
+                MessageBox.Show("This guest is either currently booked in or checked in and cannot be added again.", "Invalid Operation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 connection.Open();
@@ -132,43 +158,49 @@ namespace Group50_Hotel_System
                 try
                 {
                     int guestID = 0; // Initialize guestID
+                    int addressID = 0; // Initialize addressID
 
                     // Check if the guest exists in the database
-                    string checkGuestQuery = "SELECT Guest_ID FROM Guests WHERE ID_Number = @IDNumber";
+                    string checkGuestQuery = "SELECT Guest_ID, Address_ID FROM Guests WHERE ID_Number = @IDNumber";
                     SqlCommand checkGuestCommand = new SqlCommand(checkGuestQuery, connection, transaction);
                     checkGuestCommand.Parameters.AddWithValue("@IDNumber", txtBookingIDnum.Text);
 
-                    object result = checkGuestCommand.ExecuteScalar();
-                    if (result != null)
+                    using (SqlDataReader reader = checkGuestCommand.ExecuteReader())
                     {
-                        guestID = Convert.ToInt32(result); // Guest exists, use existing ID
-                    }
-                    else
-                    {
-                        // Guest doesn't exist, so create a new guest record
-                        int addressID = 0;
-
-                        // Check if the address exists in the database
-                        string addressQuery = @"SELECT Address_ID FROM Address WHERE Street_Name = @Street AND Town_City = @City";
-                        SqlCommand addressCommand = new SqlCommand(addressQuery, connection, transaction);
-                        addressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
-                        addressCommand.Parameters.AddWithValue("@City", txtBookingCity.Text);
-
-                        object addressResult = addressCommand.ExecuteScalar();
-
-                        if (addressResult != null)
+                        if (reader.Read())
                         {
-                            addressID = Convert.ToInt32(addressResult);
+                            guestID = Convert.ToInt32(reader["Guest_ID"]); // Guest exists, use existing ID
+                            addressID = reader["Address_ID"] != DBNull.Value ? Convert.ToInt32(reader["Address_ID"]) : 0;
                         }
-                        else
-                        {
-                            // Insert a new address if it doesn't exist
-                            string insertAddressQuery = @"INSERT INTO Address (Street_Name, Town_City) VALUES (@Street, @City); SELECT SCOPE_IDENTITY();";
-                            SqlCommand insertAddressCommand = new SqlCommand(insertAddressQuery, connection, transaction);
-                            insertAddressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
-                            insertAddressCommand.Parameters.AddWithValue("@City", txtBookingCity.Text);
+                    }
 
-                            addressID = Convert.ToInt32(insertAddressCommand.ExecuteScalar());
+                    if (guestID == 0)
+                    {
+                        // Guest doesn't exist, create a new guest record
+                        if (addressID == 0)
+                        {
+                            // Check if the address exists in the database
+                            string addressQuery = @"SELECT Address_ID FROM Address WHERE Street_Name = @Street AND Town_City = @City";
+                            SqlCommand addressCommand = new SqlCommand(addressQuery, connection, transaction);
+                            addressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
+                            addressCommand.Parameters.AddWithValue("@City", txtBookingCity.Text);
+
+                            object addressResult = addressCommand.ExecuteScalar();
+
+                            if (addressResult != null)
+                            {
+                                addressID = Convert.ToInt32(addressResult);
+                            }
+                            else
+                            {
+                                // Insert a new address if it doesn't exist
+                                string insertAddressQuery = @"INSERT INTO Address (Street_Name, Town_City) VALUES (@Street, @City); SELECT SCOPE_IDENTITY();";
+                                SqlCommand insertAddressCommand = new SqlCommand(insertAddressQuery, connection, transaction);
+                                insertAddressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
+                                insertAddressCommand.Parameters.AddWithValue("@City", txtBookingCity.Text);
+
+                                addressID = Convert.ToInt32(insertAddressCommand.ExecuteScalar());
+                            }
                         }
 
                         // Insert the new guest
@@ -224,6 +256,7 @@ namespace Group50_Hotel_System
                 {
                     transaction.Rollback();
                     MessageBox.Show("An error occurred while booking the guest: " + ex.Message);
+                    ResetToOverview(); // Reset the form if an error occurs
                 }
             }
         }
@@ -290,39 +323,84 @@ namespace Group50_Hotel_System
             {
                 connection.Open();
 
-                string updateGuestQuery = @"
-                    UPDATE Guests SET 
-                        First_Name = @FirstName,
-                        Last_Name = @LastName,
-                        Contact_Num = @ContactNum,
-                        Email = @Email,
-                        ID_Number = @IDNumber,
-                        Address_ID = @AddressID
-                    WHERE Guest_ID = (SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
+                SqlTransaction transaction = connection.BeginTransaction();
 
-                SqlCommand updateGuestCommand = new SqlCommand(updateGuestQuery, connection);
-                updateGuestCommand.Parameters.AddWithValue("@FirstName", txtBookingName.Text);
-                updateGuestCommand.Parameters.AddWithValue("@LastName", txtBookingSurname.Text);
-                updateGuestCommand.Parameters.AddWithValue("@ContactNum", txtBookingContactNum.Text);
-                updateGuestCommand.Parameters.AddWithValue("@Email", txtBookingEmail.Text);
-                updateGuestCommand.Parameters.AddWithValue("@IDNumber", txtBookingIDnum.Text);
-                updateGuestCommand.Parameters.AddWithValue("@AddressID", DBNull.Value);
-                updateGuestCommand.Parameters.AddWithValue("@BookingID", bookingID);
-                updateGuestCommand.ExecuteNonQuery();
+                try
+                {
+                    int addressID = 0;
 
-                string updateBookingQuery = @"
-                    UPDATE Guest_Booking SET 
-                        CheckIn_Date = @CheckInDate,
-                        CheckOut_Date = @CheckOutDate,
-                        Room_ID = (SELECT Room_ID FROM Rooms WHERE Room_Number = @RoomNumber)
-                    WHERE Booking_ID = @BookingID";
+                    // Check if the address already exists in the database
+                    string checkAddressQuery = @"
+                SELECT Address_ID 
+                FROM Address 
+                WHERE Street_Name = @Street AND Town_City = @City";
+                    SqlCommand checkAddressCommand = new SqlCommand(checkAddressQuery, connection, transaction);
+                    checkAddressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
+                    checkAddressCommand.Parameters.AddWithValue("@City", txtBookingCity.Text);
 
-                SqlCommand updateBookingCommand = new SqlCommand(updateBookingQuery, connection);
-                updateBookingCommand.Parameters.AddWithValue("@CheckInDate", dtpBookInDate.Value);
-                updateBookingCommand.Parameters.AddWithValue("@CheckOutDate", dtpBookOutDate.Value);
-                updateBookingCommand.Parameters.AddWithValue("@RoomNumber", lblBookingRSelected.Text.Replace("Room Selected: ", ""));
-                updateBookingCommand.Parameters.AddWithValue("@BookingID", bookingID);
-                updateBookingCommand.ExecuteNonQuery();
+                    object addressResult = checkAddressCommand.ExecuteScalar();
+
+                    if (addressResult != null)
+                    {
+                        addressID = Convert.ToInt32(addressResult); // Use the existing address ID
+                    }
+                    else
+                    {
+                        // Insert a new address if it doesn't exist
+                        string insertAddressQuery = @"
+                    INSERT INTO Address (Street_Name, Town_City) 
+                    VALUES (@Street, @City); 
+                    SELECT SCOPE_IDENTITY();";
+                        SqlCommand insertAddressCommand = new SqlCommand(insertAddressQuery, connection, transaction);
+                        insertAddressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
+                        insertAddressCommand.Parameters.AddWithValue("@City", txtBookingCity.Text);
+
+                        addressID = Convert.ToInt32(insertAddressCommand.ExecuteScalar());
+                    }
+
+                    // Update the guest details
+                    string updateGuestQuery = @"
+                UPDATE Guests SET 
+                    First_Name = @FirstName,
+                    Last_Name = @LastName,
+                    Contact_Num = @ContactNum,
+                    Email = @Email,
+                    ID_Number = @IDNumber,
+                    Address_ID = @AddressID
+                WHERE Guest_ID = (SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)";
+
+                    SqlCommand updateGuestCommand = new SqlCommand(updateGuestQuery, connection, transaction);
+                    updateGuestCommand.Parameters.AddWithValue("@FirstName", txtBookingName.Text);
+                    updateGuestCommand.Parameters.AddWithValue("@LastName", txtBookingSurname.Text);
+                    updateGuestCommand.Parameters.AddWithValue("@ContactNum", txtBookingContactNum.Text);
+                    updateGuestCommand.Parameters.AddWithValue("@Email", txtBookingEmail.Text);
+                    updateGuestCommand.Parameters.AddWithValue("@IDNumber", txtBookingIDnum.Text);
+                    updateGuestCommand.Parameters.AddWithValue("@AddressID", addressID);
+                    updateGuestCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                    updateGuestCommand.ExecuteNonQuery();
+
+                    // Update the booking details
+                    string updateBookingQuery = @"
+                UPDATE Guest_Booking SET 
+                    CheckIn_Date = @CheckInDate,
+                    CheckOut_Date = @CheckOutDate,
+                    Room_ID = (SELECT Room_ID FROM Rooms WHERE Room_Number = @RoomNumber)
+                WHERE Booking_ID = @BookingID";
+
+                    SqlCommand updateBookingCommand = new SqlCommand(updateBookingQuery, connection, transaction);
+                    updateBookingCommand.Parameters.AddWithValue("@CheckInDate", dtpBookInDate.Value);
+                    updateBookingCommand.Parameters.AddWithValue("@CheckOutDate", dtpBookOutDate.Value);
+                    updateBookingCommand.Parameters.AddWithValue("@RoomNumber", lblBookingRSelected.Text.Replace("Room Selected: ", ""));
+                    updateBookingCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                    updateBookingCommand.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"An error occurred while updating booking details: {ex.Message}");
+                }
             }
         }
 
@@ -333,7 +411,11 @@ namespace Group50_Hotel_System
             ClearBookingForm();
             isUpdateMode = false;
             LoadGuestsNotCheckedIn();
+            tabControlBooking.TabPages[tpAddBooking.Name].Text = "Book In";
+            btnBookingBookIn.Visible = true;
+            btnQuestUpdate.Visible = false;
         }
+
 
         private bool CheckRoomAvailability(int roomID, DateTime checkInDate, DateTime checkOutDate)
         {
@@ -410,13 +492,26 @@ namespace Group50_Hotel_System
         {
             try
             {
-                // Example connection string (use your actual connection string)
                 using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
                 {
                     conn.Open();
 
                     // SQL query to find a guest with the entered ID number
-                    string query = "SELECT First_Name, Last_Name, Contact_Num, Email, Address_ID FROM Guests WHERE ID_Number = @IDNumber";
+                    string query = @"
+            SELECT 
+                g.First_Name, 
+                g.Last_Name, 
+                g.Contact_Num, 
+                g.Email, 
+                g.ID_Number, 
+                a.Street_Name AS Street, 
+                a.Town_City AS City 
+            FROM 
+                Guests g
+            LEFT JOIN 
+                Address a ON g.Address_ID = a.Address_ID
+            WHERE 
+                g.ID_Number = @IDNumber";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -427,14 +522,14 @@ namespace Group50_Hotel_System
                             if (reader.Read())
                             {
                                 // Fill in the guest's details if a match is found
-                                txtBookingName.Text = reader["First_Name"].ToString();
-                                txtBookingSurname.Text = reader["Last_Name"].ToString();
-                                txtBookingContactNum.Text = reader["Contact_Num"].ToString();
-                                txtBookingEmail.Text = reader["Email"].ToString();
+                                txtBookingName.Text = reader["First_Name"] != DBNull.Value ? reader["First_Name"].ToString() : string.Empty;
+                                txtBookingSurname.Text = reader["Last_Name"] != DBNull.Value ? reader["Last_Name"].ToString() : string.Empty;
+                                txtBookingContactNum.Text = reader["Contact_Num"] != DBNull.Value ? reader["Contact_Num"].ToString() : string.Empty;
+                                txtBookingEmail.Text = reader["Email"] != DBNull.Value ? reader["Email"].ToString() : string.Empty;
 
-                                // You may also need to retrieve the address based on the Address_ID
-                                int addressId = Convert.ToInt32(reader["Address_ID"]);
-                                RetrieveAndFillGuestAddress(addressId);
+                                // Fill in the address details
+                                txtBookingStreet.Text = reader["Street"] != DBNull.Value ? reader["Street"].ToString() : string.Empty;
+                                txtBookingCity.Text = reader["City"] != DBNull.Value ? reader["City"].ToString() : string.Empty;
                             }
                             else
                             {
@@ -450,6 +545,8 @@ namespace Group50_Hotel_System
                 MessageBox.Show($"An error occurred while retrieving guest information: {ex.Message}");
             }
         }
+
+
 
         private void RetrieveAndFillGuestAddress(int addressId)
         {
@@ -744,76 +841,50 @@ namespace Group50_Hotel_System
                 }
             }
         }
-        // Event handler for the btnQuestUpdate button click
         private void btnQuestUpdate_Click(object sender, EventArgs e)
         {
-            // Retrieve the updated guest information from the text boxes
-            string guestIDNumber = txtBookingIDnum.Text;
-            string guestName = txtBookingName.Text;
-            string guestSurname = txtBookingSurname.Text;
-            string guestContactNumber = txtBookingContactNum.Text;
-            string guestEmail = txtBookingEmail.Text;
-            string guestStreet = txtBookingStreet.Text;
-            string guestCity = txtBookingCity.Text;
-
-            // Call the method to update the guest information in the database
-            bool success = UpdateGuestInfo(guestIDNumber, guestName, guestSurname, guestContactNumber, guestEmail, guestStreet, guestCity);
-
-            // Provide feedback to the user based on the result
-            if (success)
+            if (selectedBookingID == 0)
             {
-                MessageBox.Show("Guest information updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Optionally, refresh the DataGridView to show updated information
-                LoadBookingOverview();
+                MessageBox.Show("No valid guest selected for updating.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                MessageBox.Show("Failed to update guest information.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        // Method to update guest information in the database
-        private bool UpdateGuestInfo(string idNumber, string name, string surname, string contactNumber, string email, string street, string city)
-        {
-            try
+            // Ask for confirmation before proceeding with the update
+            DialogResult confirmResult = MessageBox.Show("Are you sure you want to update the information?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmResult == DialogResult.No)
             {
-                // Assume you're using ADO.NET for database operations
-                using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
+                ResetToOverview();
+                return;
+            }
+
+            // Ensure there are changes to update
+            if (!CheckForChanges(selectedBookingID))
+            {
+                DialogResult result = MessageBox.Show("No changes detected. Do you want to cancel the update?", "No Changes Detected", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
                 {
-                    conn.Open();
-
-                    // SQL query to update guest information
-                    string query = "UPDATE Guests SET First_Name = @FirstName, Last_Name = @LastName, Contact_Num = @ContactNumber, " +
-                                   "Email = @Email, Street_Name = @Street, Town_City = @City WHERE ID_Number = @IDNumber";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        // Add parameters to the SQL query
-                        cmd.Parameters.AddWithValue("@FirstName", name);
-                        cmd.Parameters.AddWithValue("@LastName", surname);
-                        cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Street", street);
-                        cmd.Parameters.AddWithValue("@City", city);
-                        cmd.Parameters.AddWithValue("@IDNumber", idNumber);
-
-                        // Execute the query and check if any rows were affected
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        // Return true if at least one row was updated
-                        return rowsAffected > 0;
-                    }
+                    ResetToOverview();
+                    return;
                 }
+                // If No, continue with the code
             }
-            catch (Exception ex)
-            {
-                // Handle any errors that occurred during the update
-                MessageBox.Show("An error occurred while updating the guest information: " + ex.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+
+            // Update the booking details
+            UpdateBookingDetails(selectedBookingID);
+
+            // Refresh the booking overview to reflect the updates
+            LoadBookingOverview();
+
+            // Switch back to the overview tab and clear controls after update
+            ResetToOverview();
         }
 
-        // Method to load the booking overview (refresh the DataGridView)
+
+
+
+
         private void LoadBookingOverview()
         {
             try
@@ -821,7 +892,24 @@ namespace Group50_Hotel_System
                 using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Guest_Booking"; // Example query to fetch bookings
+
+                    string query = @"
+                SELECT 
+                    g.First_Name,
+                    g.Last_Name,
+                    g.Contact_Num,
+                    g.Email,
+                    g.ID_Number,
+                    r.Room_Number,
+                    gb.CheckIn_Date,
+                    gb.CheckOut_Date
+                FROM 
+                    Guest_Booking gb
+                JOIN 
+                    Guests g ON gb.Guest_ID = g.Guest_ID
+                JOIN 
+                    Rooms r ON gb.Room_ID = r.Room_ID";
+
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -834,7 +922,9 @@ namespace Group50_Hotel_System
                 MessageBox.Show("An error occurred while loading the booking overview: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void Booking_Form_Load(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
