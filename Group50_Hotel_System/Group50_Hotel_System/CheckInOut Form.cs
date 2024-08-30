@@ -32,14 +32,21 @@ namespace Group50_Hotel_System
             // Step 2: Retrieve and load guest details into the Check-In tab controls
             LoadGuestDetailsForCheckIn(bookingID);
 
-            // Step 3: Load available rooms based on the selected dates and the guest's room ID
-            int selectedRoomID = (int)lblCheckInRSelected.Tag; // Assuming lblCheckInRSelected.Tag holds the Room_ID
+            // Step 3: Load the guest's room and lock the room DataGridView
+            int selectedRoomID = (int)lblCheckInRSelected.Tag;
             LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, selectedRoomID);
+            dgvCheckinRooms.Enabled = false;  // Lock the room selection
 
             // Step 4: Switch to the Check-In tab and set focus
             tbcCheckinForm.SelectedTab = tpCheckin;
-            tpCheckin.Focus(); // Ensures the tab is focused
+            tpCheckin.Focus();
+
+            // Step 5: Hide the "Update" button and show "Check-In"
+            btnQuestsUpdate.Visible = false;
+            btnCheckInCheckedIn.Visible = true;
         }
+
+
 
         private void LoadBookedGuests(string searchTerm = "")
         {
@@ -271,10 +278,9 @@ namespace Group50_Hotel_System
                 // Display guest name and surname
                 lblSelectedGuest.Text = "Selected Guest: " + row.Cells["First_Name"].Value.ToString() + " " + row.Cells["Last_Name"].Value.ToString();
 
-                LoadGuestDetailsForCheckIn(selectedBookingID);
-
-                // Lock the gbCheckinButtons group box
+                // Lock Check-In buttons and unlock Booked buttons
                 gbCheckinButtons.Enabled = false;
+                gbBookedButtons.Enabled = true;
             }
             else
             {
@@ -284,6 +290,7 @@ namespace Group50_Hotel_System
             }
         }
 
+
         private void dgvCheckedCheckin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvCheckedCheckin.Rows[e.RowIndex].Cells["Booking_ID"].Value != DBNull.Value)
@@ -291,16 +298,12 @@ namespace Group50_Hotel_System
                 DataGridViewRow row = dgvCheckedCheckin.Rows[e.RowIndex];
                 selectedBookingID = int.Parse(row.Cells["Booking_ID"].Value.ToString());
 
-                lblSelectedGuest.Text = "Selected Guest: " + row.Cells["First_Name"].Value.ToString() + " " + row.Cells["Last_Name"].Value.ToString();
-
                 // Load guest details and banking details
                 LoadGuestDetailsForCheckIn(selectedBookingID);
                 LoadBankingDetailsForCheckedInGuest(selectedBookingID);
 
-                // Load the banking details into the DataGridView for display
-                LoadBankingDetailsIntoDGV(selectedBookingID);
-
-                // Enable/disable controls as needed
+                // Unlock Check-In buttons and lock Booked buttons
+                gbCheckinButtons.Enabled = true;
                 gbBookedButtons.Enabled = false;
             }
             else
@@ -310,6 +313,7 @@ namespace Group50_Hotel_System
                 selectedBookingID = -1; // Reset the selected booking ID
             }
         }
+
         private void LoadBankingDetailsIntoDGV(int bookingID)
         {
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
@@ -363,36 +367,6 @@ namespace Group50_Hotel_System
                 // Set label to indicate no valid room is selected
                 lblCheckInRSelected.Text = "No Room Selected!";
             }
-        }
-
-        private int GetBookingIDFromBankingID(int bankingID)
-        {
-            int bookingID = -1;
-            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-            {
-                string query = @"SELECT Booking_ID FROM Guest_Booking WHERE Banking_ID = @BankingID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@BankingID", bankingID);
-                connection.Open();
-                bookingID = (int?)command.ExecuteScalar() ?? -1;
-            }
-            return bookingID;
-        }
-
-        private string GetGuestNameFromBookingID(int bookingID)
-        {
-            string guestName = string.Empty;
-            using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-            {
-                string query = @"SELECT First_Name + ' ' + Last_Name FROM Guests g
-                                 INNER JOIN Guest_Booking gb ON g.Guest_ID = gb.Guest_ID
-                                 WHERE gb.Booking_ID = @BookingID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@BookingID", bookingID);
-                connection.Open();
-                guestName = (string)command.ExecuteScalar();
-            }
-            return guestName;
         }
 
 
@@ -477,76 +451,7 @@ namespace Group50_Hotel_System
             }
         }
 
-        private void btnBookOut_Click(object sender, EventArgs e)
-        {
-            int bookingID = GetSelectedBookingID();
 
-            if (bookingID == -1)
-            {
-                MessageBox.Show("Please select a booking to book out.");
-                return;
-            }
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-                {
-                    connection.Open();
-                    using (SqlTransaction transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            // Step 1: Delete the banking details related to the booking
-                            SqlCommand deleteBankingCommand = new SqlCommand(
-                                @"DELETE FROM BankingDetails 
-                          WHERE Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)",
-                                connection, transaction);
-                            deleteBankingCommand.Parameters.AddWithValue("@BookingID", bookingID);
-                            deleteBankingCommand.ExecuteNonQuery();
-
-                            // Step 2: Delete the booking from the Guest_Booking table
-                            SqlCommand deleteBookingCommand = new SqlCommand(
-                                "DELETE FROM Guest_Booking WHERE Booking_ID = @BookingID",
-                                connection, transaction);
-                            deleteBookingCommand.Parameters.AddWithValue("@BookingID", bookingID);
-                            deleteBookingCommand.ExecuteNonQuery();
-
-                            // Step 3: Delete the guest's address
-                            SqlCommand deleteAddressCommand = new SqlCommand(
-                                @"DELETE FROM Address 
-                          WHERE Address_ID = (SELECT Address_ID FROM Guests WHERE Guest_ID = (SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID))",
-                                connection, transaction);
-                            deleteAddressCommand.Parameters.AddWithValue("@BookingID", bookingID);
-                            deleteAddressCommand.ExecuteNonQuery();
-
-                            // Step 4: Delete the guest from the Guests table
-                            SqlCommand deleteGuestCommand = new SqlCommand(
-                                "DELETE FROM Guests WHERE Guest_ID = (SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)",
-                                connection, transaction);
-                            deleteGuestCommand.Parameters.AddWithValue("@BookingID", bookingID);
-                            deleteGuestCommand.ExecuteNonQuery();
-
-                            // Commit the transaction
-                            transaction.Commit();
-                            MessageBox.Show("Booking and related guest information successfully deleted.");
-
-                            // Refresh the DataGridViews
-                            LoadBookedGuests();
-                            LoadCheckedInGuests();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show("An error occurred while deleting the booking: " + ex.Message);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
-            }
-        }
 
         private void btnCheckedClearControls_Click(object sender, EventArgs e)
         {
@@ -608,11 +513,9 @@ namespace Group50_Hotel_System
         }
 
 
+
         private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
         {
-            // Unlock the controls when the Check-In button is clicked
-            UnlockCheckInControls();
-
             // Step 1: Validate if all banking details are entered
             if (cbBankType.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
                 cbCardType.SelectedIndex == -1 || cbMonth.SelectedIndex == -1 ||
@@ -639,52 +542,48 @@ namespace Group50_Hotel_System
                     {
                         try
                         {
-                            // Step 3: Update the booking to set Is_CheckedIn to true and Payment_Date to today's date
+                            // Step 3: Update the booking to set Is_CheckedIn to true and save Payment_Date
                             SqlCommand command = new SqlCommand(
                                 "UPDATE Guest_Booking SET Is_CheckedIn = 1, Payment_Date = @PaymentDate WHERE Booking_ID = @BookingID",
                                 connection, transaction);
                             command.Parameters.AddWithValue("@BookingID", bookingID);
-                            command.Parameters.AddWithValue("@PaymentDate", DateTime.Today); // Store today's date as Payment_Date
-                            command.CommandTimeout = 120;  // Increase timeout if needed
+                            command.Parameters.AddWithValue("@PaymentDate", DateTime.Today);
+                            command.CommandTimeout = 120;
                             command.ExecuteNonQuery();
 
-                            // Step 4: Prepare and save banking details
+                            // Step 4: Save banking details
                             DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
-
                             SqlCommand bankingCommand = new SqlCommand(@"
-                        INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
-                        VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
-                        SELECT SCOPE_IDENTITY();", connection, transaction);
-
+                    INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
+                    VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
+                    SELECT SCOPE_IDENTITY();", connection, transaction);
                             bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
-
-                            // Store 0 for Debit and 1 for Credit
                             bankingCommand.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
-
-                            bankingCommand.Parameters.AddWithValue("@CardHolder", txtCheckinName.Text + " " + txtCheckinSurname.Text);
-                            bankingCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate); // Store as a Date
-
-                            bankingCommand.CommandTimeout = 120;  // Increase timeout if needed
+                            bankingCommand.Parameters.AddWithValue("@CardHolder", txtCardHolder.Text);
+                            bankingCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate);
+                            bankingCommand.CommandTimeout = 120;
                             int bankingID = Convert.ToInt32(bankingCommand.ExecuteScalar());
 
-                            // Step 5: Update the Guest_Booking table with the new Banking_ID
-                            SqlCommand updateBookingCommand = new SqlCommand("UPDATE Guest_Booking SET Banking_ID = @BankingID WHERE Booking_ID = @BookingID", connection, transaction);
+                            // Step 5: Update Guest_Booking with the new Banking_ID
+                            SqlCommand updateBookingCommand = new SqlCommand(
+                                "UPDATE Guest_Booking SET Banking_ID = @BankingID WHERE Booking_ID = @BookingID",
+                                connection, transaction);
                             updateBookingCommand.Parameters.AddWithValue("@BankingID", bankingID);
                             updateBookingCommand.Parameters.AddWithValue("@BookingID", bookingID);
                             updateBookingCommand.ExecuteNonQuery();
 
-                            // Commit the transaction
+                            // Commit transaction
                             transaction.Commit();
                             MessageBox.Show("Guest checked in successfully!");
 
-                            // Step 6: Refresh all DataGridViews
-                            LoadBookedGuests();      // Refresh the list of booked guests
-                            LoadCheckedInGuests();   // Refresh the list of checked-in guests
-                            LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, (int)lblCheckInRSelected.Tag); // Refresh the available rooms
+                            // Step 6: Refresh DataGridViews
+                            LoadBookedGuests();
+                            LoadCheckedInGuests();
 
-                            // Step 7: Switch back to the overview tab
+                            // Step 7: Clear controls and switch back to the overview tab
+                            ClearCheckInControls();
                             tbcCheckinForm.SelectedTab = tpOverview;
                         }
                         catch (Exception ex)
@@ -700,6 +599,7 @@ namespace Group50_Hotel_System
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
+
 
         private void UnlockCheckInControls()
         {
@@ -738,14 +638,7 @@ namespace Group50_Hotel_System
             this.Close();
         }
 
-        private void dgvCheckedBanking_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Check if the clicked cell is valid and contains a Banking_ID value
-            if (e.RowIndex >= 0 && dgvCheckedBanking.Rows[e.RowIndex].Cells["Banking_ID"].Value != DBNull.Value)
-            {
-                // Do nothing; this just prevents errors when clicking on an empty cell
-            }
-        }
+
         private bool IsGuestDetailsModified()
         {
             // Compare current guest details with the ones stored to see if any changes were made
@@ -769,19 +662,7 @@ namespace Group50_Hotel_System
             command.ExecuteNonQuery();
         }
 
-        private void UpdateGuestRoomInDatabase(int bookingID, int roomID, SqlConnection connection, SqlTransaction transaction)
-        {
-            // Implement the logic to update guest room in the database
-            SqlCommand command = new SqlCommand(@"UPDATE Guest_Booking SET Room_ID = @RoomID, CheckIn_Date = @CheckInDate, 
-                                          CheckOut_Date = @CheckOutDate WHERE Booking_ID = @BookingID", connection, transaction);
 
-            command.Parameters.AddWithValue("@RoomID", roomID);
-            command.Parameters.AddWithValue("@CheckInDate", dtpCheckInDate.Value);
-            command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOutDate.Value);
-            command.Parameters.AddWithValue("@BookingID", bookingID);
-
-            command.ExecuteNonQuery();
-        }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
@@ -799,37 +680,32 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            // Step 2: Ensure a guest is selected (using the lblSelectedGuest)
+            // Step 2: Ensure a guest is selected
             if (string.IsNullOrWhiteSpace(lblSelectedGuest.Text) || lblSelectedGuest.Text == "No valid guest selected.")
             {
                 MessageBox.Show("Please ensure a valid guest is selected.");
                 return;
             }
 
-            // Step 3: Load guest details for the selected booking
+            // Step 3: Load guest and banking details
             LoadGuestDetailsForCheckIn(selectedBookingID);
-
-            // Step 4: Load banking details for the selected guest
             LoadBankingDetailsForCheckedInGuest(selectedBookingID);
 
-            // Step 5: Load available rooms based on the selected dates and the guest's room ID
-            int selectedRoomID = (int)lblCheckInRSelected.Tag; // Assuming lblCheckInRSelected.Tag holds the Room_ID
-            LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, selectedRoomID);
+            // Step 4: Lock room DataGridView
+            dgvCheckinRooms.Enabled = false;
 
-            // Step 6: Change the tab text to "Update Check In"
+            // Step 5: Change the tab text to "Update Check In"
             tbcCheckinForm.TabPages[tpCheckin.Name].Text = "Update Check In";
 
-            // Step 7: Hide the "Check-In" button and show the "Update" button
+            // Step 6: Hide the "Check-In" button and show the "Update" button
             btnCheckInCheckedIn.Visible = false;
             btnQuestsUpdate.Visible = true;
 
-            // Step 8: Switch to the Check-In tab
+            // Step 7: Switch to the Check-In tab
             tbcCheckinForm.SelectedTab = tpCheckin;
-            tpCheckin.Focus(); // Ensures the tab is focused
-
-            // Unlock guest information controls to allow editing
-            UnlockCheckInControls();
+            tpCheckin.Focus();
         }
+
 
 
         private void btnQuestsUpdate_Click(object sender, EventArgs e)
@@ -841,7 +717,7 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            // Ensure a guest is selected (using the lblSelectedGuest)
+            // Ensure a guest is selected
             if (string.IsNullOrWhiteSpace(lblSelectedGuest.Text) || lblSelectedGuest.Text == "No valid guest selected.")
             {
                 MessageBox.Show("Please ensure a valid guest is selected.");
@@ -867,27 +743,21 @@ namespace Group50_Hotel_System
                             // Update guest details in the database
                             UpdateGuestDetailsInDatabase(selectedBookingID, connection, transaction);
 
-                            // Update the room selection for the guest
-                            int selectedRoomID = (int)lblCheckInRSelected.Tag;
-                            UpdateGuestRoomInDatabase(selectedBookingID, selectedRoomID, connection, transaction);
-
                             // Update banking details
                             UpdateBankingDetailsForGuest(selectedBookingID, connection, transaction);
 
-                            // Commit the transaction
+                            // Commit transaction
                             transaction.Commit();
                             MessageBox.Show("Guest information updated successfully!");
 
-                            // Refresh all DataGridViews
-                            LoadBookedGuests();       // Refresh the list of booked guests
-                            LoadCheckedInGuests();    // Refresh the list of checked-in guests
-                            LoadAvailableRooms(dtpCheckInDate.Value, dtpCheckOutDate.Value, selectedRoomID); // Refresh the available rooms
-                            LoadBankingDetailsIntoDGV(selectedBookingID);  // Refresh the banking details DataGridView
+                            // Refresh DataGridViews
+                            LoadBookedGuests();
+                            LoadCheckedInGuests();
 
-                            // Switch back to the overview tab and reset
-                            tbcCheckinForm.SelectedTab = tpOverview;
+                            // Clear controls and switch back to the overview tab
                             ClearCheckInControls();
-                            tpCheckin.Text = "Check in"; // Reset tab text
+                            tbcCheckinForm.SelectedTab = tpOverview;
+                            tpCheckin.Text = "Check in";
 
                             // Show the "Check-In" button and hide the "Update" button
                             btnCheckInCheckedIn.Visible = true;
@@ -906,6 +776,7 @@ namespace Group50_Hotel_System
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
+
 
         private void UpdateBankingDetailsForGuest(int bookingID, SqlConnection connection, SqlTransaction transaction)
         {
@@ -990,33 +861,115 @@ namespace Group50_Hotel_System
             btnQuestsUpdate.Visible = true;
         }
 
+
+
+        private void btnBookOut_Click_1(object sender, EventArgs e)
+        {
+            int bookingID = GetSelectedBookingID();
+
+            if (bookingID == -1)
+            {
+                MessageBox.Show("Please select a booking to book out.");
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Step 1: Delete the banking details related to the booking
+                            SqlCommand deleteBankingCommand = new SqlCommand(
+                                @"DELETE FROM BankingDetails 
+                  WHERE Banking_ID = (SELECT Banking_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)",
+                                connection, transaction);
+                            deleteBankingCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                            deleteBankingCommand.ExecuteNonQuery();
+
+                            // Step 2: Delete the booking from the Guest_Booking table
+                            SqlCommand deleteBookingCommand = new SqlCommand(
+                                "DELETE FROM Guest_Booking WHERE Booking_ID = @BookingID",
+                                connection, transaction);
+                            deleteBookingCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                            deleteBookingCommand.ExecuteNonQuery();
+
+                            // Step 3: Delete the guest's address
+                            SqlCommand deleteAddressCommand = new SqlCommand(
+                                @"DELETE FROM Address 
+                  WHERE Address_ID = (SELECT Address_ID FROM Guests WHERE Guest_ID = (SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID))",
+                                connection, transaction);
+                            deleteAddressCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                            deleteAddressCommand.ExecuteNonQuery();
+
+                            // Step 4: Delete the guest from the Guests table
+                            SqlCommand deleteGuestCommand = new SqlCommand(
+                                "DELETE FROM Guests WHERE Guest_ID = (SELECT Guest_ID FROM Guest_Booking WHERE Booking_ID = @BookingID)",
+                                connection, transaction);
+                            deleteGuestCommand.Parameters.AddWithValue("@BookingID", bookingID);
+                            deleteGuestCommand.ExecuteNonQuery();
+
+                            // Commit the transaction
+                            transaction.Commit();
+                            MessageBox.Show("Booking and related guest information successfully deleted.");
+
+                            // Refresh the DataGridViews
+                            LoadBookedGuests();
+                            LoadCheckedInGuests();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("An error occurred while deleting the booking: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
+            }
+        }
+
+
+
+        private void dgvCheckedBanking_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the clicked cell is valid and contains a Banking_ID value
+            if (e.RowIndex >= 0 && dgvCheckedBanking.Rows[e.RowIndex].Cells["Banking_ID"].Value != DBNull.Value)
+            {
+                // Do nothing; this just prevents errors when clicking on an empty cell
+            }
+        }
+
         private void tbcCheckinForm_TabIndexChanged(object sender, EventArgs e)
         {
-            // Check which tab is currently selected
             if (tbcCheckinForm.SelectedTab == tpCheckin)
             {
-                // If the "Check in" tab is selected, determine which DataGridView has a selected guest
                 if (dgvCheckBooking.SelectedRows.Count > 0 || dgvCheckBooking.CurrentRow != null)
                 {
-                    // A guest is selected in the "Booked Guests" DataGridView
                     LockCheckInControls();
+                    gbBookedButtons.Enabled = true;
                 }
                 else if (dgvCheckedCheckin.SelectedRows.Count > 0 || dgvCheckedCheckin.CurrentRow != null)
                 {
-                    // A guest is selected in the "Checked In Guests" DataGridView
                     LockCheckedInControls();
+                    gbBookedButtons.Enabled = false;
                 }
                 else
                 {
-                    // No guest is selected, so unlock all controls
                     UnlockCheckInControls();
+                    gbBookedButtons.Enabled = false;
                 }
             }
             else if (tbcCheckinForm.SelectedTab == tpOverview)
             {
-                // If the "Overview" tab is selected, unlock all controls by default
                 UnlockCheckInControls();
             }
         }
+
     }
 }
