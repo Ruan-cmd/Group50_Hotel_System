@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +93,8 @@
             this.btnBookingBookIn = new System.Windows.Forms.Button();
             this.btnBookingClearControls = new System.Windows.Forms.Button();
             this.btnQuestUpdate = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControlBooking.SuspendLayout();
             this.tpOverview.SuspendLayout();
@@ -121,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookingRooms)).BeginInit();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -899,6 +903,10 @@
             this.btnQuestUpdate.UseVisualStyleBackColor = true;
             this.btnQuestUpdate.Click += new System.EventHandler(this.btnQuestUpdate_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Booking_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -947,6 +955,7 @@
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1018,5 +1027,7 @@
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
