@@ -230,6 +230,7 @@
             this.ClientSize = new System.Drawing.Size(667, 570);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
