@@ -17,15 +17,11 @@ namespace Group50_Hotel_System
             InitializeComponent();
         }
 
-       
-
         private void btnManageEmployees_Click(object sender, EventArgs e)
         {
             Manage_Employees manage_Employees = new Manage_Employees();
             manage_Employees.ShowDialog();
         }
-
-        
 
         private void btnGoBack_Click(object sender, EventArgs e)
         {
@@ -35,10 +31,8 @@ namespace Group50_Hotel_System
             this.Close();
         }
 
-       
         private void Main_Form_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void btnBooking_Click(object sender, EventArgs e)
@@ -72,5 +66,31 @@ namespace Group50_Hotel_System
             request_Report.ShowDialog();
             this.Close();
         }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Define the path to the PDF file relative to the application's startup directory.
+                string pdfPath = System.IO.Path.Combine(Application.StartupPath, "UserManual.pdf");
+
+                if (System.IO.File.Exists(pdfPath))
+                {
+                    // Open the Help form
+                    Help helpForm = new Help();
+                    helpForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Help file not found. Please ensure that 'UserManual.pdf' is in the correct location.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while trying to open the help file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

@@ -87,3 +87,10 @@ C:\Users\Ruan\Desktop\GitHub CMPG223 Project\HotelSystem\Group50_Hotel_System\Gr
 C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Review_Hotel.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Request_Report.resources
 C:\Users\Ruan\Desktop\GitHub CMPG223 Project\Hotel System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Review_Hotel.resources
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.csproj.ResolveComReference.cache
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\obj\Debug\Group50_Hotel_System.Help.resources
+C:\Users\User\OneDrive\Documents\GITHUB\RuanCMD\Group50_Hotel_System\Group50_Hotel_System\Group50_Hotel_System\bin\Debug\Properties\UserManual.pdf
