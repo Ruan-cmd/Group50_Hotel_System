@@ -148,20 +148,20 @@
             this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removeDatabaseToolStripMenuItem});
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.dataToolStripMenuItem.Text = "Data";
             // 
             // removeDatabaseToolStripMenuItem
             // 
             this.removeDatabaseToolStripMenuItem.Name = "removeDatabaseToolStripMenuItem";
-            this.removeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.removeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.removeDatabaseToolStripMenuItem.Text = "Remove database";
             this.removeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.removeDatabaseToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.exitToolStripMenuItem.Text = "Back";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

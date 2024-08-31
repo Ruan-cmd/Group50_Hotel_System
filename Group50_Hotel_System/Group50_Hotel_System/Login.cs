@@ -16,7 +16,7 @@ namespace Group50_Hotel_System
 
         private void Login_Load(object sender, EventArgs e)
         {
-            // Load event logic if needed
+            
         }
 
         private string HashPassword(string password)
@@ -49,7 +49,7 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            string hashedEnteredPassword = HashPassword(enteredPassword);  // Hash the entered password
+            string hashedEnteredPassword = HashPassword(enteredPassword);
 
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
@@ -74,13 +74,11 @@ namespace Group50_Hotel_System
 
                                 if (hashedEnteredPassword == storedHashedPassword)
                                 {
-                                    // Set the session manager properties
                                     SessionManager.LoggedInEmployeeID = Convert.ToInt32(reader["Employee_ID"]);
                                     SessionManager.LoggedInEmployeeUsername = enteredUsername;
                                     SessionManager.LoggedInEmployeeName = reader["First_Name"].ToString();
                                     SessionManager.LoggedInEmployeeSurname = reader["Surname"].ToString();
 
-                                    // Proceed to main form
                                     this.Hide();
                                     Main_Form main_Form = new Main_Form();
                                     main_Form.ShowDialog();

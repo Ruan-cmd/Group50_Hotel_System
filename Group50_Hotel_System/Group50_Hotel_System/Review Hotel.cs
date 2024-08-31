@@ -21,7 +21,6 @@ namespace Group50_Hotel_System
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            // Assume you have star radio buttons named starRadioButton1, starRadioButton2, etc.
             if (starRadioButton1.Checked)
                 SelectedRating = 1;
             else if (starRadioButton2.Checked)
@@ -37,5 +36,9 @@ namespace Group50_Hotel_System
             this.Close();
         }
 
+        private void Review_Hotel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
