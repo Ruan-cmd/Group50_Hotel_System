@@ -29,6 +29,8 @@ namespace Group50_Hotel_System
                     Guest_Booking gb ON g.Guest_ID = gb.Guest_ID
                 WHERE 
                     gb.CheckIn_Date BETWEEN @StartDate AND @EndDate
+                    AND gb.Is_CheckedIn  = 1
+               
                 GROUP BY 
                     g.Guest_ID, 
                     g.First_Name, 
@@ -79,6 +81,7 @@ namespace Group50_Hotel_System
                 WHERE 
                     gb.CheckIn_Date BETWEEN @StartDate AND @EndDate
                     AND gb.CheckOut_Date BETWEEN @StartDate AND @EndDate
+                    AND gb.Is_CheckedIn  = 1
                 GROUP BY 
                     g.Guest_ID, 
                     g.First_Name, 
@@ -126,6 +129,7 @@ namespace Group50_Hotel_System
                     Guest_Booking
                 WHERE 
                     CheckIn_Date BETWEEN @StartDate AND @EndDate
+                    
                 GROUP BY 
                     DATEPART(YEAR, CheckIn_Date),
                     DATEPART(WEEK, CheckIn_Date)
@@ -251,15 +255,20 @@ namespace Group50_Hotel_System
             string query = @"
                 SELECT 
                     DATEPART(WEEK, CheckOut_Date) AS Week,
-                    AVG(CAST(Review_Hotel AS FLOAT)) as Rating
-                FROM 
+                   CONVERT(VARCHAR(10), DATEADD(DAY, -(DATEPART(WEEKDAY, CheckOut_Date) - 1), CheckOut_Date), 120) 
+                    + ' - ' + 
+                   CONVERT(VARCHAR(10), DATEADD(DAY, 7 - DATEPART(WEEKDAY, CheckOut_Date), CheckOut_Date), 120) 
+                   AS Week_Dates,
+                   AVG(CAST(Review_Hotel AS FLOAT)) AS Rating
+                    FROM 
                     Guest_Booking
-                WHERE 
+                    WHERE 
                     CheckOut_Date BETWEEN @StartDate AND @EndDate
-                GROUP BY 
-                    DATEPART(WEEK, CheckOut_Date)
-                ORDER BY 
-                    Week";
+                    GROUP BY 
+                     DATEPART(WEEK, CheckOut_Date),
+                    DATEADD(DAY, -(DATEPART(WEEKDAY, CheckOut_Date) - 1), CheckOut_Date)
+                    ORDER BY 
+                    DATEPART(WEEK, CheckOut_Date);";
 
             using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
