@@ -17,7 +17,7 @@ namespace Group50_Hotel_System
             InitializeComponent();
             LoadRooms(DateTime.Now, DateTime.Now.AddDays(1));
             LoadGuestsNotCheckedIn();
-            btnQuestUpdate.Visible = false;
+            btnGuestUpdate.Visible = false;
         }
 
         private void ClearBookingForm()
@@ -408,7 +408,7 @@ namespace Group50_Hotel_System
             LoadGuestsNotCheckedIn();
             tabControlBooking.TabPages[tpAddBooking.Name].Text = "Book In";
             btnBookingBookIn.Visible = true;
-            btnQuestUpdate.Visible = false;
+            btnGuestUpdate.Visible = false;
         }
 
 
@@ -704,7 +704,7 @@ namespace Group50_Hotel_System
             {
                 tabControlBooking.SelectedTab = tpAddBooking;
                 btnBookingBookIn.Visible = false;
-                btnQuestUpdate.Visible = true;
+                btnGuestUpdate.Visible = true;
                 tpOverview.Enabled = false;
                 isUpdateMode = true;
                 LoadSelectedGuestDetails(selectedBookingID);

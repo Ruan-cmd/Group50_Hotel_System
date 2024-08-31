@@ -92,7 +92,7 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBookingBookIn = new System.Windows.Forms.Button();
             this.btnBookingClearControls = new System.Windows.Forms.Button();
-            this.btnQuestUpdate = new System.Windows.Forms.Button();
+            this.btnGuestUpdate = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
@@ -861,7 +861,7 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel11.Controls.Add(this.btnBookingBookIn, 0, 1);
             this.tableLayoutPanel11.Controls.Add(this.btnBookingClearControls, 0, 0);
-            this.tableLayoutPanel11.Controls.Add(this.btnQuestUpdate, 0, 2);
+            this.tableLayoutPanel11.Controls.Add(this.btnGuestUpdate, 0, 2);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(571, 243);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -893,15 +893,15 @@
             this.btnBookingClearControls.UseVisualStyleBackColor = true;
             this.btnBookingClearControls.Click += new System.EventHandler(this.btnBookingClearControls_Click);
             // 
-            // btnQuestUpdate
+            // btnGuestUpdate
             // 
-            this.btnQuestUpdate.Location = new System.Drawing.Point(3, 83);
-            this.btnQuestUpdate.Name = "btnQuestUpdate";
-            this.btnQuestUpdate.Size = new System.Drawing.Size(154, 34);
-            this.btnQuestUpdate.TabIndex = 2;
-            this.btnQuestUpdate.Text = "Update Quests";
-            this.btnQuestUpdate.UseVisualStyleBackColor = true;
-            this.btnQuestUpdate.Click += new System.EventHandler(this.btnQuestUpdate_Click);
+            this.btnGuestUpdate.Location = new System.Drawing.Point(3, 83);
+            this.btnGuestUpdate.Name = "btnGuestUpdate";
+            this.btnGuestUpdate.Size = new System.Drawing.Size(154, 34);
+            this.btnGuestUpdate.TabIndex = 2;
+            this.btnGuestUpdate.Text = "Update Guest";
+            this.btnGuestUpdate.UseVisualStyleBackColor = true;
+            this.btnGuestUpdate.Click += new System.EventHandler(this.btnQuestUpdate_Click);
             // 
             // errorProvider1
             // 
@@ -1023,7 +1023,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Button btnBookingBookIn;
         private System.Windows.Forms.Button btnBookingClearControls;
-        private System.Windows.Forms.Button btnQuestUpdate;
+        private System.Windows.Forms.Button btnGuestUpdate;
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

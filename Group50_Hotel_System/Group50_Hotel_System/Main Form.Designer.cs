@@ -59,7 +59,7 @@
             this.btnBooking.Name = "btnBooking";
             this.btnBooking.Size = new System.Drawing.Size(437, 39);
             this.btnBooking.TabIndex = 6;
-            this.btnBooking.Text = "Bookings";
+            this.btnBooking.Text = "Booking";
             this.btnBooking.UseVisualStyleBackColor = true;
             this.btnBooking.Click += new System.EventHandler(this.btnBooking_Click);
             // 
