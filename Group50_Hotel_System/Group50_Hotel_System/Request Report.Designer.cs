@@ -32,6 +32,9 @@
             this.tbTop5Guests = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gb_SelectDate = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.rdoDESC = new System.Windows.Forms.RadioButton();
+            this.rdoASC = new System.Windows.Forms.RadioButton();
             this.lblEnddate = new System.Windows.Forms.Label();
             this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.lblStartdate = new System.Windows.Forms.Label();
@@ -41,7 +44,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gbMoststayed = new System.Windows.Forms.GroupBox();
             this.dataGridViewTopGuests = new System.Windows.Forms.DataGridView();
             this.gblongestguest = new System.Windows.Forms.GroupBox();
@@ -50,7 +52,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
@@ -66,18 +67,15 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSearchReview = new System.Windows.Forms.Button();
             this.btnClearReview = new System.Windows.Forms.Button();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dataGridViewWeek = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dataGridViewMonth = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -85,16 +83,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.rdoASC = new System.Windows.Forms.RadioButton();
-            this.rdoDESC = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tbTop5Guests.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.gb_SelectDate.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.gbButtons.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.gbMoststayed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopGuests)).BeginInit();
             this.gblongestguest.SuspendLayout();
@@ -102,7 +99,6 @@
             this.tbTopWeeks.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopWeeks)).BeginInit();
@@ -110,19 +106,17 @@
             this.tbHotelReviews.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeek)).BeginInit();
             this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonth)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYear)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -142,7 +136,7 @@
             this.tbTop5Guests.Controls.Add(this.tableLayoutPanel1);
             this.tbTop5Guests.Location = new System.Drawing.Point(4, 22);
             this.tbTop5Guests.Name = "tbTop5Guests";
-            this.tbTop5Guests.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbTop5Guests.Padding = new System.Windows.Forms.Padding(3);
             this.tbTop5Guests.Size = new System.Drawing.Size(1190, 476);
             this.tbTop5Guests.TabIndex = 0;
             this.tbTop5Guests.Text = "Top 5 Guest";
@@ -153,10 +147,10 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.7514F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.2486F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 281F));
             this.tableLayoutPanel1.Controls.Add(this.gb_SelectDate, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gbButtons, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
@@ -171,7 +165,6 @@
             // 
             // gb_SelectDate
             // 
-            this.gb_SelectDate.Controls.Add(this.groupBox9);
             this.gb_SelectDate.Controls.Add(this.lblEnddate);
             this.gb_SelectDate.Controls.Add(this.dateTimePickerStart);
             this.gb_SelectDate.Controls.Add(this.lblStartdate);
@@ -179,10 +172,44 @@
             this.gb_SelectDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gb_SelectDate.Location = new System.Drawing.Point(3, 161);
             this.gb_SelectDate.Name = "gb_SelectDate";
-            this.gb_SelectDate.Size = new System.Drawing.Size(290, 277);
+            this.gb_SelectDate.Size = new System.Drawing.Size(289, 277);
             this.gb_SelectDate.TabIndex = 3;
             this.gb_SelectDate.TabStop = false;
             this.gb_SelectDate.Text = "Select Time Period";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.rdoDESC);
+            this.groupBox9.Controls.Add(this.rdoASC);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(3, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(595, 132);
+            this.groupBox9.TabIndex = 5;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Filter";
+            // 
+            // rdoDESC
+            // 
+            this.rdoDESC.AutoSize = true;
+            this.rdoDESC.Location = new System.Drawing.Point(14, 66);
+            this.rdoDESC.Name = "rdoDESC";
+            this.rdoDESC.Size = new System.Drawing.Size(82, 17);
+            this.rdoDESC.TabIndex = 1;
+            this.rdoDESC.TabStop = true;
+            this.rdoDESC.Text = "Descending";
+            this.rdoDESC.UseVisualStyleBackColor = true;
+            // 
+            // rdoASC
+            // 
+            this.rdoASC.AutoSize = true;
+            this.rdoASC.Location = new System.Drawing.Point(14, 28);
+            this.rdoASC.Name = "rdoASC";
+            this.rdoASC.Size = new System.Drawing.Size(75, 17);
+            this.rdoASC.TabIndex = 0;
+            this.rdoASC.TabStop = true;
+            this.rdoASC.Text = "Ascending";
+            this.rdoASC.UseVisualStyleBackColor = true;
             // 
             // lblEnddate
             // 
@@ -223,9 +250,9 @@
             this.gbButtons.Controls.Add(this.btnClear);
             this.gbButtons.Controls.Add(this.btnSearch);
             this.gbButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbButtons.Location = new System.Drawing.Point(906, 161);
+            this.gbButtons.Location = new System.Drawing.Point(3, 141);
             this.gbButtons.Name = "gbButtons";
-            this.gbButtons.Size = new System.Drawing.Size(275, 277);
+            this.gbButtons.Size = new System.Drawing.Size(595, 133);
             this.gbButtons.TabIndex = 7;
             this.gbButtons.TabStop = false;
             this.gbButtons.Text = "Display data";
@@ -253,16 +280,16 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.70922F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.29078F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 322F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(299, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(298, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.17647F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.82353F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(601, 152);
             this.tableLayoutPanel2.TabIndex = 8;
             // 
@@ -271,37 +298,20 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(152, 34);
+            this.label1.Location = new System.Drawing.Point(161, 77);
             this.label1.Margin = new System.Windows.Forms.Padding(10, 10, 0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(401, 118);
+            this.label1.Size = new System.Drawing.Size(312, 75);
             this.label1.TabIndex = 4;
             this.label1.Text = "Top 5 Guests ";
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.497286F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.50272F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tableLayoutPanel3.Controls.Add(this.gbMoststayed, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.gblongestguest, 1, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(299, 161);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(601, 277);
-            this.tableLayoutPanel3.TabIndex = 10;
             // 
             // gbMoststayed
             // 
             this.gbMoststayed.Controls.Add(this.dataGridViewTopGuests);
             this.gbMoststayed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbMoststayed.Location = new System.Drawing.Point(17, 3);
+            this.gbMoststayed.Location = new System.Drawing.Point(3, 3);
             this.gbMoststayed.Name = "gbMoststayed";
-            this.gbMoststayed.Size = new System.Drawing.Size(566, 143);
+            this.gbMoststayed.Size = new System.Drawing.Size(270, 132);
             this.gbMoststayed.TabIndex = 9;
             this.gbMoststayed.TabStop = false;
             this.gbMoststayed.Text = "Most stayed Guest";
@@ -309,19 +319,20 @@
             // dataGridViewTopGuests
             // 
             this.dataGridViewTopGuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTopGuests.Location = new System.Drawing.Point(6, 25);
+            this.dataGridViewTopGuests.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTopGuests.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewTopGuests.Name = "dataGridViewTopGuests";
             this.dataGridViewTopGuests.RowHeadersWidth = 51;
-            this.dataGridViewTopGuests.Size = new System.Drawing.Size(565, 108);
+            this.dataGridViewTopGuests.Size = new System.Drawing.Size(264, 113);
             this.dataGridViewTopGuests.TabIndex = 0;
             // 
             // gblongestguest
             // 
             this.gblongestguest.Controls.Add(this.dataGridViewLongeststayed);
             this.gblongestguest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gblongestguest.Location = new System.Drawing.Point(17, 152);
+            this.gblongestguest.Location = new System.Drawing.Point(3, 141);
             this.gblongestguest.Name = "gblongestguest";
-            this.gblongestguest.Size = new System.Drawing.Size(566, 122);
+            this.gblongestguest.Size = new System.Drawing.Size(270, 133);
             this.gblongestguest.TabIndex = 10;
             this.gblongestguest.TabStop = false;
             this.gblongestguest.Text = "Longest stayed Guest";
@@ -329,10 +340,11 @@
             // dataGridViewLongeststayed
             // 
             this.dataGridViewLongeststayed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLongeststayed.Location = new System.Drawing.Point(6, 14);
+            this.dataGridViewLongeststayed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewLongeststayed.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewLongeststayed.Name = "dataGridViewLongeststayed";
             this.dataGridViewLongeststayed.RowHeadersWidth = 51;
-            this.dataGridViewLongeststayed.Size = new System.Drawing.Size(565, 102);
+            this.dataGridViewLongeststayed.Size = new System.Drawing.Size(264, 114);
             this.dataGridViewLongeststayed.TabIndex = 0;
             // 
             // tbTopWeeks
@@ -340,8 +352,8 @@
             this.tbTopWeeks.Controls.Add(this.tableLayoutPanel4);
             this.tbTopWeeks.Location = new System.Drawing.Point(4, 22);
             this.tbTopWeeks.Name = "tbTopWeeks";
-            this.tbTopWeeks.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tbTopWeeks.Size = new System.Drawing.Size(1190, 477);
+            this.tbTopWeeks.Padding = new System.Windows.Forms.Padding(3);
+            this.tbTopWeeks.Size = new System.Drawing.Size(1190, 476);
             this.tbTopWeeks.TabIndex = 1;
             this.tbTopWeeks.Text = "Top Weeks";
             this.tbTopWeeks.UseVisualStyleBackColor = true;
@@ -351,11 +363,11 @@
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.82309F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.17692F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 248F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 272F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.groupBox2, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.groupBox3, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.groupBox1, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.groupBox3, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.groupBox2, 2, 1);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(9, 7);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
@@ -369,14 +381,15 @@
             this.tableLayoutPanel6.ColumnCount = 3;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.89005F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.10995F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel6.Controls.Add(this.label2, 1, 1);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(297, 3);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(289, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.98305F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.01695F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(624, 118);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(608, 118);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // label2
@@ -384,26 +397,12 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(185, 56);
-            this.label2.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.label2.Location = new System.Drawing.Point(180, 56);
+            this.label2.Margin = new System.Windows.Forms.Padding(10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(373, 52);
+            this.label2.Size = new System.Drawing.Size(361, 52);
             this.label2.TabIndex = 0;
             this.label2.Text = "Top Weeks";
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.01227F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.98773F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 127);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.16578F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.83422F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(288, 206);
-            this.tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -412,9 +411,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 127);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 173);
+            this.groupBox1.Size = new System.Drawing.Size(280, 255);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select time period";
@@ -454,9 +453,10 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridViewTopWeeks);
-            this.groupBox2.Location = new System.Drawing.Point(297, 127);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(903, 127);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(624, 254);
+            this.groupBox2.Size = new System.Drawing.Size(267, 255);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Top Weeks Display";
@@ -468,7 +468,7 @@
             this.dataGridViewTopWeeks.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewTopWeeks.Name = "dataGridViewTopWeeks";
             this.dataGridViewTopWeeks.RowHeadersWidth = 51;
-            this.dataGridViewTopWeeks.Size = new System.Drawing.Size(618, 235);
+            this.dataGridViewTopWeeks.Size = new System.Drawing.Size(261, 236);
             this.dataGridViewTopWeeks.TabIndex = 2;
             // 
             // groupBox3
@@ -476,9 +476,9 @@
             this.groupBox3.Controls.Add(this.btnClearWeeks);
             this.groupBox3.Controls.Add(this.btnSearchWeeks);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(927, 127);
+            this.groupBox3.Location = new System.Drawing.Point(289, 127);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(243, 255);
+            this.groupBox3.Size = new System.Drawing.Size(608, 255);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Display Data";
@@ -508,7 +508,7 @@
             this.tbHotelReviews.Controls.Add(this.tableLayoutPanel7);
             this.tbHotelReviews.Location = new System.Drawing.Point(4, 22);
             this.tbHotelReviews.Name = "tbHotelReviews";
-            this.tbHotelReviews.Size = new System.Drawing.Size(1190, 477);
+            this.tbHotelReviews.Size = new System.Drawing.Size(1190, 476);
             this.tbHotelReviews.TabIndex = 2;
             this.tbHotelReviews.Text = "Hotel Review";
             this.tbHotelReviews.UseVisualStyleBackColor = true;
@@ -518,12 +518,12 @@
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.groupBox4, 0, 2);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel10, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel11, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox6, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.groupBox7, 1, 2);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox5, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox8, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox4, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 0);
             this.tableLayoutPanel7.Location = new System.Drawing.Point(9, 4);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 4;
@@ -538,7 +538,6 @@
             // 
             this.groupBox4.Controls.Add(this.btnSearchReview);
             this.groupBox4.Controls.Add(this.btnClearReview);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(3, 316);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(583, 131);
@@ -566,27 +565,13 @@
             this.btnClearReview.UseVisualStyleBackColor = true;
             this.btnClearReview.Click += new System.EventHandler(this.btnClearReview_Click_1);
             // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.62778F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.372213F));
-            this.tableLayoutPanel8.Controls.Add(this.groupBox5, 0, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(592, 3);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.68293F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.317073F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(583, 150);
-            this.tableLayoutPanel8.TabIndex = 0;
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.dataGridViewWeek);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(3, 3);
+            this.groupBox5.Location = new System.Drawing.Point(592, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(568, 133);
+            this.groupBox5.Size = new System.Drawing.Size(583, 151);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Reviews by Week";
@@ -598,7 +583,7 @@
             this.dataGridViewWeek.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewWeek.Name = "dataGridViewWeek";
             this.dataGridViewWeek.RowHeadersWidth = 51;
-            this.dataGridViewWeek.Size = new System.Drawing.Size(562, 114);
+            this.dataGridViewWeek.Size = new System.Drawing.Size(577, 132);
             this.dataGridViewWeek.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -620,25 +605,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(33, 10);
-            this.label5.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.label5.Margin = new System.Windows.Forms.Padding(10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(275, 46);
             this.label5.TabIndex = 0;
             this.label5.Text = "Hotel Reviews";
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.543739F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.45626F));
-            this.tableLayoutPanel10.Controls.Add(this.groupBox8, 1, 0);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 160);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 2;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(583, 150);
-            this.tableLayoutPanel10.TabIndex = 2;
             // 
             // groupBox8
             // 
@@ -647,9 +618,9 @@
             this.groupBox8.Controls.Add(this.label7);
             this.groupBox8.Controls.Add(this.label6);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox8.Location = new System.Drawing.Point(11, 3);
+            this.groupBox8.Location = new System.Drawing.Point(3, 160);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(569, 135);
+            this.groupBox8.Size = new System.Drawing.Size(583, 150);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Select Time Period";
@@ -686,27 +657,13 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Startdate: ";
             // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 2;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.62778F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.372213F));
-            this.tableLayoutPanel11.Controls.Add(this.groupBox6, 0, 0);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(592, 160);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 2;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94.35028F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.649717F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(583, 150);
-            this.tableLayoutPanel11.TabIndex = 3;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.dataGridViewMonth);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Location = new System.Drawing.Point(592, 160);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(568, 135);
+            this.groupBox6.Size = new System.Drawing.Size(583, 150);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Reviews by Month";
@@ -718,7 +675,7 @@
             this.dataGridViewMonth.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewMonth.Name = "dataGridViewMonth";
             this.dataGridViewMonth.RowHeadersWidth = 51;
-            this.dataGridViewMonth.Size = new System.Drawing.Size(562, 116);
+            this.dataGridViewMonth.Size = new System.Drawing.Size(577, 131);
             this.dataGridViewMonth.TabIndex = 0;
             // 
             // groupBox7
@@ -769,39 +726,35 @@
             this.exitToolStripMenuItem.Text = "Back";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
-            // groupBox9
+            // tableLayoutPanel12
             // 
-            this.groupBox9.Controls.Add(this.rdoDESC);
-            this.groupBox9.Controls.Add(this.rdoASC);
-            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox9.Location = new System.Drawing.Point(3, 124);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(284, 150);
-            this.groupBox9.TabIndex = 5;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Filter";
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Controls.Add(this.gblongestguest, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.gbMoststayed, 0, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(905, 161);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(276, 277);
+            this.tableLayoutPanel12.TabIndex = 11;
             // 
-            // rdoASC
+            // tableLayoutPanel3
             // 
-            this.rdoASC.AutoSize = true;
-            this.rdoASC.Location = new System.Drawing.Point(14, 28);
-            this.rdoASC.Name = "rdoASC";
-            this.rdoASC.Size = new System.Drawing.Size(75, 17);
-            this.rdoASC.TabIndex = 0;
-            this.rdoASC.TabStop = true;
-            this.rdoASC.Text = "Ascending";
-            this.rdoASC.UseVisualStyleBackColor = true;
-            // 
-            // rdoDESC
-            // 
-            this.rdoDESC.AutoSize = true;
-            this.rdoDESC.Location = new System.Drawing.Point(14, 66);
-            this.rdoDESC.Name = "rdoDESC";
-            this.rdoDESC.Size = new System.Drawing.Size(82, 17);
-            this.rdoDESC.TabIndex = 1;
-            this.rdoDESC.TabStop = true;
-            this.rdoDESC.Text = "Descending";
-            this.rdoDESC.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.groupBox9, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.gbButtons, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(298, 161);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(601, 277);
+            this.tableLayoutPanel3.TabIndex = 12;
             // 
             // Request_Report
             // 
@@ -819,10 +772,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.gb_SelectDate.ResumeLayout(false);
             this.gb_SelectDate.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.gbButtons.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.gbMoststayed.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopGuests)).EndInit();
             this.gblongestguest.ResumeLayout(false);
@@ -831,7 +785,6 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -840,23 +793,20 @@
             this.tbHotelReviews.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeek)).EndInit();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            this.tableLayoutPanel10.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.tableLayoutPanel11.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonth)).EndInit();
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYear)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -877,7 +827,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.GroupBox gbMoststayed;
         private System.Windows.Forms.DataGridView dataGridViewTopGuests;
         private System.Windows.Forms.GroupBox gblongestguest;
@@ -886,7 +835,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
@@ -902,18 +850,15 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnSearchReview;
         private System.Windows.Forms.Button btnClearReview;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DataGridView dataGridViewWeek;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DateTimePicker dateTimePicker6;
         private System.Windows.Forms.DateTimePicker dateTimePicker5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.DataGridView dataGridViewMonth;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -924,5 +869,7 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.RadioButton rdoDESC;
         private System.Windows.Forms.RadioButton rdoASC;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
