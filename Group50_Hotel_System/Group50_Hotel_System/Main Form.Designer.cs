@@ -46,7 +46,7 @@
             this.btnCheckIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCheckIn.Location = new System.Drawing.Point(3, 48);
             this.btnCheckIn.Name = "btnCheckIn";
-            this.btnCheckIn.Size = new System.Drawing.Size(412, 39);
+            this.btnCheckIn.Size = new System.Drawing.Size(437, 39);
             this.btnCheckIn.TabIndex = 7;
             this.btnCheckIn.Text = "Check In/out";
             this.btnCheckIn.UseVisualStyleBackColor = true;
@@ -57,7 +57,7 @@
             this.btnBooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBooking.Location = new System.Drawing.Point(3, 3);
             this.btnBooking.Name = "btnBooking";
-            this.btnBooking.Size = new System.Drawing.Size(412, 39);
+            this.btnBooking.Size = new System.Drawing.Size(437, 39);
             this.btnBooking.TabIndex = 6;
             this.btnBooking.Text = "Bookings";
             this.btnBooking.UseVisualStyleBackColor = true;
@@ -69,7 +69,7 @@
             this.btnRequest.Location = new System.Drawing.Point(3, 182);
             this.btnRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRequest.Name = "btnRequest";
-            this.btnRequest.Size = new System.Drawing.Size(412, 41);
+            this.btnRequest.Size = new System.Drawing.Size(437, 41);
             this.btnRequest.TabIndex = 5;
             this.btnRequest.Text = "Request report";
             this.btnRequest.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             this.btnManageRooms.Location = new System.Drawing.Point(3, 137);
             this.btnManageRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManageRooms.Name = "btnManageRooms";
-            this.btnManageRooms.Size = new System.Drawing.Size(412, 41);
+            this.btnManageRooms.Size = new System.Drawing.Size(437, 41);
             this.btnManageRooms.TabIndex = 4;
             this.btnManageRooms.Text = "Manage rooms";
             this.btnManageRooms.UseVisualStyleBackColor = true;
@@ -93,7 +93,7 @@
             this.btnManageEmployees.Location = new System.Drawing.Point(3, 92);
             this.btnManageEmployees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManageEmployees.Name = "btnManageEmployees";
-            this.btnManageEmployees.Size = new System.Drawing.Size(412, 41);
+            this.btnManageEmployees.Size = new System.Drawing.Size(437, 41);
             this.btnManageEmployees.TabIndex = 3;
             this.btnManageEmployees.Text = "Manage employees";
             this.btnManageEmployees.UseVisualStyleBackColor = true;
@@ -102,8 +102,8 @@
             // btnGoBack
             // 
             this.btnGoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGoBack.Location = new System.Drawing.Point(224, 471);
-            this.btnGoBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGoBack.Location = new System.Drawing.Point(372, 470);
+            this.btnGoBack.Margin = new System.Windows.Forms.Padding(145, 2, 3, 2);
             this.btnGoBack.Name = "btnGoBack";
             this.btnGoBack.Size = new System.Drawing.Size(143, 52);
             this.btnGoBack.TabIndex = 19;
@@ -114,19 +114,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(224, 0);
+            this.label1.Location = new System.Drawing.Point(242, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 58);
+            this.label1.Size = new System.Drawing.Size(431, 128);
             this.label1.TabIndex = 18;
             this.label1.Text = "Welcome to Luxury Hotel System";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.41989F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.85083F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.72928F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.18937F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.62126F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.18937F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnGoBack, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
@@ -134,9 +136,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.51658F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.15009F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.37762F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 59.44056F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.18182F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(905, 573);
             this.tableLayoutPanel1.TabIndex = 21;
             // 
@@ -150,7 +152,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnBooking, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnManageEmployees, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(224, 194);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(230, 131);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
@@ -159,7 +161,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(418, 272);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(443, 334);
             this.tableLayoutPanel2.TabIndex = 19;
             // 
             // Main_Form
@@ -168,9 +170,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 573);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Main_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main_Form";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Form_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
