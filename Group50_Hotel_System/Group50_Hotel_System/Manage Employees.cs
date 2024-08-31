@@ -123,7 +123,7 @@ namespace Group50_Hotel_System
                                 if (rowsAffected > 0)
                                 {
                                     MessageBox.Show("Employee deleted successfully.");
-                                    LoadEmployees(); // Refresh the DataGridView after deletion
+                                    LoadEmployees();
                                 }
                                 else
                                 {

@@ -166,10 +166,9 @@ namespace Group50_Hotel_System
 
                 try
                 {
-                    int guestID = 0; // Initialize guestID
-                    int addressID = 0; // Initialize addressID
+                    int guestID = 0;
+                    int addressID = 0;
 
-                    // Check if the guest exists in the database
                     string checkGuestQuery = "SELECT Guest_ID, Address_ID FROM Guests WHERE ID_Number = @IDNumber";
                     SqlCommand checkGuestCommand = new SqlCommand(checkGuestQuery, connection, transaction);
                     checkGuestCommand.Parameters.AddWithValue("@IDNumber", txtBookingIDnum.Text);
@@ -178,17 +177,15 @@ namespace Group50_Hotel_System
                     {
                         if (reader.Read())
                         {
-                            guestID = Convert.ToInt32(reader["Guest_ID"]); // Guest exists, use existing ID
+                            guestID = Convert.ToInt32(reader["Guest_ID"]);
                             addressID = reader["Address_ID"] != DBNull.Value ? Convert.ToInt32(reader["Address_ID"]) : 0;
                         }
                     }
 
                     if (guestID == 0)
                     {
-                        // Guest doesn't exist, create a new guest record
                         if (addressID == 0)
                         {
-                            // Check if the address exists in the database
                             string addressQuery = @"SELECT Address_ID FROM Address WHERE Street_Name = @Street AND Town_City = @City";
                             SqlCommand addressCommand = new SqlCommand(addressQuery, connection, transaction);
                             addressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
@@ -202,7 +199,6 @@ namespace Group50_Hotel_System
                             }
                             else
                             {
-                                // Insert a new address if it doesn't exist
                                 string insertAddressQuery = @"INSERT INTO Address (Street_Name, Town_City) VALUES (@Street, @City); SELECT SCOPE_IDENTITY();";
                                 SqlCommand insertAddressCommand = new SqlCommand(insertAddressQuery, connection, transaction);
                                 insertAddressCommand.Parameters.AddWithValue("@Street", txtBookingStreet.Text);
@@ -211,8 +207,6 @@ namespace Group50_Hotel_System
                                 addressID = Convert.ToInt32(insertAddressCommand.ExecuteScalar());
                             }
                         }
-
-                        // Insert the new guest
                         string insertGuestQuery = @"INSERT INTO Guests (First_Name, Last_Name, Contact_Num, Email, ID_Number, Address_ID) VALUES (@FirstName, @LastName, @ContactNum, @Email, @IDNumber, @AddressID); SELECT SCOPE_IDENTITY();";
                         SqlCommand guestCommand = new SqlCommand(insertGuestQuery, connection, transaction);
                         guestCommand.Parameters.AddWithValue("@FirstName", txtBookingName.Text);
@@ -224,8 +218,6 @@ namespace Group50_Hotel_System
 
                         guestID = Convert.ToInt32(guestCommand.ExecuteScalar());
                     }
-
-                    // Proceed with the booking
                     string roomNumber = lblBookingRSelected.Text.Replace("Room Selected: ", "");
                     string getRoomIDQuery = "SELECT Room_ID FROM Rooms WHERE Room_Number = @RoomNumber";
                     SqlCommand getRoomIDCommand = new SqlCommand(getRoomIDQuery, connection, transaction);
@@ -265,7 +257,7 @@ namespace Group50_Hotel_System
                 {
                     transaction.Rollback();
                     MessageBox.Show("An error occurred while booking the guest: " + ex.Message);
-                    ResetToOverview(); // Reset the form if an error occurs
+                    ResetToOverview();
                 }
             }
         }
@@ -337,8 +329,6 @@ namespace Group50_Hotel_System
                 try
                 {
                     int addressID = 0;
-
-                    // Check if the address already exists in the database
                     string checkAddressQuery = @"
                 SELECT Address_ID 
                 FROM Address 
@@ -351,11 +341,10 @@ namespace Group50_Hotel_System
 
                     if (addressResult != null)
                     {
-                        addressID = Convert.ToInt32(addressResult); // Use the existing address ID
+                        addressID = Convert.ToInt32(addressResult);
                     }
                     else
                     {
-                        // Insert a new address if it doesn't exist
                         string insertAddressQuery = @"
                     INSERT INTO Address (Street_Name, Town_City) 
                     VALUES (@Street, @City); 
@@ -366,8 +355,6 @@ namespace Group50_Hotel_System
 
                         addressID = Convert.ToInt32(insertAddressCommand.ExecuteScalar());
                     }
-
-                    // Update the guest details
                     string updateGuestQuery = @"
                 UPDATE Guests SET 
                     First_Name = @FirstName,
@@ -388,7 +375,6 @@ namespace Group50_Hotel_System
                     updateGuestCommand.Parameters.AddWithValue("@BookingID", bookingID);
                     updateGuestCommand.ExecuteNonQuery();
 
-                    // Update the booking details
                     string updateBookingQuery = @"
                 UPDATE Guest_Booking SET 
                     CheckIn_Date = @CheckInDate,
@@ -486,13 +472,10 @@ namespace Group50_Hotel_System
 
         private void txtBookingIDnum_TextChanged_1(object sender, EventArgs e)
         {
-            // Get the ID number entered by the user
             string idNumber = txtBookingIDnum.Text.Trim();
 
-            // Only proceed if the ID number is exactly 13 digits long
             if (idNumber.Length == 13 && long.TryParse(idNumber, out _))
             {
-                // Call the method to check the database and retrieve guest information
                 RetrieveAndFillGuestInformation(idNumber);
             }
         }
@@ -505,7 +488,6 @@ namespace Group50_Hotel_System
                 {
                     conn.Open();
 
-                    // SQL query to find a guest with the entered ID number
                     string query = @"
             SELECT 
                 g.First_Name, 
@@ -530,19 +512,16 @@ namespace Group50_Hotel_System
                         {
                             if (reader.Read())
                             {
-                                // Fill in the guest's details if a match is found
                                 txtBookingName.Text = reader["First_Name"] != DBNull.Value ? reader["First_Name"].ToString() : string.Empty;
                                 txtBookingSurname.Text = reader["Last_Name"] != DBNull.Value ? reader["Last_Name"].ToString() : string.Empty;
                                 txtBookingContactNum.Text = reader["Contact_Num"] != DBNull.Value ? reader["Contact_Num"].ToString() : string.Empty;
                                 txtBookingEmail.Text = reader["Email"] != DBNull.Value ? reader["Email"].ToString() : string.Empty;
 
-                                // Fill in the address details
                                 txtBookingStreet.Text = reader["Street"] != DBNull.Value ? reader["Street"].ToString() : string.Empty;
                                 txtBookingCity.Text = reader["City"] != DBNull.Value ? reader["City"].ToString() : string.Empty;
                             }
                             else
                             {
-                                // Clear fields if no guest is found
                                 ClearGuestFields();
                             }
                         }
@@ -557,48 +536,10 @@ namespace Group50_Hotel_System
 
 
 
-        private void RetrieveAndFillGuestAddress(int addressId)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
-                {
-                    conn.Open();
 
-                    // SQL query to find the address based on the Address_ID
-                    string query = "SELECT Street_Name, Town_City FROM Address WHERE Address_ID = @AddressID";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@AddressID", addressId);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                // Fill in the guest's address details
-                                txtBookingStreet.Text = reader["Street_Name"].ToString();
-                                txtBookingCity.Text = reader["Town_City"].ToString();
-                            }
-                            else
-                            {
-                                // Clear address fields if no address is found
-                                txtBookingStreet.Text = string.Empty;
-                                txtBookingCity.Text = string.Empty;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while retrieving address information: {ex.Message}");
-            }
-        }
 
         private void ClearGuestFields()
         {
-            // Clear all the text fields related to guest information
             txtBookingName.Text = string.Empty;
             txtBookingSurname.Text = string.Empty;
             txtBookingContactNum.Text = string.Empty;
@@ -620,47 +561,38 @@ namespace Group50_Hotel_System
 
                     try
                     {
-                        // Clear Guest_Booking table
                         string clearGuestBookingQuery = "DELETE FROM Guest_Booking";
                         SqlCommand clearGuestBookingCommand = new SqlCommand(clearGuestBookingQuery, connection, transaction);
                         clearGuestBookingCommand.ExecuteNonQuery();
 
-                        // Clear BankingDetails table
                         string clearBankingDetailsQuery = "DELETE FROM BankingDetails";
                         SqlCommand clearBankingDetailsCommand = new SqlCommand(clearBankingDetailsQuery, connection, transaction);
                         clearBankingDetailsCommand.ExecuteNonQuery();
 
-                        // Clear Guests table
                         string clearGuestsQuery = "DELETE FROM Guests";
                         SqlCommand clearGuestsCommand = new SqlCommand(clearGuestsQuery, connection, transaction);
                         clearGuestsCommand.ExecuteNonQuery();
 
-                        // Clear Address table
                         string clearAddressQuery = "DELETE FROM Address";
                         SqlCommand clearAddressCommand = new SqlCommand(clearAddressQuery, connection, transaction);
                         clearAddressCommand.ExecuteNonQuery();
 
-                        // Clear Employees table except for the default employee
                         string clearEmployeesQuery = "DELETE FROM Employees WHERE Username <> 'Default'";
                         SqlCommand clearEmployeesCommand = new SqlCommand(clearEmployeesQuery, connection, transaction);
                         clearEmployeesCommand.ExecuteNonQuery();
 
-                        // Clear Rooms table
                         string clearRoomsQuery = "DELETE FROM Rooms";
                         SqlCommand clearRoomsCommand = new SqlCommand(clearRoomsQuery, connection, transaction);
                         clearRoomsCommand.ExecuteNonQuery();
 
-                        // Reset Room_Status in Rooms table (if Rooms are not deleted and just reset status)
                         string updateRoomsStatusQuery = "UPDATE Rooms SET Room_Status = 0";
                         SqlCommand updateRoomsStatusCommand = new SqlCommand(updateRoomsStatusQuery, connection, transaction);
                         updateRoomsStatusCommand.ExecuteNonQuery();
 
-                        // Clear Roles table except for the default role
                         string clearRolesQuery = "DELETE FROM Roles WHERE Role_ID <> 1";
                         SqlCommand clearRolesCommand = new SqlCommand(clearRolesQuery, connection, transaction);
                         clearRolesCommand.ExecuteNonQuery();
 
-                        // Commit the transaction
                         transaction.Commit();
 
                         MessageBox.Show("Database cleared successfully! All data has been removed.");
@@ -680,6 +612,10 @@ namespace Group50_Hotel_System
 
         private void dtpBookInDate_ValueChanged(object sender, EventArgs e)
         {
+            if (dtpBookOutDate.Value <= dtpBookInDate.Value)
+            {
+                dtpBookOutDate.Value = dtpBookInDate.Value.AddDays(1);
+            }
             LoadRooms(dtpBookInDate.Value, dtpBookOutDate.Value);
         }
 
@@ -816,14 +752,12 @@ namespace Group50_Hotel_System
                 {
                     if (reader.Read())
                     {
-                        // Prefill the form fields with the guest's details
                         txtBookingName.Text = reader["First_Name"].ToString();
                         txtBookingSurname.Text = reader["Last_Name"].ToString();
                         txtBookingContactNum.Text = reader["Contact_Num"].ToString();
                         txtBookingEmail.Text = reader["Email"].ToString();
                         txtBookingIDnum.Text = reader["ID_Number"].ToString();
 
-                        // Load Address if available
                         if (reader["Address_ID"] != DBNull.Value)
                         {
                             txtBookingStreet.Text = reader["Street"].ToString();
@@ -854,7 +788,6 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            // Ask for confirmation before proceeding with the update
             DialogResult confirmResult = MessageBox.Show("Are you sure you want to update the information?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmResult == DialogResult.No)
@@ -863,7 +796,6 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            // Ensure there are changes to update
             if (!CheckForChanges(selectedBookingID))
             {
                 DialogResult result = MessageBox.Show("No changes detected. Do you want to cancel the update?", "No Changes Detected", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -873,16 +805,10 @@ namespace Group50_Hotel_System
                     ResetToOverview();
                     return;
                 }
-                // If No, continue with the code
             }
 
-            // Update the booking details
             UpdateBookingDetails(selectedBookingID);
-
-            // Refresh the booking overview to reflect the updates
             LoadBookingOverview();
-
-            // Switch back to the overview tab and clear controls after update
             ResetToOverview();
         }
 

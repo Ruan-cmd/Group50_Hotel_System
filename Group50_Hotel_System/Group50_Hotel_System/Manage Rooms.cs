@@ -27,7 +27,7 @@ namespace Group50_Hotel_System
                 DataGridViewRow row = dgvRoom.Rows[e.RowIndex];
                 selectedRoomID = Convert.ToInt32(row.Cells["Room_ID"].Value);
                 lblRoomSelected.Text = $"Room {row.Cells["Room_Number"].Value} - {row.Cells["Room_Type"].Value}";
-                btnAddRoomUpdate.Visible = true; // Show the btnAddRoomUpdate button when a room is selected
+                btnAddRoomUpdate.Visible = true;
             }
         }
 
@@ -58,7 +58,7 @@ namespace Group50_Hotel_System
                 LoadRooms();
                 lblRoomSelected.Text = "Room deleted";
                 selectedRoomID = -1;
-                btnAddRoomUpdate.Visible = false; // Hide the btnAddRoomUpdate button after deletion
+                btnAddRoomUpdate.Visible = false;
             }
             else
             {
@@ -73,12 +73,10 @@ namespace Group50_Hotel_System
                 MessageBox.Show("Please select a room to update.");
                 return;
             }
-
-            // Navigate to the Add Rooms tab and pre-fill the room's data
             tcRooms.SelectedTab = tpAddRooms;
             tcRooms.TabPages[0].Text = "Update Room";
             btnAddRooms.Visible = false;
-            btnAddRoomUpdate.Visible = true; // Show the btnAddRoomUpdate button for updating
+            btnAddRoomUpdate.Visible = true;
 
             using (SqlConnection con = new SqlConnection(SessionManager.ConnectionString))
             {
@@ -148,8 +146,8 @@ namespace Group50_Hotel_System
             LoadRooms();
             tcRooms.SelectedTab = tpOverview;
             tcRooms.TabPages[0].Text = "Add Rooms";
-            btnAddRooms.Visible = true; // Show the add button again
-            btnAddRoomUpdate.Visible = false; // Hide the update button after updating
+            btnAddRooms.Visible = true;
+            btnAddRoomUpdate.Visible = false;
             txtRoomNum.Clear();
             txtRoomType.Clear();
             lblRoomSelected.Text = "Room updated successfully.";

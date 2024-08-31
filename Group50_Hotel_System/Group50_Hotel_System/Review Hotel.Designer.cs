@@ -161,6 +161,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Review_Hotel";
             this.Text = "Review_Hotel";
+            this.Load += new System.EventHandler(this.Review_Hotel_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
