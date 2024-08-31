@@ -16,8 +16,10 @@ namespace Group50_Hotel_System
         //Top Guest 
         private void GetTop5Guests(DateTime startDate, DateTime endDate)
         {
-            // Define the query 
-            string query = @"
+            if (rdoDESC.Checked)
+            {
+                // Define the query 
+                string query = @"
                 SELECT TOP 5 
                     g.Guest_ID, 
                     g.First_Name, 
@@ -38,35 +40,92 @@ namespace Group50_Hotel_System
                 ORDER BY 
                     Total DESC;";
 
-            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
                 {
-                    // Add parameters 
-                    cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
-                    cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
-
-                    try
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        conn.Open();
+                        // Add parameters 
+                        cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
+                        cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
-                        // Execute the command and fill the DataGridView
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dataGridViewTopGuests.DataSource = dt;
+                        try
+                        {
+                            conn.Open();
+
+                            // Execute the command and fill the DataGridView
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dataGridViewTopGuests.DataSource = dt;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occurred: " + ex.Message);
+                        }
+                        conn.Close();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message);
-                    }
-                    conn.Close();
                 }
+            }
+
+            if (rdoASC.Checked)
+            {
+                // Define the query 
+                string query = @"
+                SELECT TOP 5 
+                    g.Guest_ID, 
+                    g.First_Name, 
+                    g.Last_Name, 
+                    COUNT(gb.Booking_ID) AS Total
+                FROM 
+                    Guests g
+                JOIN 
+                    Guest_Booking gb ON g.Guest_ID = gb.Guest_ID
+                WHERE 
+                    gb.CheckIn_Date BETWEEN @StartDate AND @EndDate
+                    AND gb.Is_CheckedIn  = 1
+               
+                GROUP BY 
+                    g.Guest_ID, 
+                    g.First_Name, 
+                    g.Last_Name
+                ORDER BY 
+                    Total ASC;";
+
+                using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // Add parameters 
+                        cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
+                        cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
+
+                        try
+                        {
+                            conn.Open();
+
+                            // Execute the command and fill the DataGridView
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dataGridViewTopGuests.DataSource = dt;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occurred: " + ex.Message);
+                        }
+                        conn.Close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Filter Option");
             }
         }
 
         private void GetTop5GuestsLongest(DateTime startDate, DateTime endDate)
         {
+            if (rdoDESC.Checked) { 
             // Define the query 
             string query = @"
                 SELECT 
@@ -89,30 +148,85 @@ namespace Group50_Hotel_System
                 ORDER BY 
                     Days_Stayed DESC";
 
-            using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
                 {
-                    // Add parameters 
-                    cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
-                    cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
-
-                    try
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        conn.Open();
+                        // Add parameters 
+                        cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
+                        cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
-                        // Execute the command and fill the DataGridView
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dataGridViewLongeststayed.DataSource = dt;
+                        try
+                        {
+                            conn.Open();
+
+                            // Execute the command and fill the DataGridView
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dataGridViewLongeststayed.DataSource = dt;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occurred: " + ex.Message);
+                        }
+                        conn.Close();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message);
-                    }
-                    conn.Close();
                 }
+            }
+            else if (rdoASC.Checked)
+            {
+                // Define the query 
+                string query = @"
+                SELECT 
+                    g.Guest_ID, 
+                    g.First_Name, 
+                    g.Last_Name, 
+                    SUM(DATEDIFF(DAY, gb.CheckIn_Date, gb.CheckOut_Date)) AS Days_Stayed
+                FROM 
+                    Guests g
+                JOIN 
+                    Guest_Booking gb ON g.Guest_ID = gb.Guest_ID
+                WHERE 
+                    gb.CheckIn_Date BETWEEN @StartDate AND @EndDate
+                    AND gb.CheckOut_Date BETWEEN @StartDate AND @EndDate
+                    AND gb.Is_CheckedIn  = 1
+                GROUP BY 
+                    g.Guest_ID, 
+                    g.First_Name, 
+                    g.Last_Name
+                ORDER BY 
+                    Days_Stayed ASC";
+
+                using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // Add parameters 
+                        cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
+                        cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
+
+                        try
+                        {
+                            conn.Open();
+
+                            // Execute the command and fill the DataGridView
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dataGridViewLongeststayed.DataSource = dt;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occurred: " + ex.Message);
+                        }
+                        conn.Close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Filter Option");
             }
         }
 
@@ -160,6 +274,11 @@ namespace Group50_Hotel_System
                     }
                 }
             }
+
+
+
+
+
         }
 
         //Hotel Reviews by Year
