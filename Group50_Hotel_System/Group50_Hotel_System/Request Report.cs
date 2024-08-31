@@ -331,6 +331,7 @@ namespace Group50_Hotel_System
             string query = @"
                 SELECT 
                     DATEPART(MONTH, CheckOut_Date) as Month,
+                    DATENAME(MONTH, CheckOut_Date) as Name,
                     AVG(CAST(Review_Hotel AS FLOAT)) as Rating
                 FROM 
                     Guest_Booking
@@ -338,6 +339,7 @@ namespace Group50_Hotel_System
                     CheckOut_Date BETWEEN @StartDate AND @EndDate
                 GROUP BY 
                     DATEPART(MONTH, CheckOut_Date)
+                    DATENAME(MONTH, CheckOut_Date),
                 ORDER BY 
                     Month";
 
@@ -384,10 +386,10 @@ namespace Group50_Hotel_System
                     WHERE 
                     CheckOut_Date BETWEEN @StartDate AND @EndDate
                     GROUP BY 
-                     DATEPART(WEEK, CheckOut_Date),
-                    DATEADD(DAY, -(DATEPART(WEEKDAY, CheckOut_Date) - 1), CheckOut_Date)
+                       DATEPART(WEEK, CheckOut_Date) AS Week
+                  
                     ORDER BY 
-                    DATEPART(WEEK, CheckOut_Date);";
+                    DATEPART(WEEK, CheckOut_Date)";
 
             using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
