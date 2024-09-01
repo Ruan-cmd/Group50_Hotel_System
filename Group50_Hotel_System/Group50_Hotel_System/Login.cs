@@ -38,67 +38,53 @@ namespace Group50_Hotel_System
             Application.Exit();
         }
 
-        private void btnLogin_Click_1(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             string enteredUsername = txtUsername.Text;
             string enteredPassword = txtPassword.Text;
 
-            if (string.IsNullOrEmpty(enteredUsername) || string.IsNullOrEmpty(enteredPassword))
-            {
-                MessageBox.Show("Please enter both username and password.");
-                return;
-            }
-
-            string hashedEnteredPassword = HashPassword(enteredPassword);
-
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
-                try
+                connection.Open();
+
+                string query = @"
+            SELECT Employees.Employee_ID, Employees.Username, Employees.Surname, Employees.First_Name, Employees.Password, Roles.Role_Desc
+            FROM Employees
+            JOIN Roles ON Employees.Role_ID = Roles.Role_ID
+            WHERE Employees.Username = @Username";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
+                    command.Parameters.AddWithValue("@Username", enteredUsername);
 
-                    string query = @"
-                        SELECT Employee_ID, First_Name, Surname, Password 
-                        FROM Employees 
-                        WHERE Username = @Username";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("@Username", enteredUsername);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
+                            string storedHashedPassword = reader["Password"].ToString();
+                            if (HashPassword(enteredPassword) == storedHashedPassword)
                             {
-                                string storedHashedPassword = reader["Password"] as string;
+                                SessionManager.LoggedInEmployeeID = Convert.ToInt32(reader["Employee_ID"]);
+                                SessionManager.LoggedInEmployeeUsername = reader["Username"].ToString();
+                                SessionManager.LoggedInEmployeeName = reader["First_Name"].ToString();
+                                SessionManager.LoggedInEmployeeSurname = reader["Surname"].ToString();
+                                SessionManager.LoggedInEmployeeRole = reader["Role_Desc"].ToString();
 
-                                if (hashedEnteredPassword == storedHashedPassword)
-                                {
-                                    SessionManager.LoggedInEmployeeID = Convert.ToInt32(reader["Employee_ID"]);
-                                    SessionManager.LoggedInEmployeeUsername = enteredUsername;
-                                    SessionManager.LoggedInEmployeeName = reader["First_Name"].ToString();
-                                    SessionManager.LoggedInEmployeeSurname = reader["Surname"].ToString();
-
-                                    this.Hide();
-                                    Main_Form main_Form = new Main_Form();
-                                    main_Form.ShowDialog();
-                                    this.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Incorrect password.");
-                                }
+                                this.Hide();
+                                Main_Form main_Form = new Main_Form();
+                                main_Form.ShowDialog();
+                                this.Close();
                             }
                             else
                             {
-                                MessageBox.Show("Username not found.");
+                                MessageBox.Show("Invalid password.");
                             }
                         }
+                        else
+                        {
+                            MessageBox.Show("Username not found.");
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}");
                 }
             }
         }

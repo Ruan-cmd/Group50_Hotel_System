@@ -233,19 +233,32 @@ namespace Group50_Hotel_System
                 return;
             }
 
-            string hashedPassword = HashPassword(password);
-
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 try
                 {
                     connection.Open();
 
+                    string checkUsernameQuery = "SELECT COUNT(*) FROM Employees WHERE Username = @Username";
+                    using (SqlCommand checkUsernameCommand = new SqlCommand(checkUsernameQuery, connection))
+                    {
+                        checkUsernameCommand.Parameters.AddWithValue("@Username", username);
+                        int usernameCount = (int)checkUsernameCommand.ExecuteScalar();
+
+                        if (usernameCount > 0)
+                        {
+                            MessageBox.Show("Username already taken. Please choose a different username.");
+                            return;
+                        }
+                    }
+
+                    string hashedPassword = HashPassword(password);
+
                     string insertRoleQuery = @"
-                    IF NOT EXISTS (SELECT 1 FROM Roles WHERE Role_Desc = @Role_Desc)
-                    BEGIN
-                        INSERT INTO Roles (Role_Desc) VALUES (@Role_Desc)
-                    END";
+            IF NOT EXISTS (SELECT 1 FROM Roles WHERE Role_Desc = @Role_Desc)
+            BEGIN
+                INSERT INTO Roles (Role_Desc) VALUES (@Role_Desc)
+            END";
 
                     using (SqlCommand roleCommand = new SqlCommand(insertRoleQuery, connection))
                     {
@@ -263,8 +276,8 @@ namespace Group50_Hotel_System
                     }
 
                     string insertEmployeeQuery = @"
-                    INSERT INTO Employees (Role_ID, Username, Surname, First_Name, Password)
-                    VALUES (@Role_ID, @Username, @Surname, @First_Name, @Password)";
+            INSERT INTO Employees (Role_ID, Username, Surname, First_Name, Password)
+            VALUES (@Role_ID, @Username, @Surname, @First_Name, @Password)";
 
                     using (SqlCommand employeeCommand = new SqlCommand(insertEmployeeQuery, connection))
                     {
@@ -278,19 +291,26 @@ namespace Group50_Hotel_System
 
                     MessageBox.Show("Employee information saved successfully!");
                     LoadEmployees();
+
+                    ResetFormFields();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"An error occurred: {ex.Message}");
                 }
-                tabControl1.SelectedTab = Overview;
-                txtName.Text = "";
-                txtSurname.Text = "";
-                txtUsername.Text = "";
-                txtPassword.Text = "";
-                cbRole.SelectedIndex = 0;
             }
         }
+
+        private void ResetFormFields()
+        {
+            txtName.Text = "";
+            txtSurname.Text = "";
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            cbRole.SelectedIndex = -1;
+        }
+
+
 
         private void btnUpdateEmployees_Click(object sender, EventArgs e)
         {

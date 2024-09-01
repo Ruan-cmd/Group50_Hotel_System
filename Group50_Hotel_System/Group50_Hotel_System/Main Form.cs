@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Group_50_CMPG223_HotelManagementSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +34,30 @@ namespace Group50_Hotel_System
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            string managerRole = "Manager";
+
+            if (SessionManager.LoggedInEmployeeRole != managerRole)
+            {
+                btnRequest.Visible = false;
+                btnManageEmployees.Visible = false;
+            }
+            else
+            {
+                btnRequest.Visible = true;
+                btnManageEmployees.Visible = true;
+            }
+
+
+            toolTip1.SetToolTip(btnBooking, "Add, Update and remove Guest Bookings");
+            toolTip1.SetToolTip(btnCheckIn, "Check in, update and Check out Guests");
+            toolTip1.SetToolTip(btnManageRooms, "Add, Update and Remove Rooms");
+            toolTip1.SetToolTip(btnManageEmployees, "Add, Update and Remove Employees (Reset Employee Passwords)");
+            toolTip1.SetToolTip(btnRequest, "Request a report for a specific time period");
+            toolTip1.SetToolTip(btnHelp, "See User Manueal");
+            toolTip1.SetToolTip(btnGoBack, "Go back to Login");
         }
+
+
 
         private void btnBooking_Click(object sender, EventArgs e)
         {
@@ -72,7 +96,5 @@ namespace Group50_Hotel_System
             Help helpForm = new Help();
             helpForm.ShowDialog();
         }
-
-
     }
 }
