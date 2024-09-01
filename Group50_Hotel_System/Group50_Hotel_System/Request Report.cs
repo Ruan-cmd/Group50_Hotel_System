@@ -13,7 +13,7 @@ namespace Group50_Hotel_System
             InitializeComponent();
         }
 
-        //Top Guest in time period
+        //Top Guest
         private void GetTop5Guests(DateTime startDate, DateTime endDate)
         {
             if (rdoDESC.Checked)
