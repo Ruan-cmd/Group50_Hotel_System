@@ -37,8 +37,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +80,7 @@
             // btnManageRooms
             // 
             this.btnManageRooms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnManageRooms.Location = new System.Drawing.Point(3, 137);
+            this.btnManageRooms.Location = new System.Drawing.Point(3, 92);
             this.btnManageRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManageRooms.Name = "btnManageRooms";
             this.btnManageRooms.Size = new System.Drawing.Size(437, 41);
@@ -92,7 +92,7 @@
             // btnManageEmployees
             // 
             this.btnManageEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnManageEmployees.Location = new System.Drawing.Point(3, 92);
+            this.btnManageEmployees.Location = new System.Drawing.Point(3, 137);
             this.btnManageEmployees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnManageEmployees.Name = "btnManageEmployees";
             this.btnManageEmployees.Size = new System.Drawing.Size(437, 41);
@@ -151,9 +151,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.btnRequest, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnCheckIn, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnManageRooms, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.btnBooking, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnManageEmployees, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnManageRooms, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnManageEmployees, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(230, 131);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -167,10 +167,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(443, 334);
             this.tableLayoutPanel2.TabIndex = 19;
             // 
-            // helpProvider1
-            // 
-            this.helpProvider1.HelpNamespace = "UserManual.pdf";
-            // 
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(679, 3);
@@ -180,6 +176,10 @@
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "UserManual.pdf";
             // 
             // Main_Form
             // 
