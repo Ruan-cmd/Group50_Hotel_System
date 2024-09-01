@@ -50,7 +50,7 @@ namespace Group50_Hotel_System
 
                         try
                         {
-                            conn.Open();
+                            conn.Open(); // Open Connection
 
                             
                             SqlDataAdapter da = new SqlDataAdapter(cmd);
