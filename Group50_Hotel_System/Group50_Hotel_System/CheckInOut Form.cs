@@ -1000,5 +1000,7 @@ namespace Group50_Hotel_System
                 dtpCheckOutDate.Value = dtpCheckInDate.Value.AddDays(1); 
             }
         }
+
+
     }
 }
