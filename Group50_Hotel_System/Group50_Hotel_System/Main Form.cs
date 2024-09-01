@@ -69,8 +69,8 @@ namespace Group50_Hotel_System
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            Help helpForm = new Help();  // Create an instance of the Help form
-            helpForm.ShowDialog();  // Display the Help form
+            Help helpForm = new Help();
+            helpForm.ShowDialog();
         }
 
 
