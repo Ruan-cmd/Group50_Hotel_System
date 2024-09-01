@@ -69,26 +69,8 @@ namespace Group50_Hotel_System
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // The file is now part of the project, so it will be copied to the output directory (e.g., bin/Debug).
-                // You can directly reference it without specifying a path.
-                string pdfPath = System.IO.Path.Combine(Application.StartupPath, "UserManual.pdf");
-
-                if (System.IO.File.Exists(pdfPath))
-                {
-                    Help helpForm = new Help();  // Create an instance of the Help form
-                    helpForm.ShowDialog();       // Display the Help form as a modal dialog
-                }
-                else
-                {
-                    MessageBox.Show("Help file not found. Please ensure that 'UserManual.pdf' is in the correct location.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while trying to open the help file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Help helpForm = new Help();  // Create an instance of the Help form
+            helpForm.ShowDialog();  // Display the Help form
         }
 
 
