@@ -500,11 +500,8 @@ namespace Group50_Hotel_System
 
         private void btnCheckInCheckedIn_Click(object sender, EventArgs e)
         {
-            if (cbBankType.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
-                cbCardType.SelectedIndex == -1 || cbMonth.SelectedIndex == -1 ||
-                cbYear.SelectedIndex == -1 || (!radDebit.Checked && !radCredit.Checked))
+            if (!ValidateCheckInForm())
             {
-                MessageBox.Show("Please ensure all banking details are entered correctly.");
                 return;
             }
 
@@ -534,9 +531,9 @@ namespace Group50_Hotel_System
 
                             DateTime expirationDate = new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1);
                             SqlCommand bankingCommand = new SqlCommand(@"
-                    INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
-                    VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
-                    SELECT SCOPE_IDENTITY();", connection, transaction);
+                        INSERT INTO BankingDetails (Card_Type, Bank, Card_Num, Debit_Credit, Card_Holder, Expiration_Date)
+                        VALUES (@CardType, @Bank, @CardNum, @DebitCredit, @CardHolder, @ExpirationDate); 
+                        SELECT SCOPE_IDENTITY();", connection, transaction);
                             bankingCommand.Parameters.AddWithValue("@CardType", cbCardType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
                             bankingCommand.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
@@ -575,6 +572,59 @@ namespace Group50_Hotel_System
                 MessageBox.Show("An error occurred while connecting to the database: " + ex.Message);
             }
         }
+
+        private bool ValidateCheckInForm()
+        {
+            bool isValid = true;
+
+            errorProvider1.Clear();
+
+            if (cbBankType.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbBankType, "Bank Type is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCardNumber.Text))
+            {
+                errorProvider1.SetError(txtCardNumber, "Card Number is required.");
+                isValid = false;
+            }
+
+            if (cbCardType.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbCardType, "Card Type is required.");
+                isValid = false;
+            }
+
+            if (cbMonth.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbMonth, "Expiration Month is required.");
+                isValid = false;
+            }
+
+            if (cbYear.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbYear, "Expiration Year is required.");
+                isValid = false;
+            }
+
+            if (!radDebit.Checked && !radCredit.Checked)
+            {
+                errorProvider1.SetError(radDebit, "Please select Debit or Credit.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCardHolder.Text))
+            {
+                errorProvider1.SetError(txtCardHolder, "Card Holder Name is required.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+
 
 
         private void UnlockCheckInControls()
