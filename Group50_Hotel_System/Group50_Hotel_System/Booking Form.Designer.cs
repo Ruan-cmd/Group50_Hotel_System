@@ -530,7 +530,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
@@ -629,7 +629,7 @@
             this.txtBookingIDnum.Location = new System.Drawing.Point(162, 2);
             this.txtBookingIDnum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingIDnum.Name = "txtBookingIDnum";
-            this.txtBookingIDnum.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingIDnum.Size = new System.Drawing.Size(366, 22);
             this.txtBookingIDnum.TabIndex = 7;
             this.txtBookingIDnum.TextChanged += new System.EventHandler(this.txtBookingIDnum_TextChanged_1);
             // 
@@ -639,7 +639,7 @@
             this.txtBookingName.Location = new System.Drawing.Point(162, 33);
             this.txtBookingName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingName.Name = "txtBookingName";
-            this.txtBookingName.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingName.Size = new System.Drawing.Size(366, 22);
             this.txtBookingName.TabIndex = 8;
             // 
             // txtBookingSurname
@@ -648,7 +648,7 @@
             this.txtBookingSurname.Location = new System.Drawing.Point(162, 64);
             this.txtBookingSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingSurname.Name = "txtBookingSurname";
-            this.txtBookingSurname.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingSurname.Size = new System.Drawing.Size(366, 22);
             this.txtBookingSurname.TabIndex = 9;
             // 
             // txtBookingContactNum
@@ -657,7 +657,7 @@
             this.txtBookingContactNum.Location = new System.Drawing.Point(162, 95);
             this.txtBookingContactNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingContactNum.Name = "txtBookingContactNum";
-            this.txtBookingContactNum.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingContactNum.Size = new System.Drawing.Size(366, 22);
             this.txtBookingContactNum.TabIndex = 10;
             // 
             // txtBookingEmail
@@ -666,7 +666,7 @@
             this.txtBookingEmail.Location = new System.Drawing.Point(162, 126);
             this.txtBookingEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingEmail.Name = "txtBookingEmail";
-            this.txtBookingEmail.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingEmail.Size = new System.Drawing.Size(366, 22);
             this.txtBookingEmail.TabIndex = 11;
             // 
             // txtBookingStreet
@@ -675,7 +675,7 @@
             this.txtBookingStreet.Location = new System.Drawing.Point(162, 157);
             this.txtBookingStreet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingStreet.Name = "txtBookingStreet";
-            this.txtBookingStreet.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingStreet.Size = new System.Drawing.Size(366, 22);
             this.txtBookingStreet.TabIndex = 12;
             // 
             // txtBookingCity
@@ -684,7 +684,7 @@
             this.txtBookingCity.Location = new System.Drawing.Point(162, 188);
             this.txtBookingCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingCity.Name = "txtBookingCity";
-            this.txtBookingCity.Size = new System.Drawing.Size(367, 22);
+            this.txtBookingCity.Size = new System.Drawing.Size(366, 22);
             this.txtBookingCity.TabIndex = 13;
             // 
             // groupBox5

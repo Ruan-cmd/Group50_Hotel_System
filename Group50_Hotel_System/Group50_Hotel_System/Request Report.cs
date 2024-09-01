@@ -18,7 +18,7 @@ namespace Group50_Hotel_System
         {
             if (rdoDESC.Checked)
             {
-                
+
                 string query = @"
                 SELECT TOP 5 
                     g.Guest_ID, 
@@ -44,7 +44,7 @@ namespace Group50_Hotel_System
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        
+
                         cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                         cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -52,7 +52,7 @@ namespace Group50_Hotel_System
                         {
                             conn.Open(); // Open Connection
 
-                            
+
                             SqlDataAdapter da = new SqlDataAdapter(cmd);
                             DataTable dt = new DataTable();
                             da.Fill(dt);
@@ -69,7 +69,7 @@ namespace Group50_Hotel_System
 
             if (rdoASC.Checked)
             {
-               
+
                 string query = @"
                 SELECT TOP 5 
                     g.Guest_ID, 
@@ -95,7 +95,7 @@ namespace Group50_Hotel_System
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        
+
                         cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                         cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -103,7 +103,7 @@ namespace Group50_Hotel_System
                         {
                             conn.Open();
 
-                           
+
                             SqlDataAdapter da = new SqlDataAdapter(cmd);
                             DataTable dt = new DataTable();
                             da.Fill(dt);
@@ -125,9 +125,10 @@ namespace Group50_Hotel_System
 
         private void GetTop5GuestsLongest(DateTime startDate, DateTime endDate)
         {
-            if (rdoDESC.Checked) { 
-            
-            string query = @"
+            if (rdoDESC.Checked)
+            {
+
+                string query = @"
                 SELECT TOP 5
                     g.Guest_ID, 
                     g.First_Name, 
@@ -152,7 +153,7 @@ namespace Group50_Hotel_System
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        
+
                         cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                         cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -160,7 +161,7 @@ namespace Group50_Hotel_System
                         {
                             conn.Open();
 
-                           
+
                             SqlDataAdapter da = new SqlDataAdapter(cmd);
                             DataTable dt = new DataTable();
                             da.Fill(dt);
@@ -176,7 +177,7 @@ namespace Group50_Hotel_System
             }
             else if (rdoASC.Checked)
             {
-               
+
                 string query = @"
                 SELECT TOP 5
                     g.Guest_ID, 
@@ -202,7 +203,7 @@ namespace Group50_Hotel_System
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        
+
                         cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                         cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -210,7 +211,7 @@ namespace Group50_Hotel_System
                         {
                             conn.Open();
 
-                            
+
                             SqlDataAdapter da = new SqlDataAdapter(cmd);
                             DataTable dt = new DataTable();
                             da.Fill(dt);
@@ -233,7 +234,7 @@ namespace Group50_Hotel_System
         //Top Weeks
         private void GetBusiestWeeks(DateTime startDate, DateTime endDate)
         {
-            
+
             string query = @"
                 SELECT TOP 10
                     DATEPART(YEAR, CheckIn_Date) AS Year,
@@ -254,7 +255,7 @@ namespace Group50_Hotel_System
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                   
+
                     cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                     cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -262,7 +263,7 @@ namespace Group50_Hotel_System
                     {
                         conn.Open();
 
-                        
+
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -284,7 +285,7 @@ namespace Group50_Hotel_System
         //Hotel Reviews by Year
         private void GetHotelReviewsYear(DateTime startDate, DateTime endDate)
         {
-            
+
             string query = @"
                 SELECT 
                     DATEPART(YEAR, CheckOut_Date) AS Year,
@@ -302,7 +303,7 @@ namespace Group50_Hotel_System
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    
+
                     cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                     cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -310,7 +311,7 @@ namespace Group50_Hotel_System
                     {
                         conn.Open();
 
-                        
+
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -327,7 +328,7 @@ namespace Group50_Hotel_System
         //Hotel Reviews by Month
         private void GetHotelReviewsMonth(DateTime startDate, DateTime endDate)
         {
-            
+
             string query = @"
                 SELECT 
                     DATEPART(MONTH, CheckOut_Date) as Month_Number,
@@ -347,7 +348,7 @@ namespace Group50_Hotel_System
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    
+
                     cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                     cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -355,7 +356,7 @@ namespace Group50_Hotel_System
                     {
                         conn.Open();
 
-                       
+
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -372,7 +373,7 @@ namespace Group50_Hotel_System
         //Hotel Reviews by Week
         private void GetHotelReviewsWeek(DateTime startDate, DateTime endDate)
         {
-           
+
             string query = @"
                 SELECT 
                     DATEPART(WEEK, CheckOut_Date) AS Week,
@@ -395,7 +396,7 @@ namespace Group50_Hotel_System
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    
+
                     cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                     cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
@@ -403,7 +404,7 @@ namespace Group50_Hotel_System
                     {
                         conn.Open();
 
-                       
+
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -424,7 +425,7 @@ namespace Group50_Hotel_System
 
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
-            
+
             DateTime selectedDate1 = dateTimePickerStart.Value;
             DateTime selectedDate2 = dateTimePickerEnd.Value;
             if (selectedDate1 >= DateTime.Today.AddDays(1) || selectedDate1 > selectedDate2 || selectedDate2 < selectedDate1 || selectedDate2 >= DateTime.Today.AddDays(1))
@@ -433,11 +434,11 @@ namespace Group50_Hotel_System
             }
             else if (selectedDate1 != dateTimePickerStart.MinDate && selectedDate2 != dateTimePickerEnd.MinDate && selectedDate1 < selectedDate2)
             {
-               
+
                 DateTime startDate = dateTimePickerStart.Value;
                 DateTime endDate = dateTimePickerEnd.Value;
 
-                
+
                 GetTop5Guests(startDate, endDate);
                 GetTop5GuestsLongest(startDate, endDate);
             }
@@ -453,7 +454,7 @@ namespace Group50_Hotel_System
 
         private void btnSearchWeeks_Click_1(object sender, EventArgs e)
         {
-           
+
             DateTime selectedDate1 = dateTimePicker3.Value;
             DateTime selectedDate2 = dateTimePicker4.Value;
             if (selectedDate1 >= DateTime.Today.AddDays(1) || selectedDate1 > selectedDate2 || selectedDate2 < selectedDate1 || selectedDate2 >= DateTime.Today.AddDays(1))
@@ -462,11 +463,11 @@ namespace Group50_Hotel_System
             }
             else if (selectedDate1 != dateTimePicker3.MinDate && selectedDate2 != dateTimePicker4.MinDate && selectedDate1 < selectedDate2)
             {
-              
+
                 DateTime startDate = dateTimePicker3.Value;
                 DateTime endDate = dateTimePicker4.Value;
 
-                
+
                 GetBusiestWeeks(startDate, endDate);
             }
         }
@@ -489,11 +490,11 @@ namespace Group50_Hotel_System
             }
             else if (selectedDate1 != dateTimePicker5.MinDate && selectedDate2 != dateTimePicker6.MinDate && selectedDate1 < selectedDate2)
             {
-                
+
                 DateTime startDate = dateTimePicker5.Value;
                 DateTime endDate = dateTimePicker6.Value;
 
-              
+
                 GetHotelReviewsYear(startDate, endDate);
                 GetHotelReviewsMonth(startDate, endDate);
                 GetHotelReviewsWeek(startDate, endDate);

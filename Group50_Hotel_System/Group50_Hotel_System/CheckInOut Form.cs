@@ -398,13 +398,13 @@ namespace Group50_Hotel_System
                                             "UPDATE Guest_Booking SET Is_CheckedOut = 1, Review_Hotel = @Rating WHERE Booking_ID = @BookingID",
                                             connection, transaction);
                                         command.Parameters.AddWithValue("@BookingID", bookingID);
-                                        command.Parameters.AddWithValue("@Rating", rating); 
+                                        command.Parameters.AddWithValue("@Rating", rating);
                                         command.ExecuteNonQuery();
 
                                         transaction.Commit();
                                         MessageBox.Show("Guest checked out successfully!");
 
-                                        LoadCheckedInGuests(); 
+                                        LoadCheckedInGuests();
                                         ClearCheckInControls();
                                     }
                                     catch (Exception ex)
@@ -814,7 +814,7 @@ namespace Group50_Hotel_System
             command.Parameters.AddWithValue("@Bank", cbBankType.SelectedItem.ToString());
             command.Parameters.AddWithValue("@CardNum", txtCardNumber.Text);
             command.Parameters.AddWithValue("@DebitCredit", radDebit.Checked ? 0 : 1);
-            command.Parameters.AddWithValue("@CardHolder", txtCardHolder.Text); 
+            command.Parameters.AddWithValue("@CardHolder", txtCardHolder.Text);
             command.Parameters.AddWithValue("@ExpirationDate", new DateTime(int.Parse(cbYear.SelectedItem.ToString()), int.Parse(cbMonth.SelectedItem.ToString()), 1));
             command.Parameters.AddWithValue("@BookingID", bookingID);
 
@@ -995,10 +995,12 @@ namespace Group50_Hotel_System
 
         private void dtpCheckInDate_ValueChanged(object sender, EventArgs e)
         {
-            if(dtpCheckOutDate.Value <= dtpCheckInDate.Value)
+            if (dtpCheckOutDate.Value <= dtpCheckInDate.Value)
             {
-                dtpCheckOutDate.Value = dtpCheckInDate.Value.AddDays(1); 
+                dtpCheckOutDate.Value = dtpCheckInDate.Value.AddDays(1);
             }
         }
+
+
     }
 }
