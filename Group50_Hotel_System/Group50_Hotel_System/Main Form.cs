@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -96,5 +97,73 @@ namespace Group50_Hotel_System
             Help helpForm = new Help();
             helpForm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Confirm before clearing the data
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to clear all guest information, including addresses and banking details? This action cannot be undone.",
+                "Confirm Data Clear",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
+                    {
+                        conn.Open();
+
+                        // Begin a transaction
+                        using (SqlTransaction transaction = conn.BeginTransaction())
+                        {
+                            try
+                            {
+                                // Clear Guest_Booking table
+                                SqlCommand cmdClearGuestBooking = new SqlCommand(
+                                    "DELETE FROM Guest_Booking;", conn, transaction);
+                                cmdClearGuestBooking.ExecuteNonQuery();
+
+                                // Clear Guests table
+                                SqlCommand cmdClearGuests = new SqlCommand(
+                                    "DELETE FROM Guests;", conn, transaction);
+                                cmdClearGuests.ExecuteNonQuery();
+
+                                // Clear BankingDetails table
+                                SqlCommand cmdClearBankingDetails = new SqlCommand(
+                                    "DELETE FROM BankingDetails;", conn, transaction);
+                                cmdClearBankingDetails.ExecuteNonQuery();
+
+                                // Clear Address table
+                                SqlCommand cmdClearAddress = new SqlCommand(
+                                    "DELETE FROM Address;", conn, transaction);
+                                cmdClearAddress.ExecuteNonQuery();
+
+                                // Commit the transaction
+                                transaction.Commit();
+
+                                MessageBox.Show("All guest information, addresses, and banking details have been cleared.");
+                            }
+                            catch (Exception ex)
+                            {
+                                // Rollback the transaction if something went wrong
+                                transaction.Rollback();
+                                MessageBox.Show("An error occurred while clearing the data: " + ex.Message);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Data clearing operation was canceled.");
+            }
+        }
+
     }
 }

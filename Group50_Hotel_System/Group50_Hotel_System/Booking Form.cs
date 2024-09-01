@@ -124,11 +124,14 @@ namespace Group50_Hotel_System
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
                 connection.Open();
+
                 string query = @"
-            SELECT COUNT(*) 
-            FROM Guest_Booking gb
-            INNER JOIN Guests g ON gb.Guest_ID = g.Guest_ID
-            WHERE g.ID_Number = @IDNumber AND (gb.Is_CheckedIn = 1 OR gb.Is_CheckedOut = 0)";
+        SELECT COUNT(*) 
+        FROM Guest_Booking gb
+        INNER JOIN Guests g ON gb.Guest_ID = g.Guest_ID
+        WHERE g.ID_Number = @IDNumber 
+        AND gb.Is_CheckedIn = 1 
+        AND gb.Is_CheckedOut = 0";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@IDNumber", idNumber);
@@ -137,6 +140,7 @@ namespace Group50_Hotel_System
                 return count > 0;
             }
         }
+
 
 
         private void btnBookingBookIn_Click(object sender, EventArgs e)
