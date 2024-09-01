@@ -141,6 +141,11 @@ namespace Group50_Hotel_System
 
         private void btnBookingBookIn_Click(object sender, EventArgs e)
         {
+            if (!ValidateBookingForm())
+            {
+                return;
+            }
+
             if (lblBookingRSelected.Text == "No Room Selected!")
             {
                 MessageBox.Show("Please select a room before booking.", "Room Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -261,6 +266,58 @@ namespace Group50_Hotel_System
                 }
             }
         }
+
+        private bool ValidateBookingForm()
+        {
+            bool isValid = true;
+
+            errorProvider1.Clear();
+
+            if (string.IsNullOrEmpty(txtBookingName.Text))
+            {
+                errorProvider1.SetError(txtBookingName, "First Name is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtBookingSurname.Text))
+            {
+                errorProvider1.SetError(txtBookingSurname, "Surname is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtBookingContactNum.Text))
+            {
+                errorProvider1.SetError(txtBookingContactNum, "Contact Number is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtBookingEmail.Text))
+            {
+                errorProvider1.SetError(txtBookingEmail, "Email is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtBookingIDnum.Text))
+            {
+                errorProvider1.SetError(txtBookingIDnum, "ID Number is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtBookingStreet.Text))
+            {
+                errorProvider1.SetError(txtBookingStreet, "Street is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtBookingCity.Text))
+            {
+                errorProvider1.SetError(txtBookingCity, "City is required.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
 
 
         private bool CheckForChanges(int bookingID)
