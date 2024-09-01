@@ -59,5 +59,15 @@ namespace Group50_Hotel_System.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserManual {
+            get {
+                object obj = ResourceManager.GetObject("UserManual", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
