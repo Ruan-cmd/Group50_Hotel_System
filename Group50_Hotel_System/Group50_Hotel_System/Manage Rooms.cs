@@ -34,7 +34,7 @@ namespace Group50_Hotel_System
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(SessionManager.ConnectionString))
-            {
+            {   //Open
                 con.Open();
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Rooms WHERE Room_Number LIKE @search OR Room_Type LIKE @search", con);
                 da.SelectCommand.Parameters.AddWithValue("@search", "%" + txtSearch.Text + "%");
