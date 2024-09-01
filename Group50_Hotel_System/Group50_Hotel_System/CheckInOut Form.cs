@@ -723,6 +723,11 @@ namespace Group50_Hotel_System
 
         private void btnQuestsUpdate_Click(object sender, EventArgs e)
         {
+
+            if (!ValidateCheckInForm())
+            {
+                return;
+            }
             if (selectedBookingID == -1)
             {
                 MessageBox.Show("Please select a guest to update.");

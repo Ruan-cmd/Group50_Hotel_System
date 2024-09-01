@@ -354,16 +354,15 @@ namespace Group50_Hotel_System
 
         private void btnUpdateEmployees_Click(object sender, EventArgs e)
         {
+            if (!ValidateEmployeeFields())
+            {
+                return;
+            }
+
             string name = txtUpdateName.Text;
             string surname = txtUpdateSurname.Text;
             string username = txtUpdateUsername.Text;
             string role = cbUpdate.SelectedItem?.ToString();
-
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(role))
-            {
-                MessageBox.Show("Please fill all the fields.");
-                return;
-            }
 
             bool changesMade = false;
 
@@ -394,9 +393,9 @@ namespace Group50_Hotel_System
                         int roleId = (int)roleIdCommand.ExecuteScalar();
 
                         string updateQuery = @"
-                        UPDATE Employees
-                        SET Username = @Username, Surname = @Surname, First_Name = @First_Name, Role_ID = @Role_ID
-                        WHERE Employee_ID = @Employee_ID";
+                UPDATE Employees
+                SET Username = @Username, Surname = @Surname, First_Name = @First_Name, Role_ID = @Role_ID
+                WHERE Employee_ID = @Employee_ID";
                         SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
                         updateCommand.Parameters.AddWithValue("@Username", username);
                         updateCommand.Parameters.AddWithValue("@Surname", surname);
@@ -421,6 +420,7 @@ namespace Group50_Hotel_System
                 LoadEmployees();
             }
         }
+
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
