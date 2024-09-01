@@ -373,37 +373,36 @@ namespace Group50_Hotel_System
         //Hotel Reviews by Week
         private void GetHotelReviewsWeek(DateTime startDate, DateTime endDate)
         {
-
             string query = @"
-                SELECT 
-                    DATEPART(WEEK, CheckOut_Date) AS Week,
-                   CONVERT(VARCHAR(10), DATEADD(DAY, -(DATEPART(WEEKDAY, CheckOut_Date) - 1), CheckOut_Date), 120) 
-                    + ' - ' + 
-                   CONVERT(VARCHAR(10), DATEADD(DAY, 7 - DATEPART(WEEKDAY, CheckOut_Date), CheckOut_Date), 120) 
-                   AS Week_Dates,
-                   AVG(CAST(Review_Hotel AS FLOAT)) AS Rating
-                    FROM 
-                    Guest_Booking
-                    WHERE 
-                    CheckOut_Date BETWEEN @StartDate AND @EndDate
-                    GROUP BY 
-                       DATEPART(WEEK, CheckOut_Date) AS Week
-                  
-                    ORDER BY 
-                    DATEPART(WEEK, CheckOut_Date)";
+        SELECT 
+            DATEPART(WEEK, CheckOut_Date) AS Week,
+            CONVERT(VARCHAR(10), DATEADD(DAY, -(DATEPART(WEEKDAY, CheckOut_Date) - 1), CheckOut_Date), 120) 
+                + ' - ' + 
+            CONVERT(VARCHAR(10), DATEADD(DAY, 7 - DATEPART(WEEKDAY, CheckOut_Date), CheckOut_Date), 120) 
+                AS Week_Dates,
+            AVG(CAST(Review_Hotel AS FLOAT)) AS Rating
+        FROM 
+            Guest_Booking
+        WHERE 
+            CheckOut_Date BETWEEN @StartDate AND @EndDate
+        GROUP BY 
+            DATEPART(WEEK, CheckOut_Date),
+            CONVERT(VARCHAR(10), DATEADD(DAY, -(DATEPART(WEEKDAY, CheckOut_Date) - 1), CheckOut_Date), 120) 
+                + ' - ' + 
+            CONVERT(VARCHAR(10), DATEADD(DAY, 7 - DATEPART(WEEKDAY, CheckOut_Date), CheckOut_Date), 120)
+        ORDER BY 
+            DATEPART(WEEK, CheckOut_Date)";
 
             using (SqlConnection conn = new SqlConnection(SessionManager.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-
                     cmd.Parameters.Add(new SqlParameter("@StartDate", startDate));
                     cmd.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
                     try
                     {
                         conn.Open();
-
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
@@ -417,6 +416,7 @@ namespace Group50_Hotel_System
                 }
             }
         }
+
 
         private void Request_Report_Load(object sender, EventArgs e)
         {
