@@ -12,7 +12,8 @@ namespace Group50_Hotel_System
 
         private void Help_Load(object sender, EventArgs e)
         {
-            // Specify the path to the PDF file relative to the application's startup directory.
+            // The file is now part of the project, so it will be copied to the output directory (e.g., bin/Debug).
+            // You can directly reference it without specifying a path.
             string pdfPath = System.IO.Path.Combine(Application.StartupPath, "UserManual.pdf");
 
             try
@@ -22,8 +23,8 @@ namespace Group50_Hotel_System
                 {
                     // Load the PDF file into the Adobe PDF Reader control
                     axAcroPDF1.LoadFile(pdfPath);
-                    axAcroPDF1.setView("Fit");
-                    axAcroPDF1.setShowToolbar(false);
+                    axAcroPDF1.setView("Fit");  // Set the view to fit the PDF to the viewer
+                    axAcroPDF1.setShowToolbar(false);  // Hide the toolbar for a cleaner look
                 }
                 else
                 {
@@ -35,6 +36,7 @@ namespace Group50_Hotel_System
                 MessageBox.Show($"An error occurred while trying to load the help file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }

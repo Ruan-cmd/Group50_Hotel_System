@@ -71,14 +71,14 @@ namespace Group50_Hotel_System
         {
             try
             {
-                // Define the path to the PDF file relative to the application's startup directory.
+                // The file is now part of the project, so it will be copied to the output directory (e.g., bin/Debug).
+                // You can directly reference it without specifying a path.
                 string pdfPath = System.IO.Path.Combine(Application.StartupPath, "UserManual.pdf");
 
                 if (System.IO.File.Exists(pdfPath))
                 {
-                    // Open the Help form
-                    Help helpForm = new Help();
-                    helpForm.ShowDialog();
+                    Help helpForm = new Help();  // Create an instance of the Help form
+                    helpForm.ShowDialog();       // Display the Help form as a modal dialog
                 }
                 else
                 {
