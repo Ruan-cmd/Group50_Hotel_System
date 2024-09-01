@@ -606,67 +606,6 @@ namespace Group50_Hotel_System
         }
 
 
-        private void removeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to clear the entire database including all tables? This action cannot be undone.", "Confirm Database Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
-                {
-                    connection.Open();
-                    SqlTransaction transaction = connection.BeginTransaction();
-
-                    try
-                    {
-                        string clearGuestBookingQuery = "DELETE FROM Guest_Booking";
-                        SqlCommand clearGuestBookingCommand = new SqlCommand(clearGuestBookingQuery, connection, transaction);
-                        clearGuestBookingCommand.ExecuteNonQuery();
-
-                        string clearBankingDetailsQuery = "DELETE FROM BankingDetails";
-                        SqlCommand clearBankingDetailsCommand = new SqlCommand(clearBankingDetailsQuery, connection, transaction);
-                        clearBankingDetailsCommand.ExecuteNonQuery();
-
-                        string clearGuestsQuery = "DELETE FROM Guests";
-                        SqlCommand clearGuestsCommand = new SqlCommand(clearGuestsQuery, connection, transaction);
-                        clearGuestsCommand.ExecuteNonQuery();
-
-                        string clearAddressQuery = "DELETE FROM Address";
-                        SqlCommand clearAddressCommand = new SqlCommand(clearAddressQuery, connection, transaction);
-                        clearAddressCommand.ExecuteNonQuery();
-
-                        string clearEmployeesQuery = "DELETE FROM Employees WHERE Username <> 'Default'";
-                        SqlCommand clearEmployeesCommand = new SqlCommand(clearEmployeesQuery, connection, transaction);
-                        clearEmployeesCommand.ExecuteNonQuery();
-
-                        string clearRoomsQuery = "DELETE FROM Rooms";
-                        SqlCommand clearRoomsCommand = new SqlCommand(clearRoomsQuery, connection, transaction);
-                        clearRoomsCommand.ExecuteNonQuery();
-
-                        string updateRoomsStatusQuery = "UPDATE Rooms SET Room_Status = 0";
-                        SqlCommand updateRoomsStatusCommand = new SqlCommand(updateRoomsStatusQuery, connection, transaction);
-                        updateRoomsStatusCommand.ExecuteNonQuery();
-
-                        string clearRolesQuery = "DELETE FROM Roles WHERE Role_ID <> 1";
-                        SqlCommand clearRolesCommand = new SqlCommand(clearRolesQuery, connection, transaction);
-                        clearRolesCommand.ExecuteNonQuery();
-
-                        transaction.Commit();
-
-                        MessageBox.Show("Database cleared successfully! All data has been removed.");
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        MessageBox.Show("An error occurred while clearing the database: " + ex.Message);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Database clear operation canceled.");
-            }
-        }
-
         private void dtpBookInDate_ValueChanged(object sender, EventArgs e)
         {
             if (dtpBookOutDate.Value <= dtpBookInDate.Value)
@@ -839,6 +778,11 @@ namespace Group50_Hotel_System
         }
         private void btnQuestUpdate_Click(object sender, EventArgs e)
         {
+            if (!ValidateBookingForm())
+            {
+                return;
+            }
+
             if (selectedBookingID == 0)
             {
                 MessageBox.Show("No valid guest selected for updating.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

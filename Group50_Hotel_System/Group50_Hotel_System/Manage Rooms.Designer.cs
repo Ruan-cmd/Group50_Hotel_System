@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtRoomType = new System.Windows.Forms.TextBox();
             this.txtRoomNum = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             this.tcRooms.SuspendLayout();
             this.tpOverview.SuspendLayout();
@@ -61,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).BeginInit();
             this.tpAddRooms.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -85,7 +88,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
             this.exitToolStripMenuItem.Text = "Back";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -312,6 +315,10 @@
             this.txtRoomNum.Size = new System.Drawing.Size(132, 22);
             this.txtRoomNum.TabIndex = 0;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Manage_Rooms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -338,6 +345,7 @@
             this.tpAddRooms.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,5 +376,6 @@
         private System.Windows.Forms.TextBox txtRoomType;
         private System.Windows.Forms.TextBox txtRoomNum;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

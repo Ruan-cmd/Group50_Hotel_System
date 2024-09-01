@@ -94,9 +94,8 @@ namespace Group50_Hotel_System
 
         private void btnAddRooms_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtRoomNum.Text) || string.IsNullOrEmpty(txtRoomType.Text))
+            if (!ValidateRoomFields())
             {
-                MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
@@ -125,11 +124,11 @@ namespace Group50_Hotel_System
             }
         }
 
+
         private void btnAddRoomUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtRoomNum.Text) || string.IsNullOrEmpty(txtRoomType.Text))
+            if (!ValidateRoomFields())
             {
-                MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
@@ -153,6 +152,27 @@ namespace Group50_Hotel_System
             lblRoomSelected.Text = "Room updated successfully.";
             EnableOverviewControls();
         }
+
+        private bool ValidateRoomFields()
+        {
+            errorProvider1.Clear();
+            bool isValid = true;
+
+            if (string.IsNullOrEmpty(txtRoomNum.Text))
+            {
+                errorProvider1.SetError(txtRoomNum, "Room Number is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtRoomType.Text))
+            {
+                errorProvider1.SetError(txtRoomType, "Room Type is required.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
 
         private void Manage_Rooms_Load(object sender, EventArgs e)
         {
