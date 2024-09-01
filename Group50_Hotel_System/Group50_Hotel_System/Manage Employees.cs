@@ -221,17 +221,16 @@ namespace Group50_Hotel_System
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateEmployeeFields())
+            {
+                return; // If validation fails, exit the method.
+            }
+
             string name = txtName.Text;
             string surname = txtSurname.Text;
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string role = cbRole.SelectedItem?.ToString();
-
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
-            {
-                MessageBox.Show("Please fill all the fields.");
-                return;
-            }
 
             using (SqlConnection connection = new SqlConnection(SessionManager.ConnectionString))
             {
@@ -300,6 +299,47 @@ namespace Group50_Hotel_System
                 }
             }
         }
+
+
+        private bool ValidateEmployeeFields()
+        {
+            errorProvider1.Clear();
+            bool isValid = true;
+
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                errorProvider1.SetError(txtName, "Name is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtSurname.Text))
+            {
+                errorProvider1.SetError(txtSurname, "Surname is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtUsername.Text))
+            {
+                errorProvider1.SetError(txtUsername, "Username is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                errorProvider1.SetError(txtPassword, "Password is required.");
+                isValid = false;
+            }
+
+            if (cbRole.SelectedItem == null)
+            {
+                errorProvider1.SetError(cbRole, "Role is required.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+
 
         private void ResetFormFields()
         {
