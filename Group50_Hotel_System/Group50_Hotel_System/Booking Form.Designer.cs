@@ -530,7 +530,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
@@ -626,7 +626,7 @@
             // txtBookingIDnum
             // 
             this.txtBookingIDnum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingIDnum.Location = new System.Drawing.Point(163, 2);
+            this.txtBookingIDnum.Location = new System.Drawing.Point(162, 2);
             this.txtBookingIDnum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingIDnum.Name = "txtBookingIDnum";
             this.txtBookingIDnum.Size = new System.Drawing.Size(367, 22);
@@ -636,7 +636,7 @@
             // txtBookingName
             // 
             this.txtBookingName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingName.Location = new System.Drawing.Point(163, 33);
+            this.txtBookingName.Location = new System.Drawing.Point(162, 33);
             this.txtBookingName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingName.Name = "txtBookingName";
             this.txtBookingName.Size = new System.Drawing.Size(367, 22);
@@ -645,7 +645,7 @@
             // txtBookingSurname
             // 
             this.txtBookingSurname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingSurname.Location = new System.Drawing.Point(163, 64);
+            this.txtBookingSurname.Location = new System.Drawing.Point(162, 64);
             this.txtBookingSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingSurname.Name = "txtBookingSurname";
             this.txtBookingSurname.Size = new System.Drawing.Size(367, 22);
@@ -654,7 +654,7 @@
             // txtBookingContactNum
             // 
             this.txtBookingContactNum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingContactNum.Location = new System.Drawing.Point(163, 95);
+            this.txtBookingContactNum.Location = new System.Drawing.Point(162, 95);
             this.txtBookingContactNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingContactNum.Name = "txtBookingContactNum";
             this.txtBookingContactNum.Size = new System.Drawing.Size(367, 22);
@@ -663,7 +663,7 @@
             // txtBookingEmail
             // 
             this.txtBookingEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingEmail.Location = new System.Drawing.Point(163, 126);
+            this.txtBookingEmail.Location = new System.Drawing.Point(162, 126);
             this.txtBookingEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingEmail.Name = "txtBookingEmail";
             this.txtBookingEmail.Size = new System.Drawing.Size(367, 22);
@@ -672,7 +672,7 @@
             // txtBookingStreet
             // 
             this.txtBookingStreet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingStreet.Location = new System.Drawing.Point(163, 157);
+            this.txtBookingStreet.Location = new System.Drawing.Point(162, 157);
             this.txtBookingStreet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingStreet.Name = "txtBookingStreet";
             this.txtBookingStreet.Size = new System.Drawing.Size(367, 22);
@@ -681,7 +681,7 @@
             // txtBookingCity
             // 
             this.txtBookingCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingCity.Location = new System.Drawing.Point(163, 188);
+            this.txtBookingCity.Location = new System.Drawing.Point(162, 188);
             this.txtBookingCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingCity.Name = "txtBookingCity";
             this.txtBookingCity.Size = new System.Drawing.Size(367, 22);
