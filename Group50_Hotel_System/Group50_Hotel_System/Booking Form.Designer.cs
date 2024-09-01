@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlBooking = new System.Windows.Forms.TabControl();
             this.tpOverview = new System.Windows.Forms.TabPage();
@@ -93,7 +91,6 @@
             this.btnBookingBookIn = new System.Windows.Forms.Button();
             this.btnBookingClearControls = new System.Windows.Forms.Button();
             this.btnGuestUpdate = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControlBooking.SuspendLayout();
@@ -141,31 +138,15 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dataToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // dataToolStripMenuItem
-            // 
-            this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeDatabaseToolStripMenuItem});
-            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
-            this.dataToolStripMenuItem.Text = "Data";
-            // 
-            // removeDatabaseToolStripMenuItem
-            // 
-            this.removeDatabaseToolStripMenuItem.Name = "removeDatabaseToolStripMenuItem";
-            this.removeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
-            this.removeDatabaseToolStripMenuItem.Text = "Remove database";
-            this.removeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.removeDatabaseToolStripMenuItem_Click);
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Back";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -546,9 +527,10 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
@@ -644,65 +626,65 @@
             // txtBookingIDnum
             // 
             this.txtBookingIDnum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingIDnum.Location = new System.Drawing.Point(169, 2);
+            this.txtBookingIDnum.Location = new System.Drawing.Point(163, 2);
             this.txtBookingIDnum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingIDnum.Name = "txtBookingIDnum";
-            this.txtBookingIDnum.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingIDnum.Size = new System.Drawing.Size(369, 22);
             this.txtBookingIDnum.TabIndex = 7;
             this.txtBookingIDnum.TextChanged += new System.EventHandler(this.txtBookingIDnum_TextChanged_1);
             // 
             // txtBookingName
             // 
             this.txtBookingName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingName.Location = new System.Drawing.Point(169, 33);
+            this.txtBookingName.Location = new System.Drawing.Point(163, 33);
             this.txtBookingName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingName.Name = "txtBookingName";
-            this.txtBookingName.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingName.Size = new System.Drawing.Size(369, 22);
             this.txtBookingName.TabIndex = 8;
             // 
             // txtBookingSurname
             // 
             this.txtBookingSurname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingSurname.Location = new System.Drawing.Point(169, 64);
+            this.txtBookingSurname.Location = new System.Drawing.Point(163, 64);
             this.txtBookingSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingSurname.Name = "txtBookingSurname";
-            this.txtBookingSurname.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingSurname.Size = new System.Drawing.Size(369, 22);
             this.txtBookingSurname.TabIndex = 9;
             // 
             // txtBookingContactNum
             // 
             this.txtBookingContactNum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingContactNum.Location = new System.Drawing.Point(169, 95);
+            this.txtBookingContactNum.Location = new System.Drawing.Point(163, 95);
             this.txtBookingContactNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingContactNum.Name = "txtBookingContactNum";
-            this.txtBookingContactNum.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingContactNum.Size = new System.Drawing.Size(369, 22);
             this.txtBookingContactNum.TabIndex = 10;
             // 
             // txtBookingEmail
             // 
             this.txtBookingEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingEmail.Location = new System.Drawing.Point(169, 126);
+            this.txtBookingEmail.Location = new System.Drawing.Point(163, 126);
             this.txtBookingEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingEmail.Name = "txtBookingEmail";
-            this.txtBookingEmail.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingEmail.Size = new System.Drawing.Size(369, 22);
             this.txtBookingEmail.TabIndex = 11;
             // 
             // txtBookingStreet
             // 
             this.txtBookingStreet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingStreet.Location = new System.Drawing.Point(169, 157);
+            this.txtBookingStreet.Location = new System.Drawing.Point(163, 157);
             this.txtBookingStreet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingStreet.Name = "txtBookingStreet";
-            this.txtBookingStreet.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingStreet.Size = new System.Drawing.Size(369, 22);
             this.txtBookingStreet.TabIndex = 12;
             // 
             // txtBookingCity
             // 
             this.txtBookingCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBookingCity.Location = new System.Drawing.Point(169, 188);
+            this.txtBookingCity.Location = new System.Drawing.Point(163, 188);
             this.txtBookingCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookingCity.Name = "txtBookingCity";
-            this.txtBookingCity.Size = new System.Drawing.Size(384, 22);
+            this.txtBookingCity.Size = new System.Drawing.Size(369, 22);
             this.txtBookingCity.TabIndex = 13;
             // 
             // groupBox5
@@ -1024,10 +1006,7 @@
         private System.Windows.Forms.Button btnBookingBookIn;
         private System.Windows.Forms.Button btnBookingClearControls;
         private System.Windows.Forms.Button btnGuestUpdate;
-        private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
